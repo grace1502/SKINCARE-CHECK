@@ -94,7 +94,7 @@ st.markdown("""
 }
 
 .stTextArea > div > div > textarea::placeholder {
-    color: rgba(255, 255, 255, 0.7) !important;
+    color: black !important;
 }
 
 /* Button styling */
@@ -294,7 +294,7 @@ st.markdown('<div class="main-header"><h1>🧪 Pemeriksa Keamanan Bahan Skincare
 # Area Input
 st.header("📝 Masukkan Daftar Bahan Skincare:")
 ingredient_input = st.text_area(
-    "Tempel daftar bahan di sini:", 
+    "Masukkan daftar bahan di sini:", 
     height=150, 
     placeholder="Contoh: Aqua, Glycerin, Alcohol, Fragrance, Sodium Laureth Sulfate",
     help="Salin dan tempel daftar bahan dari kemasan produk skincare Anda"
