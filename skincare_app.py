@@ -95,6 +95,7 @@ st.markdown("""
 
 .stTextArea > div > div > textarea::placeholder {
     color: black !important;
+    transparent: 50% !important;
 }
 
 /* Button styling */
