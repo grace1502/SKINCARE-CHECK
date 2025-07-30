@@ -283,6 +283,6 @@ st.sidebar.info(
 
 st.sidebar.header("Dangerous Ingredients Checked")
 dangerous_list = [f"- **{k.title()}**: {v['description']}" for k, v in analyzer.dangerous_ingredients.items()]
-st.sidebar.markdown("
+st.sidebar.markdown("\n".join(str(item) for item in dangerous_list))
 ".join(dangerous_list))
 
