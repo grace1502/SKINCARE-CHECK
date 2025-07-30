@@ -20,55 +20,59 @@ st.set_page_config(
 )
 
 # Custom CSS
-st.markdown(f"""
+st.markdown("""
 <style>
-    .main-header {
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        padding: 2rem;
-        border-radius: 15px;
-        text-align: center;
-        color: white;
-        margin-bottom: 2rem;
-    }
+body {
+    margin-bottom: 2rem;
+}
 
-    .metric-card {
-        background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-        padding: 1rem;
-        border-radius: 10px;
-        text-align: center;
-        color: white;
-        margin: 0.5rem 0;
-    }
+.main-header {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    padding: 2rem;
+    border-radius: 15px;
+    text-align: center;
+    color: white;
+}
 
-    .safe-card {
-        background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
-        padding: 1rem;
-        border-radius: 10px;
-        border-left: 5px solid #28a745;
-    }
+.metric-card {
+    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    padding: 1rem;
+    border-radius: 10px;
+    text-align: center;
+    color: white;
+    margin: 0.5rem 0;
+}
 
-    .danger-card {
-        background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);
-        padding: 1rem;
-        border-radius: 10px;
-        border-left: 5px solid #dc3545;
-    }
+.safe-card {
+    background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+    padding: 1rem;
+    border-radius: 10px;
+    border-left: 5px solid #28a745;
+}
 
-    .ingredient-item {
-        background: #f8f9fa;
-        padding: 1rem;
-        border-radius: 8px;
-        border-left: 4px solid #dc3545;
-        margin: 0.5rem 0;
-    }
+.danger-card {
+    background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);
+    padding: 1rem;
+    border-radius: 10px;
+    border-left: 5px solid #dc3545;
+}
 
-    .stTextArea > div > div > textarea {
-        font-size: 16px;
-    }
+.ingredient-item {
+    background: #f8f9fa;
+    padding: 1rem;
+    border-radius: 8px;
+    border-left: 4px solid #dc3545;
+    margin: 0.5rem 0;
+}
 
-    .reportview-container .main .block-container {
-        padding-top: 2rem;
-    }
+.stTextArea > div > div > textarea {
+    font-size: 16px;
+}
+
+/* Update untuk Streamlit modern */
+.appview-container .main .block-container {
+    padding-top: 2rem;
+}
 </style>
 """, unsafe_allow_html=True)
 
@@ -279,4 +283,6 @@ st.sidebar.info(
 
 st.sidebar.header("Dangerous Ingredients Checked")
 dangerous_list = [f"- **{k.title()}**: {v['description']}" for k, v in analyzer.dangerous_ingredients.items()]
-st.sidebar.markdown("\n".join(dangerous_list))
+st.sidebar.markdown("
+".join(dangerous_list))
+
