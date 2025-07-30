@@ -87,7 +87,7 @@ st.markdown("""
 /* Text area styling */
 .stTextArea > div > div > textarea {
     font-size: 16px;
-    background: rgba(139, 21, 56, 0.8) !important;
+    background: linear-gradient(135deg, #FF69B4 0%, #FFB6C1 100%);
     color: white !important;
     border-radius: 10px;
     border: 2px solid #DDA0DD;
