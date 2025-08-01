@@ -6,6 +6,24 @@
     <title>Skincare Safety Checker - AI Powered</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
+    st.markdown("""
+
+    .stApp {
+        background: url('assets/skincare-bg.jpg') no-repeat center center fixed;
+        background-size: cover;
+    }
+    .stApp::before {
+        content: '';
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(255, 182, 193, 0.3);
+        z-index: -1;
+    }
+
+""", unsafe_allow_html=True)
         * {
             margin: 0;
             padding: 0;
