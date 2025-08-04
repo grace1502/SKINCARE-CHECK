@@ -567,12 +567,12 @@ def main():
             show_about()
     
     # Footer
-    st.markdown("""
-    <footer>
-        <p>© 2023 Pemeriksa Keamanan Skincare | Dibuat dengan ❤️ untuk kulit yang lebih sehat</p>
-        <p style="font-size:0.8rem;">Disclaimer: Aplikasi ini hanya untuk tujuan informasi dan tidak menggantikan nasihat profesional.</p>
-    </footer>
-    """, unsafe_allow_html=True)
+   st.markdown("""
+<footer>
+    <p>&copy; 2023 Pemeriksa Keamanan Skincare | Dibuat dengan ❤️ untuk kulit yang lebih sehat</p>
+    <p style="font-size:0.8rem;">Disclaimer: Aplikasi ini hanya untuk tujuan informasi dan tidak menggantikan nasihat profesional.</p>
+</footer>
+""", unsafe_allow_html=True)
 
 if __name__ == "__main__":
     main()
