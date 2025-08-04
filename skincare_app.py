@@ -355,7 +355,7 @@ def show_home():
     if st.button("Mulai Analisis Sekarang", type="primary"):
         st.session_state.current_tab = "🔍 Analisis Bahan"
     
-    # Features Section
+    # Features Section - YANG SUDAH DIPERBAIKI
     st.markdown("""
     <div class="main-container">
         <h2 style="text-align:center; margin-bottom:2rem;">Kenapa Memilih Pemeriksa Kami?</h2>
