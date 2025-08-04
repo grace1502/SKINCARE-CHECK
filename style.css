@@ -1,0 +1,128 @@
+/* --- Bagian Fitur --- */
+.features-section {
+    max-width: 1200px;
+    margin: 3rem auto; /* Jarak atas/bawah dan pusatkan */
+    padding: 1.5rem;
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+}
+
+.features-grid {
+    display: grid;
+    /* Membuat kolom responsif: minimal 250px per kolom, lalu bagi rata */
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem; /* Jarak antar kartu fitur */
+}
+
+.feature-card {
+    background-color: #f8f9fa; /* Latar belakang untuk kartu fitur */
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    text-align: center;
+    display: flex; /* Untuk ikon dan teks sejajar */
+    flex-direction: column;
+    align-items: center; /* Pusatkan secara horizontal */
+}
+
+.feature-icon {
+    font-size: 3em; /* Ukuran ikon emoji */
+    margin-bottom: 0.5rem;
+    line-height: 1; /* Pastikan tidak ada spasi ekstra di sekitar ikon */
+}
+
+.feature-card h3 {
+    color: #2c3e50;
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+    font-size: 1.4em;
+}
+
+.feature-card p {
+    color: #555;
+    font-size: 0.95em;
+}
+
+/* --- Bagian Cara Kerja --- */
+.how-it-works-section {
+    max-width: 1200px;
+    margin: 3rem auto; /* Jarak atas/bawah dan pusatkan */
+    padding: 1.5rem;
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+}
+
+.how-it-works-title {
+    color: #3498db; /* Warna biru untuk judul ini */
+    text-align: center;
+    margin-bottom: 2rem;
+    font-size: 2em;
+}
+
+.steps-grid {
+    display: grid;
+    /* Membuat kolom responsif: minimal 300px per kolom, lalu bagi rata */
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem; /* Jarak antar langkah */
+}
+
+.step-item {
+    display: flex; /* Untuk menempatkan angka dan teks secara horizontal */
+    gap: 1rem; /* Jarak antara angka dan teks */
+    align-items: flex-start; /* Angka dan teks sejajar di bagian atas */
+    background-color: #f8f9fa; /* Latar belakang untuk setiap langkah */
+    padding: 1.2rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.step-number {
+    background-color: #d35d6e; /* Warna merah dari kode asli */
+    color: white;
+    border-radius: 50%; /* Membuat lingkaran */
+    width: 35px; /* Ukuran lingkaran */
+    height: 35px; /* Ukuran lingkaran */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0; /* Mencegah angka mengecil jika teks terlalu panjang */
+    font-weight: bold;
+    font-size: 1.1em;
+}
+
+.step-item h3 {
+    margin-top: 0; /* Menghilangkan margin atas bawaan untuk H3 */
+    margin-bottom: 0.5rem;
+    color: #2c3e50;
+    font-size: 1.3em;
+}
+
+.step-item p {
+    color: #555;
+    font-size: 0.95em;
+}
+
+/* --- Media Queries untuk Responsif (jika diperlukan lebih lanjut) --- */
+@media (max-width: 768px) {
+    .features-grid,
+    .steps-grid {
+        grid-template-columns: 1fr; /* Pada layar kecil, jadikan 1 kolom */
+    }
+
+    .features-section,
+    .how-it-works-section {
+        padding: 1rem; /* Kurangi padding di mobile */
+        margin: 2rem auto; /* Sesuaikan margin di mobile */
+    }
+
+    .feature-card,
+    .step-item {
+        padding: 1rem; /* Kurangi padding kartu di mobile */
+    }
+
+    .how-it-works-title {
+        font-size: 1.8em;
+    }
+}
