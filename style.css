@@ -1,128 +1,473 @@
-/* --- Bagian Fitur --- */
-.features-section {
-    max-width: 1200px;
-    margin: 3rem auto; /* Jarak atas/bawah dan pusatkan */
-    padding: 1.5rem;
-    background-color: #ffffff;
-    border-radius: 12px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+/* style.css */
+
+/* --- Import Font --- */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;700&display=swap');
+
+/* --- Variabel Warna Tema Soft Pink --- */
+:root {
+    --primary-color: #ffb6c1; /* Pink muda */
+    --primary-dark: #ff8fab; /* Pink lebih tua */
+    --primary-light: #ffdfe5; /* Pink sangat muda */
+    --secondary-color: #f8f9fa; /* Abu-abu terang */
+    --text-dark: #4a4a4a;
+    --text-light: #888888;
+    --red-alert: #d35d6e; /* Merah untuk peringatan/bahaya */
+    --green-safe: #2e7d32; /* Hijau untuk aman */
 }
 
+/* --- Font Dasar & Warna Teks --- */
+html, body, [class*="css"] {
+    font-family: 'Poppins', sans-serif;
+    color: var(--text-dark);
+}
+
+/* --- Background dengan Overlay (Streamlit Main App) --- */
+.stApp {
+    background: linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)),
+                url('https://images.unsplash.com/photo-1556228578-8c89e6adf883?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+}
+
+/* --- Header Streamlit (bagian atas aplikasi) --- */
+.stApp header {
+    background-color: white;
+    box-shadow: 0 2px 15px rgba(0,0,0,0.08);
+}
+
+/* --- Judul Utama H1 --- */
+h1 {
+    color: var(--red-alert) !important;
+    font-family: 'Playfair Display', serif !important;
+    font-weight: 700 !important;
+    margin-bottom: 0.5rem !important;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.05);
+}
+
+/* --- Subjudul H2 (Judul Bagian) --- */
+h2 {
+    color: var(--red-alert) !important;
+    font-family: 'Playfair Display', serif !important;
+    font-weight: 500 !important;
+    border-bottom: 2px solid var(--primary-light);
+    padding-bottom: 0.5rem;
+    margin-top: 1.5rem !important; /* Default margin untuk H2 */
+}
+
+/* --- Judul H3 (Judul Card/Item) --- */
+h3 {
+    font-family: 'Playfair Display', serif !important;
+    color: var(--text-dark) !important;
+    font-weight: 500 !important;
+}
+
+/* --- Tombol Streamlit --- */
+.stButton button {
+    background-color: var(--primary-color) !important;
+    color: white !important;
+    border-radius: 8px !important;
+    border: none !important;
+    padding: 0.7rem 2rem !important;
+    font-weight: 500 !important;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+}
+
+.stButton button:hover {
+    background-color: var(--primary-dark) !important;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+}
+
+/* --- Text Area Streamlit --- */
+.stTextArea textarea {
+    border-radius: 8px !important;
+    border: 1px solid var(--primary-light) !important;
+    padding: 1rem !important;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.03);
+}
+
+/* --- Tab Streamlit --- */
+.stTabs [data-baseweb="tab-list"] {
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.stTabs [data-baseweb="tab"] {
+    padding: 0.8rem 1.5rem !important;
+    background-color: var(--primary-light) !important;
+    border-radius: 8px !important;
+    margin-right: 0 !important;
+    font-weight: 500 !important;
+    transition: all 0.3s ease;
+}
+
+.stTabs [aria-selected="true"] {
+    background-color: var(--primary-color) !important;
+    font-weight: 600 !important;
+    color: white !important;
+}
+
+/* --- Main Container untuk konten aplikasi utama --- */
+.main-content-section {
+    max-width: 1200px; /* Batasi lebar maksimum */
+    margin: 2rem auto; /* Pusatkan dan beri jarak atas/bawah */
+    padding: 2rem;
+    background-color: rgba(255, 255, 255, 0.95);
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+}
+
+/* --- Judul Halaman yang Dipusatkan (H1) --- */
+.page-title-centered {
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+/* --- Subtitle Halaman yang Dipusatkan (P) --- */
+.page-subtitle-centered {
+    text-align: center;
+    color: var(--text-light);
+    max-width: 800px;
+    margin: 0 auto 2rem;
+}
+
+/* --- Judul Bagian yang Dipusatkan (H2) --- */
+.section-heading-centered {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+/* --- Hero Section --- */
+.hero-section {
+    background: linear-gradient(135deg, rgba(255,182,193,0.2) 0%, rgba(255,255,255,0.8) 100%);
+    border-radius: 15px;
+    padding: 3rem;
+    margin-bottom: 3rem;
+    text-align: center;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+}
+
+.hero-title {
+    font-size: 2.8rem !important; /* Penting: gunakan !important jika ada konflik dengan H1 global */
+    margin-bottom: 0.5rem !important;
+}
+
+.hero-subtitle {
+    font-size: 1.2rem;
+    color: var(--text-dark);
+    max-width: 800px;
+    margin: 0 auto 1.5rem;
+}
+
+/* --- About Section (yang Anda perbaiki sebelumnya) --- */
+.about-section {
+    max-width: 1200px;
+    margin: 2rem auto;
+    background-color: white;
+    border-radius: 15px;
+    padding: 2rem;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+}
+
+.about-grid { /* Kelas tambahan untuk membedakan grid di about section */
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.methodology-title {
+    margin-top: 2rem;
+}
+
+/* --- Analysis Section --- */
+.analysis-section {
+    max-width: 1200px;
+    margin: 2rem auto;
+    background-color: white;
+    border-radius: 15px;
+    padding: 2rem;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+}
+
+/* --- Hasil Analisis (Safe/Dangerous Messages) --- */
+.safe-product-message {
+    text-align: center;
+    padding: 2rem;
+}
+
+.safe-product-title {
+    color: var(--green-safe);
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+}
+
+.safe-product-text {
+    font-size: 1.1rem;
+}
+
+.safe-product-note {
+    margin-top: 1.5rem;
+    color: var(--text-light);
+}
+
+.dangerous-product-message {
+    text-align: center;
+    padding: 1rem 0 2rem;
+}
+
+.dangerous-product-title {
+    color: #c62828; /* Tetap merah kuat untuk bahaya */
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+}
+
+.dangerous-product-text {
+    font-size: 1.1rem;
+}
+
+/* --- Ingredient Card (untuk hasil detail bahan) --- */
+.ingredient-card {
+    background-color: white;
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin-bottom: 1rem;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+    border-left: 4px solid var(--red-alert); /* Garis merah di kiri */
+}
+
+.ingredient-card h3 {
+    margin:0; /* Hapus margin default dari h3 */
+    color: var(--red-alert); /* Warna judul bahan */
+}
+
+.ingredient-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5rem;
+}
+
+.risk-high {
+    background-color: #ffebee;
+    color: #c62828;
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.risk-medium {
+    background-color: #fff8e1;
+    color: #ff8f00;
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+/* --- Rekomendasi Section (di halaman analisis) --- */
+.recommendation-section {
+    margin-top:2rem;
+    background-color:var(--primary-light); /* Menggunakan warna primary-light */
+    padding:1.5rem;
+    border-radius:12px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+
+.recommendation-title {
+    color:var(--red-alert);
+    margin-top:0;
+    text-align: center; /* Tambahkan text-align center */
+    margin-bottom: 1rem;
+}
+
+.recommendation-section ul {
+    list-style-type: disc;
+    padding-left: 20px;
+}
+
+.recommendation-section li {
+    margin-bottom: 0.5rem;
+}
+
+/* --- Footer --- */
+footer {
+    text-align: center;
+    padding: 2rem 0;
+    margin-top: 3rem;
+    color: var(--text-light);
+    font-size: 0.9rem;
+    border-top: 1px solid #f0f0f0;
+}
+
+.disclaimer {
+    font-size: 0.8rem;
+    margin-top: 0.5rem;
+    color: var(--text-light);
+}
+
+/* --- Features Section (dari diskusi sebelumnya) --- */
 .features-grid {
     display: grid;
-    /* Membuat kolom responsif: minimal 250px per kolom, lalu bagi rata */
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 1.5rem; /* Jarak antar kartu fitur */
+    gap: 1.5rem;
 }
 
 .feature-card {
-    background-color: #f8f9fa; /* Latar belakang untuk kartu fitur */
+    background-color: white; /* Di sini background-color: white, bukan #f8f9fa */
     padding: 1.5rem;
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    border-radius: 12px; /* Lebih besar dari 8px dari kode asli */
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05); /* Shadow lebih kuat */
+    transition: all 0.3s ease;
+    border: none;
+    height: 100%; /* Pastikan kartu punya tinggi yang sama */
     text-align: center;
-    display: flex; /* Untuk ikon dan teks sejajar */
+    display: flex;
     flex-direction: column;
-    align-items: center; /* Pusatkan secara horizontal */
+    align-items: center;
+}
+
+.feature-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 20px rgba(0,0,0,0.1);
 }
 
 .feature-icon {
-    font-size: 3em; /* Ukuran ikon emoji */
-    margin-bottom: 0.5rem;
-    line-height: 1; /* Pastikan tidak ada spasi ekstra di sekitar ikon */
+    font-size: 2.5rem; /* Ukuran ikon yang lebih besar */
+    color: var(--red-alert); /* Menggunakan warna tema */
+    margin-bottom: 1rem;
 }
 
 .feature-card h3 {
-    color: #2c3e50;
     margin-top: 0;
     margin-bottom: 0.5rem;
     font-size: 1.4em;
+    color: var(--text-dark); /* Menggunakan warna tema */
 }
 
-.feature-card p {
-    color: #555;
-    font-size: 0.95em;
-}
-
-/* --- Bagian Cara Kerja --- */
-.how-it-works-section {
-    max-width: 1200px;
-    margin: 3rem auto; /* Jarak atas/bawah dan pusatkan */
-    padding: 1.5rem;
-    background-color: #ffffff;
-    border-radius: 12px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
-}
-
-.how-it-works-title {
-    color: #3498db; /* Warna biru untuk judul ini */
-    text-align: center;
-    margin-bottom: 2rem;
-    font-size: 2em;
-}
-
+/* --- How It Works Section (dari diskusi sebelumnya) --- */
 .steps-grid {
     display: grid;
-    /* Membuat kolom responsif: minimal 300px per kolom, lalu bagi rata */
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem; /* Jarak antar langkah */
+    gap: 2rem;
 }
 
 .step-item {
-    display: flex; /* Untuk menempatkan angka dan teks secara horizontal */
-    gap: 1rem; /* Jarak antara angka dan teks */
-    align-items: flex-start; /* Angka dan teks sejajar di bagian atas */
-    background-color: #f8f9fa; /* Latar belakang untuk setiap langkah */
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+    background-color: var(--secondary-color); /* Latar belakang dari variabel */
     padding: 1.2rem;
     border-radius: 8px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 }
 
 .step-number {
-    background-color: #d35d6e; /* Warna merah dari kode asli */
+    background-color: var(--red-alert); /* Warna dari variabel */
     color: white;
-    border-radius: 50%; /* Membuat lingkaran */
-    width: 35px; /* Ukuran lingkaran */
-    height: 35px; /* Ukuran lingkaran */
+    border-radius: 50%;
+    width: 35px;
+    height: 35px;
     display: flex;
     align-items: center;
     justify-content: center;
-    flex-shrink: 0; /* Mencegah angka mengecil jika teks terlalu panjang */
+    flex-shrink: 0;
     font-weight: bold;
     font-size: 1.1em;
 }
 
 .step-item h3 {
-    margin-top: 0; /* Menghilangkan margin atas bawaan untuk H3 */
+    margin-top: 0;
     margin-bottom: 0.5rem;
-    color: #2c3e50;
-    font-size: 1.3em;
+    color: var(--text-dark); /* Warna dari variabel */
 }
 
 .step-item p {
-    color: #555;
-    font-size: 0.95em;
+    color: var(--text-dark); /* Warna dari variabel */
 }
 
-/* --- Media Queries untuk Responsif (jika diperlukan lebih lanjut) --- */
-@media (max-width: 768px) {
+/* --- Media Queries untuk Responsif --- */
+@media (max-width: 992px) { /* Untuk tablet besar */
+    .grid-container,
+    .about-grid {
+        grid-template-columns: 1fr; /* Pada layar tablet, About section jadi satu kolom */
+    }
+    .hero-section,
+    .main-content-section,
+    .about-section,
+    .analysis-section {
+        padding: 1.5rem;
+        margin: 1.5rem auto;
+    }
+    .feature-card, .step-item {
+        padding: 1rem;
+    }
+    .section-title {
+        font-size: 1.6em;
+    }
+    h1 {
+        font-size: 2.5rem !important;
+    }
+    .hero-title {
+        font-size: 2.2rem !important;
+    }
+    .hero-subtitle {
+        font-size: 1.1rem;
+    }
+    .page-title-centered {
+        font-size: 2.2em !important;
+    }
+}
+
+@media (max-width: 768px) { /* Untuk tablet kecil dan mobile */
     .features-grid,
     .steps-grid {
-        grid-template-columns: 1fr; /* Pada layar kecil, jadikan 1 kolom */
+        grid-template-columns: 1fr; /* Pada layar kecil, semua grid jadi 1 kolom */
     }
-
-    .features-section,
-    .how-it-works-section {
-        padding: 1rem; /* Kurangi padding di mobile */
-        margin: 2rem auto; /* Sesuaikan margin di mobile */
+    .feature-card {
+        padding: 1rem;
     }
-
-    .feature-card,
-    .step-item {
-        padding: 1rem; /* Kurangi padding kartu di mobile */
+    h1 {
+        font-size: 2.2rem !important;
     }
+    .hero-title {
+        font-size: 2rem !important;
+    }
+    .hero-subtitle {
+        font-size: 1rem;
+    }
+    .page-title-centered {
+        font-size: 2em !important;
+    }
+    h2 {
+        font-size: 1.5em !important;
+    }
+    h3 {
+        font-size: 1.2em !important;
+    }
+}
 
-    .how-it-works-title {
-        font-size: 1.8em;
+@media (max-width: 480px) { /* Sangat kecil mobile */
+    body {
+        padding: 10px;
+    }
+    .hero-section,
+    .main-content-section,
+    .about-section,
+    .analysis-section {
+        padding: 1rem;
+        margin: 1rem auto;
+    }
+    .stButton button {
+        padding: 0.5rem 1.5rem !important;
+    }
+    .safe-product-message, .dangerous-product-message {
+        padding: 1rem;
     }
 }
