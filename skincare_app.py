@@ -8,135 +8,218 @@ from PIL import Image
 
 # Konfigurasi halaman
 st.set_page_config(
-    page_title="🧪 Pemeriksa Keamanan Skincare",
+    page_title="Pemeriksa Keamanan Skincare",
     page_icon="🧪",
     layout="wide",
-    initial_sidebar_state="expanded"
+    initial_sidebar_state="collapsed"
 )
 
-# Custom CSS dengan desain modern dan aesthetic
+# Custom CSS dengan desain aesthetic
 st.markdown("""
 <style>
     /* Font dan warna dasar */
     @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;700&display=swap');
     
-    :root {
-        --primary: #ff6b9d;
-        --primary-light: #ffb3d1;
-        --primary-dark: #d44d7d;
-        --secondary: #9d4edd;
-        --light: #f8f9fa;
-        --dark: #212529;
-        --danger: #dc3545;
-        --success: #28a745;
-        --warning: #ffc107;
-    }
-    
     html, body, [class*="css"] {
         font-family: 'Poppins', sans-serif;
-        color: var(--dark);
-        background-color: #fef6f9;
+        color: #333333;
     }
     
-    /* Main container styling */
+    /* Warna tema soft pink */
+    :root {
+        --primary-color: #ffb6c1;
+        --primary-dark: #ff8fab;
+        --primary-light: #ffdfe5;
+        --secondary-color: #f8f9fa;
+        --text-dark: #4a4a4a;
+        --text-light: #888888;
+    }
+    
+    /* Background dengan overlay */
     .stApp {
-        background: linear-gradient(135deg, #fff5f9 0%, #fef0f5 100%);
+        background: linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)), 
+                    url('https://images.unsplash.com/photo-1556228578-8c89e6adf883?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+        background-size: cover;
+        background-attachment: fixed;
+        background-position: center;
     }
     
-    /* Header styling */
-    .main-header {
-        background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
-        color: white;
-        padding: 2.5rem;
+    /* Main container */
+    .main-container {
+        background-color: rgba(255, 255, 255, 0.95);
         border-radius: 15px;
-        text-align: center;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        padding: 2rem;
         margin-bottom: 2rem;
-        box-shadow: 0 8px 32px rgba(157, 78, 221, 0.2);
     }
     
-    /* Card styling */
-    .feature-card {
-        background: white;
-        border-radius: 15px;
-        padding: 1.8rem;
-        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+    /* Header */
+    .stApp header {
+        background-color: white;
+        box-shadow: 0 2px 15px rgba(0,0,0,0.08);
+    }
+    
+    /* Judul utama */
+    h1 {
+        color: #d35d6e !important;
+        font-family: 'Playfair Display', serif !important;
+        font-weight: 700 !important;
+        margin-bottom: 0.5rem !important;
+        text-shadow: 1px 1px 3px rgba(0,0,0,0.05);
+    }
+    
+    /* Subjudul */
+    h2 {
+        color: #d35d6e !important;
+        font-family: 'Playfair Display', serif !important;
+        font-weight: 500 !important;
+        border-bottom: 2px solid var(--primary-light);
+        padding-bottom: 0.5rem;
+        margin-top: 1.5rem !important;
+    }
+    
+    h3 {
+        font-family: 'Playfair Display', serif !important;
+        color: var(--text-dark) !important;
+        font-weight: 500 !important;
+    }
+    
+    /* Tombol */
+    .stButton button {
+        background-color: var(--primary-color) !important;
+        color: white !important;
+        border-radius: 8px !important;
+        border: none !important;
+        padding: 0.7rem 2rem !important;
+        font-weight: 500 !important;
         transition: all 0.3s ease;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    }
+    
+    .stButton button:hover {
+        background-color: var(--primary-dark) !important;
+        transform: translateY(-2px);
+        box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+    }
+    
+    /* Text area */
+    .stTextArea textarea {
+        border-radius: 8px !important;
+        border: 1px solid var(--primary-light) !important;
+        padding: 1rem !important;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.03);
+    }
+    
+    /* Tab */
+    .stTabs [data-baseweb="tab-list"] {
+        gap: 0.5rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    .stTabs [data-baseweb="tab"] {
+        padding: 0.8rem 1.5rem !important;
+        background-color: var(--primary-light) !important;
+        border-radius: 8px !important;
+        margin-right: 0 !important;
+        font-weight: 500 !important;
+        transition: all 0.3s ease;
+    }
+    
+    .stTabs [aria-selected="true"] {
+        background-color: var(--primary-color) !important;
+        font-weight: 600 !important;
+        color: white !important;
+    }
+    
+    /* Card fitur */
+    .feature-card {
+        background-color: white;
+        padding: 1.5rem;
+        border-radius: 12px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        transition: all 0.3s ease;
+        border: none;
         height: 100%;
         text-align: center;
-        border-top: 4px solid var(--primary);
     }
     
     .feature-card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        transform: translateY(-8px);
+        box-shadow: 0 12px 20px rgba(0,0,0,0.1);
     }
     
     .feature-icon {
-        font-size: 2.8rem;
-        color: var(--primary);
-        margin-bottom: 1.2rem;
+        font-size: 2.5rem;
+        color: #d35d6e;
+        margin-bottom: 1rem;
     }
     
-    /* Result cards */
-    .safe-card {
-        background: linear-gradient(135deg, #e6f7ee 0%, #c8f0d9 100%);
-        border-left: 5px solid var(--success);
-        color: #155724;
+    /* Hasil analisis */
+    .stAlert {
+        border-radius: 12px !important;
+        padding: 1.5rem !important;
     }
     
-    .danger-card {
-        background: linear-gradient(135deg, #ffebee 0%, #ffd6dc 100%);
-        border-left: 5px solid var(--danger);
-        color: #721c24;
+    /* Footer */
+    footer {
+        text-align: center;
+        padding: 2rem 0;
+        margin-top: 3rem;
+        color: var(--text-light);
+        font-size: 0.9rem;
+        border-top: 1px solid #f0f0f0;
     }
     
-    .ingredient-item {
-        background: white;
+    /* Hero section */
+    .hero {
+        background: linear-gradient(135deg, rgba(255,182,193,0.2) 0%, rgba(255,255,255,0.8) 100%);
+        border-radius: 15px;
+        padding: 3rem;
+        margin-bottom: 3rem;
+        text-align: center;
+    }
+    
+    /* About section */
+    .about-section {
+        background-color: white;
+        border-radius: 15px;
+        padding: 2rem;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        margin-bottom: 2rem;
+    }
+    
+    /* Analysis section */
+    .analysis-section {
+        background-color: white;
+        border-radius: 15px;
+        padding: 2rem;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    }
+    
+    /* Ingredient card */
+    .ingredient-card {
+        background-color: white;
         border-radius: 12px;
         padding: 1.5rem;
         margin-bottom: 1rem;
-        box-shadow: 0 3px 15px rgba(0, 0, 0, 0.05);
-        border-left: 4px solid var(--primary-dark);
+        box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+        border-left: 4px solid #d35d6e;
     }
     
-    /* Button styling */
-    .stButton>button {
-        background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
-        color: white;
-        border: none;
-        border-radius: 10px;
-        padding: 0.7rem 2rem;
-        font-weight: 600;
-        transition: all 0.3s ease;
+    .ingredient-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 0.5rem;
     }
     
-    .stButton>button:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 5px 15px rgba(157, 78, 221, 0.4);
-    }
-    
-    /* Text area styling */
-    .stTextArea>div>div>textarea {
-        border: 2px solid var(--primary-light);
-        border-radius: 12px;
-        padding: 1rem;
-        font-size: 16px;
-    }
-    
-    /* Tab styling */
-    .stTabs [aria-selected="true"] {
-        color: var(--primary) !important;
-        font-weight: 600;
-    }
-    
-    /* Risk level badges */
     .risk-high {
         background-color: #ffebee;
-        color: var(--danger);
+        color: #c62828;
         padding: 0.3rem 0.8rem;
         border-radius: 20px;
-        font-weight: 600;
         font-size: 0.8rem;
+        font-weight: 600;
     }
     
     .risk-medium {
@@ -144,26 +227,8 @@ st.markdown("""
         color: #ff8f00;
         padding: 0.3rem 0.8rem;
         border-radius: 20px;
-        font-weight: 600;
         font-size: 0.8rem;
-    }
-    
-    /* Footer styling */
-    footer {
-        text-align: center;
-        padding: 2rem 0;
-        margin-top: 3rem;
-        color: #6c757d;
-        border-top: 1px solid #dee2e6;
-    }
-    
-    /* Section styling */
-    .section {
-        background: white;
-        border-radius: 15px;
-        padding: 2rem;
-        margin-bottom: 2rem;
-        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+        font-weight: 600;
     }
 </style>
 """, unsafe_allow_html=True)
@@ -232,138 +297,87 @@ def analyze_ingredients(ingredients_text):
 def display_results(results):
     """Fungsi untuk menampilkan hasil analisis"""
     if results['is_safe']:
-        st.markdown('''
-        <div class="section safe-card">
-            <h2 style="color: var(--success);">✅ Produk Aman</h2>
-            <p>Tidak terdeteksi bahan berbahaya dalam daftar yang diberikan.</p>
-            <p><strong>Saran:</strong> Tetap lakukan patch test sebelum penggunaan pertama untuk memastikan tidak ada reaksi alergi.</p>
+        st.success("""
+        <div style="text-align:center; padding:2rem;">
+            <h2 style="color:#2e7d32;">✅ Produk Ini Aman!</h2>
+            <p style="font-size:1.1rem;">Tidak terdeteksi bahan berbahaya dalam daftar yang diberikan</p>
+            <p style="margin-top:1.5rem;">Tetap perhatikan reaksi kulit Anda terhadap produk baru dan selalu lakukan patch test sebelum penggunaan penuh.</p>
         </div>
-        ''', unsafe_allow_html=True)
+        """, unsafe_allow_html=True)
     else:
-        st.markdown(f'''
-        <div class="section danger-card">
-            <h2 style="color: var(--danger);">⚠️ Ditemukan {len(results['dangerous_ingredients'])} Bahan Berpotensi Berbahaya</h2>
-            <p>Berikut bahan-bahan yang perlu diperhatikan dalam produk Anda:</p>
+        st.error(f"""
+        <div style="text-align:center; padding:1rem 0 2rem;">
+            <h2 style="color:#c62828;">⚠️ Ditemukan {len(results['dangerous_ingredients'])} Bahan Potensial Berbahaya</h2>
+            <p style="font-size:1.1rem;">Berikut bahan-bahan yang perlu diperhatikan:</p>
         </div>
-        ''', unsafe_allow_html=True)
+        """, unsafe_allow_html=True)
         
         for ing in results['dangerous_ingredients']:
             risk_class = "risk-high" if ing['risk'] == "Tinggi" else "risk-medium"
             st.markdown(f"""
-            <div class="ingredient-item">
-                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
-                    <h3 style="margin: 0; color: var(--primary-dark);">{ing['name'].title()}</h3>
+            <div class="ingredient-card">
+                <div class="ingredient-header">
+                    <h3 style="margin:0; color:#d35d6e;">{ing['name'].title()}</h3>
                     <span class="{risk_class}">Risiko: {ing['risk']}</span>
                 </div>
                 <p><strong>Kategori:</strong> {ing['category']}</p>
-                <p><strong>Penjelasan:</strong> {ing['description']}</p>
+                <p><strong>Deskripsi:</strong> {ing['description']}</p>
                 <p><strong>Detail:</strong> {ing['details']}</p>
             </div>
             """, unsafe_allow_html=True)
         
-        st.markdown('''
-        <div class="section">
-            <h3 style="color: var(--primary);">💡 Rekomendasi Produk Aman</h3>
-            <p>Pertimbangkan produk dengan kriteria berikut:</p>
+        st.markdown("""
+        <div style="margin-top:2rem; background-color:#fff9fa; padding:1.5rem; border-radius:12px;">
+            <h3 style="color:#d35d6e; margin-top:0;">💡 Rekomendasi</h3>
+            <p>Pertimbangkan untuk mencari produk dengan label:</p>
             <ul>
+                <li><strong>Paraben-free</strong> - Bebas paraben</li>
+                <li><strong>Sulfate-free</strong> - Bebas sulfate</li>
+                <li><strong>Fragrance-free</strong> - Bebas wewangian sintetis</li>
                 <li><strong>Hypoallergenic</strong> - Formulasi untuk kulit sensitif</li>
                 <li><strong>Non-comedogenic</strong> - Tidak menyumbat pori</li>
-                <li><strong>Fragrance-free</strong> - Tanpa wewangian sintetis</li>
-                <li><strong>Dermatologist-tested</strong> - Diuji oleh ahli kulit</li>
             </ul>
         </div>
-        ''', unsafe_allow_html=True)
+        """, unsafe_allow_html=True)
 
 def show_home():
-    """Tampilan halaman beranda yang sudah diperbaiki"""
-    # Hero Section dengan gradient dan padding yang tepat
+    """Tampilan halaman beranda"""
+    # Hero Section
     st.markdown("""
-    <div style="
-        background: linear-gradient(135deg, #FF6B9D 0%, #9D4EDD 100%);
-        color: white;
-        padding: 3rem;
-        border-radius: 15px;
-        text-align: center;
-        margin-bottom: 2rem;
-        box-shadow: 0 8px 32px rgba(157, 78, 221, 0.2);
-    ">
-        <h1 style="font-size: 2.8rem; margin-bottom: 0.5rem;">🧪 Pemeriksa Keamanan Skincare</h1>
-        <p style="font-size: 1.2rem; opacity: 0.9;">Analisis instan bahan skincare berdasarkan penelitian ilmiah dan regulasi internasional</p>
+    <div class="hero">
+        <h1 style="font-size:2.8rem;">🧪 Pemeriksa Keamanan Skincare</h1>
+        <p style="font-size:1.2rem; color:var(--text-dark); max-width:800px; margin:0 auto 1.5rem;">
+            Temukan kebenaran di balik bahan-bahan produk perawatan kulit Anda. Analisis instan berdasarkan penelitian ilmiah dan regulasi internasional.
+        </p>
     </div>
     """, unsafe_allow_html=True)
     
-    # Tombol utama dengan styling yang konsisten
     if st.button("Mulai Analisis Sekarang", type="primary"):
         st.session_state.current_tab = "🔍 Analisis Bahan"
     
-    # Features Section dengan grid yang berfungsi
+    # Features Section
     st.markdown("""
-    <div style="
-        background: white;
-        border-radius: 15px;
-        padding: 2rem;
-        margin-bottom: 2rem;
-        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
-    ">
-        <h2 style="text-align: center; color: #FF6B9D; margin-bottom: 1.5rem;">Kenapa Memilih Pemeriksa Kami?</h2>
+    <div class="main-container">
+        <h2 style="text-align:center; margin-bottom:2rem;">Kenapa Memilih Pemeriksa Kami?</h2>
         
         <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem;">
-            <div style="
-                background: white;
-                border-radius: 15px;
-                padding: 1.8rem;
-                box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
-                transition: all 0.3s ease;
-                height: 100%;
-                text-align: center;
-                border-top: 4px solid #FF6B9D;
-            ">
-                <div style="font-size: 2.8rem; color: #FF6B9D; margin-bottom: 1.2rem;">🔬</div>
+            <div class="feature-card">
+                <div class="feature-icon">🔬</div>
                 <h3>Analisis Mendalam</h3>
-                <p>Memeriksa berbagai jenis bahan berbahaya berdasarkan database terpercaya</p>
+                <p>Sistem kami memeriksa berbagai jenis bahan berbahaya berdasarkan database terpercaya</p>
             </div>
-            
-            <div style="
-                background: white;
-                border-radius: 15px;
-                padding: 1.8rem;
-                box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
-                transition: all 0.3s ease;
-                height: 100%;
-                text-align: center;
-                border-top: 4px solid #FF6B9D;
-            ">
-                <div style="font-size: 2.8rem; color: #FF6B9D; margin-bottom: 1.2rem;">⚡</div>
+            <div class="feature-card">
+                <div class="feature-icon">⚡</div>
                 <h3>Hasil Instan</h3>
                 <p>Dapatkan hasil analisis komprehensif dalam hitungan detik</p>
             </div>
-            
-            <div style="
-                background: white;
-                border-radius: 15px;
-                padding: 1.8rem;
-                box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
-                transition: all 0.3s ease;
-                height: 100%;
-                text-align: center;
-                border-top: 4px solid #FF6B9D;
-            ">
-                <div style="font-size: 2.8rem; color: #FF6B9D; margin-bottom: 1.2rem;">📚</div>
-                <h3>Edukasi Lengkap</h3>
+            <div class="feature-card">
+                <div class="feature-icon">📚</div>
+                <h3>Edukasi Komprehensif</h3>
                 <p>Pelajari tentang bahan berbahaya dan alternatif yang lebih aman</p>
             </div>
-            
-            <div style="
-                background: white;
-                border-radius: 15px;
-                padding: 1.8rem;
-                box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
-                transition: all 0.3s ease;
-                height: 100%;
-                text-align: center;
-                border-top: 4px solid #FF6B9D;
-            ">
-                <div style="font-size: 2.8rem; color: #FF6B9D; margin-bottom: 1.2rem;">🛡️</div>
+            <div class="feature-card">
+                <div class="feature-icon">🛡️</div>
                 <h3>Keamanan Terjamin</h3>
                 <p>Berdasarkan regulasi dan penelitian ilmiah terbaru</p>
             </div>
@@ -373,69 +387,28 @@ def show_home():
     
     # How It Works Section
     st.markdown("""
-    <div style="
-        background: white;
-        border-radius: 15px;
-        padding: 2rem;
-        margin-bottom: 2rem;
-        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
-    ">
-        <h2 style="text-align: center; color: #FF6B9D; margin-bottom: 1.5rem;">Bagaimana Cara Kerjanya?</h2>
+    <div class="main-container">
+        <h2 style="text-align:center; margin-bottom:2rem;">Bagaimana Cara Kerjanya?</h2>
         
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem;">
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
             <div style="display: flex; gap: 1rem; align-items: flex-start;">
-                <div style="
-                    background: #FF6B9D;
-                    color: white;
-                    border-radius: 50%;
-                    width: 36px;
-                    height: 36px;
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    flex-shrink: 0;
-                    font-weight: bold;
-                ">1</div>
+                <div style="background-color: #d35d6e; color: white; border-radius: 50%; width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">1</div>
                 <div>
-                    <h3 style="margin-top: 0;">Masukkan Daftar Bahan</h3>
+                    <h3 style="margin-top:0;">Masukkan Daftar Bahan</h3>
                     <p>Salin dan tempel daftar bahan (INGREDIENTS) dari produk skincare Anda</p>
                 </div>
             </div>
-            
             <div style="display: flex; gap: 1rem; align-items: flex-start;">
-                <div style="
-                    background: #FF6B9D;
-                    color: white;
-                    border-radius: 50%;
-                    width: 36px;
-                    height: 36px;
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    flex-shrink: 0;
-                    font-weight: bold;
-                ">2</div>
+                <div style="background-color: #d35d6e; color: white; border-radius: 50%; width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">2</div>
                 <div>
-                    <h3 style="margin-top: 0;">Proses Analisis</h3>
+                    <h3 style="margin-top:0;">Proses Analisis</h3>
                     <p>Sistem kami akan memindai bahan-bahan berbahaya dalam database kami</p>
                 </div>
             </div>
-            
             <div style="display: flex; gap: 1rem; align-items: flex-start;">
-                <div style="
-                    background: #FF6B9D;
-                    color: white;
-                    border-radius: 50%;
-                    width: 36px;
-                    height: 36px;
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    flex-shrink: 0;
-                    font-weight: bold;
-                ">3</div>
+                <div style="background-color: #d35d6e; color: white; border-radius: 50%; width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">3</div>
                 <div>
-                    <h3 style="margin-top: 0;">Dapatkan Hasil</h3>
+                    <h3 style="margin-top:0;">Dapatkan Hasil</h3>
                     <p>Lihat laporan lengkap tentang keamanan produk dan rekomendasi alternatif</p>
                 </div>
             </div>
@@ -446,9 +419,9 @@ def show_home():
 def show_analyzer():
     """Tampilan halaman analisis"""
     st.markdown("""
-    <div class="section">
-        <h1 style="text-align: center; color: var(--primary); margin-bottom: 1rem;">🔍 Analisis Bahan Skincare</h1>
-        <p style="text-align: center; color: #6c757d; max-width: 700px; margin: 0 auto 2rem;">
+    <div class="analysis-section">
+        <h1 style="text-align:center; margin-bottom:1.5rem;">🔍 Analisis Bahan Skincare</h1>
+        <p style="text-align:center; color:var(--text-light); max-width:700px; margin:0 auto 2rem;">
             Masukkan daftar bahan produk skincare Anda di bawah ini untuk memeriksa potensi bahan berbahaya
         </p>
     """, unsafe_allow_html=True)
@@ -460,7 +433,7 @@ def show_analyzer():
         key="ingredients_input"
     )
     
-    col1, col2, col3 = st.columns([1, 2, 1])
+    col1, col2, col3 = st.columns([1,2,1])
     with col2:
         if st.button("**🔍 Analisis Bahan**", type="primary", use_container_width=True):
             if not ingredients.strip():
@@ -476,18 +449,18 @@ def show_analyzer():
 def show_about():
     """Tampilan halaman tentang kami"""
     st.markdown("""
-    <div class="section">
-        <h1 style="text-align: center; color: var(--primary); margin-bottom: 1rem;">ℹ️ Tentang Pemeriksa Keamanan Skincare</h1>
-        <p style="text-align: center; color: #6c757d; max-width: 800px; margin: 0 auto 2rem;">
+    <div class="about-section">
+        <h1 style="text-align:center;">ℹ️ Tentang Pemeriksa Keamanan Skincare</h1>
+        <p style="text-align:center; color:var(--text-light); max-width:800px; margin:0 auto 2rem;">
             Platform terpercaya untuk membantu Anda membuat keputusan yang lebih baik tentang produk perawatan kulit
         </p>
         
         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 2rem;">
             <div>
-                <h2 style="color: var(--primary);">🎯 Misi Kami</h2>
-                <p>Kami berkomitmen untuk meningkatkan transparansi dalam industri kecantikan dengan memberikan informasi yang jelas dan dapat diakses tentang bahan-bahan dalam produk perawatan kulit.</p>
+                <h2>🎯 Misi Kami</h2>
+                <p>Kami berkomitmen untuk meningkatkan transparansi dalam industri kecantikan dengan memberikan informasi yang jelas dan dapat diakses tentang bahan-bahan dalam produk perawatan kulit. Tujuan kami adalah memberdayakan konsumen untuk membuat pilihan yang tepat berdasarkan data dan penelitian ilmiah.</p>
                 
-                <h2 style="color: var(--primary); margin-top: 1.5rem;">🔬 Metodologi</h2>
+                <h2 style="margin-top:2rem;">🔬 Metodologi</h2>
                 <p>Database kami dikembangkan berdasarkan:</p>
                 <ul>
                     <li>Regulasi Uni Eropa (EU Regulation No. 1223/2009)</li>
@@ -497,7 +470,7 @@ def show_about():
                 </ul>
             </div>
             <div>
-                <h2 style="color: var(--primary);">📚 Sumber Data</h2>
+                <h2>📚 Sumber Data</h2>
                 <p>Informasi dalam aplikasi ini bersumber dari:</p>
                 <ul>
                     <li>Environmental Working Group's Skin Deep Database</li>
@@ -508,19 +481,19 @@ def show_about():
             </div>
         </div>
         
-        <div class="section" style="background-color: #f8f9fa;">
-            <h2 style="text-align: center; color: var(--primary); margin-bottom: 1.5rem;">💡 Tips Memilih Skincare Aman</h2>
+        <div style="background-color: #fff9fa; border-radius: 12px; padding: 1.5rem; margin-top: 2rem;">
+            <h2 style="color:#d35d6e; text-align:center;">💡 Tips Memilih Skincare Aman</h2>
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem;">
-                <div style="background: white; padding: 1.5rem; border-radius: 12px; box-shadow: 0 3px 10px rgba(0,0,0,0.05);">
-                    <h3 style="color: var(--primary); margin-top: 0;">Baca Label</h3>
+                <div style="background-color: white; padding: 1rem; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
+                    <h3 style="color:#d35d6e; margin-top:0;">Baca Label</h3>
                     <p>Selalu periksa daftar bahan sebelum membeli produk skincare</p>
                 </div>
-                <div style="background: white; padding: 1.5rem; border-radius: 12px; box-shadow: 0 3px 10px rgba(0,0,0,0.05);">
-                    <h3 style="color: var(--primary); margin-top: 0;">Mulai dari Sederhana</h3>
+                <div style="background-color: white; padding: 1rem; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
+                    <h3 style="color:#d35d6e; margin-top:0;">Mulai dari Sederhana</h3>
                     <p>Produk dengan daftar bahan yang lebih pendek cenderung lebih aman</p>
                 </div>
-                <div style="background: white; padding: 1.5rem; border-radius: 12px; box-shadow: 0 3px 10px rgba(0,0,0,0.05);">
-                    <h3 style="color: var(--primary); margin-top: 0;">Uji Sensitivitas</h3>
+                <div style="background-color: white; padding: 1rem; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
+                    <h3 style="color:#d35d6e; margin-top:0;">Uji Sensitivitas</h3>
                     <p>Selalu lakukan patch test sebelum menggunakan produk baru</p>
                 </div>
             </div>
@@ -551,11 +524,22 @@ def main():
         with tab1:
             show_home()
     
+    # Always show all tabs content for navigation
+    with tab1:
+        if st.session_state.current_tab != "🏠 Beranda":
+            show_home()
+    with tab2:
+        if st.session_state.current_tab != "🔍 Analisis Bahan":
+            show_analyzer()
+    with tab3:
+        if st.session_state.current_tab != "ℹ️ Tentang Kami":
+            show_about()
+    
     # Footer
     st.markdown("""
     <footer>
         <p>© 2023 Pemeriksa Keamanan Skincare | Dibuat dengan ❤️ untuk kulit yang lebih sehat</p>
-        <p style="font-size: 0.9rem;">Disclaimer: Aplikasi ini hanya untuk tujuan informasi dan tidak menggantikan nasihat profesional.</p>
+        <p style="font-size:0.8rem;">Disclaimer: Aplikasi ini hanya untuk tujuan informasi dan tidak menggantikan nasihat profesional.</p>
     </footer>
     """, unsafe_allow_html=True)
 
