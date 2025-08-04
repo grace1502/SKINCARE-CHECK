@@ -275,41 +275,95 @@ def display_results(results):
         ''', unsafe_allow_html=True)
 
 def show_home():
-    """Tampilan halaman beranda"""
-    # Hero Section
+    """Tampilan halaman beranda yang sudah diperbaiki"""
+    # Hero Section dengan gradient dan padding yang tepat
     st.markdown("""
-    <div class="main-header">
+    <div style="
+        background: linear-gradient(135deg, #FF6B9D 0%, #9D4EDD 100%);
+        color: white;
+        padding: 3rem;
+        border-radius: 15px;
+        text-align: center;
+        margin-bottom: 2rem;
+        box-shadow: 0 8px 32px rgba(157, 78, 221, 0.2);
+    ">
         <h1 style="font-size: 2.8rem; margin-bottom: 0.5rem;">🧪 Pemeriksa Keamanan Skincare</h1>
         <p style="font-size: 1.2rem; opacity: 0.9;">Analisis instan bahan skincare berdasarkan penelitian ilmiah dan regulasi internasional</p>
     </div>
     """, unsafe_allow_html=True)
     
+    # Tombol utama dengan styling yang konsisten
     if st.button("Mulai Analisis Sekarang", type="primary"):
         st.session_state.current_tab = "🔍 Analisis Bahan"
     
-    # Features Section
+    # Features Section dengan grid yang berfungsi
     st.markdown("""
-    <div class="section">
-        <h2 style="text-align: center; color: var(--primary); margin-bottom: 1.5rem;">Kenapa Memilih Pemeriksa Kami?</h2>
+    <div style="
+        background: white;
+        border-radius: 15px;
+        padding: 2rem;
+        margin-bottom: 2rem;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+    ">
+        <h2 style="text-align: center; color: #FF6B9D; margin-bottom: 1.5rem;">Kenapa Memilih Pemeriksa Kami?</h2>
         
         <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem;">
-            <div class="feature-card">
-                <div class="feature-icon">🔬</div>
+            <div style="
+                background: white;
+                border-radius: 15px;
+                padding: 1.8rem;
+                box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+                transition: all 0.3s ease;
+                height: 100%;
+                text-align: center;
+                border-top: 4px solid #FF6B9D;
+            ">
+                <div style="font-size: 2.8rem; color: #FF6B9D; margin-bottom: 1.2rem;">🔬</div>
                 <h3>Analisis Mendalam</h3>
                 <p>Memeriksa berbagai jenis bahan berbahaya berdasarkan database terpercaya</p>
             </div>
-            <div class="feature-card">
-                <div class="feature-icon">⚡</div>
+            
+            <div style="
+                background: white;
+                border-radius: 15px;
+                padding: 1.8rem;
+                box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+                transition: all 0.3s ease;
+                height: 100%;
+                text-align: center;
+                border-top: 4px solid #FF6B9D;
+            ">
+                <div style="font-size: 2.8rem; color: #FF6B9D; margin-bottom: 1.2rem;">⚡</div>
                 <h3>Hasil Instan</h3>
                 <p>Dapatkan hasil analisis komprehensif dalam hitungan detik</p>
             </div>
-            <div class="feature-card">
-                <div class="feature-icon">📚</div>
+            
+            <div style="
+                background: white;
+                border-radius: 15px;
+                padding: 1.8rem;
+                box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+                transition: all 0.3s ease;
+                height: 100%;
+                text-align: center;
+                border-top: 4px solid #FF6B9D;
+            ">
+                <div style="font-size: 2.8rem; color: #FF6B9D; margin-bottom: 1.2rem;">📚</div>
                 <h3>Edukasi Lengkap</h3>
                 <p>Pelajari tentang bahan berbahaya dan alternatif yang lebih aman</p>
             </div>
-            <div class="feature-card">
-                <div class="feature-icon">🛡️</div>
+            
+            <div style="
+                background: white;
+                border-radius: 15px;
+                padding: 1.8rem;
+                box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+                transition: all 0.3s ease;
+                height: 100%;
+                text-align: center;
+                border-top: 4px solid #FF6B9D;
+            ">
+                <div style="font-size: 2.8rem; color: #FF6B9D; margin-bottom: 1.2rem;">🛡️</div>
                 <h3>Keamanan Terjamin</h3>
                 <p>Berdasarkan regulasi dan penelitian ilmiah terbaru</p>
             </div>
@@ -319,26 +373,67 @@ def show_home():
     
     # How It Works Section
     st.markdown("""
-    <div class="section">
-        <h2 style="text-align: center; color: var(--primary); margin-bottom: 1.5rem;">Bagaimana Cara Kerjanya?</h2>
+    <div style="
+        background: white;
+        border-radius: 15px;
+        padding: 2rem;
+        margin-bottom: 2rem;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+    ">
+        <h2 style="text-align: center; color: #FF6B9D; margin-bottom: 1.5rem;">Bagaimana Cara Kerjanya?</h2>
         
         <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem;">
             <div style="display: flex; gap: 1rem; align-items: flex-start;">
-                <div style="background: var(--primary); color: white; border-radius: 50%; width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-weight: bold;">1</div>
+                <div style="
+                    background: #FF6B9D;
+                    color: white;
+                    border-radius: 50%;
+                    width: 36px;
+                    height: 36px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    flex-shrink: 0;
+                    font-weight: bold;
+                ">1</div>
                 <div>
                     <h3 style="margin-top: 0;">Masukkan Daftar Bahan</h3>
                     <p>Salin dan tempel daftar bahan (INGREDIENTS) dari produk skincare Anda</p>
                 </div>
             </div>
+            
             <div style="display: flex; gap: 1rem; align-items: flex-start;">
-                <div style="background: var(--primary); color: white; border-radius: 50%; width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-weight: bold;">2</div>
+                <div style="
+                    background: #FF6B9D;
+                    color: white;
+                    border-radius: 50%;
+                    width: 36px;
+                    height: 36px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    flex-shrink: 0;
+                    font-weight: bold;
+                ">2</div>
                 <div>
                     <h3 style="margin-top: 0;">Proses Analisis</h3>
                     <p>Sistem kami akan memindai bahan-bahan berbahaya dalam database kami</p>
                 </div>
             </div>
+            
             <div style="display: flex; gap: 1rem; align-items: flex-start;">
-                <div style="background: var(--primary); color: white; border-radius: 50%; width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-weight: bold;">3</div>
+                <div style="
+                    background: #FF6B9D;
+                    color: white;
+                    border-radius: 50%;
+                    width: 36px;
+                    height: 36px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    flex-shrink: 0;
+                    font-weight: bold;
+                ">3</div>
                 <div>
                     <h3 style="margin-top: 0;">Dapatkan Hasil</h3>
                     <p>Lihat laporan lengkap tentang keamanan produk dan rekomendasi alternatif</p>
