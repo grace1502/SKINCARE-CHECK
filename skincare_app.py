@@ -389,7 +389,8 @@ def show_home():
     st.markdown("""
     <div class="main-container">
         <h2 style="text-align:center; margin-bottom:2rem;">Bagaimana Cara Kerjanya?</h2>
-        
+
+        st.markdown("""
         <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
             <div style="display: flex; gap: 1rem; align-items: flex-start;">
                 <div style="background-color: #d35d6e; color: white; border-radius: 50%; width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">1</div>
@@ -454,7 +455,8 @@ def show_about():
         <p style="text-align:center; color:var(--text-light); max-width:800px; margin:0 auto 2rem;">
             Platform terpercaya untuk membantu Anda membuat keputusan yang lebih baik tentang produk perawatan kulit
         </p>
-        
+
+        st.markdown("""
         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 2rem;">
             <div>
                 <h2>🎯 Misi Kami</h2>
@@ -480,7 +482,8 @@ def show_about():
                 </ul>
             </div>
         </div>
-        
+          """, unsafe_allow_html=True)
+          
         <div style="background-color: #fff9fa; border-radius: 12px; padding: 1.5rem; margin-top: 2rem;">
             <h2 style="color:#d35d6e; text-align:center;">💡 Tips Memilih Skincare Aman</h2>
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem;">
