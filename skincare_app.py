@@ -545,7 +545,7 @@ def main():
       <p>(C) 2023 Pemeriksa Keamanan Skincare | Dibuat dengan untuk kulit yang lebih sehat</p>
         <p style="font-size:0.8rem;">Disclaimer: Aplikasi ini hanya untuk tujuan informasi dan tidak menggantikan nasihat profesional.</p>
     </footer>
-    """, unsafe_allow_html=True)
+    "", unsafe_allow_html=True)
 
 if __name__ == "__main__":
     main()
