@@ -11,7 +11,6 @@ from PIL import Image
 # Konfigurasi halaman
 st.set_page_config(
     page_title="Pemeriksa Keamanan Skincare",
-    page_icon="🧪",
     layout="wide",
     initial_sidebar_state="collapsed"
 )
