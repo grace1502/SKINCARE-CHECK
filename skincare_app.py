@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 # app.py - Aplikasi Web Streamlit
 # Pemeriksa Keamanan Bahan Skincare
 # Jalankan dengan: streamlit run app.py
