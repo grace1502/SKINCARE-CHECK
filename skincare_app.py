@@ -329,7 +329,7 @@ def display_results(results):
         
         st.markdown("""
         <div style="margin-top:2rem; background-color:#fff9fa; padding:1.5rem; border-radius:12px;">
-            <h3 style="color:#d35d6e; margin-top:0;">💡 Rekomendasi</h3>
+            <h3 style="color:#d35d6e; margin-top:0;"> Rekomendasi</h3>
             <p>Pertimbangkan untuk mencari produk dengan label:</p>
             <ul>
                 <li><strong>Paraben-free</strong> - Bebas paraben</li>
@@ -354,7 +354,7 @@ def show_home():
     """, unsafe_allow_html=True)
     
     if st.button("Mulai Analisis Sekarang", type="primary"):
-        st.session_state.current_tab = "🔍 Analisis Bahan"
+        st.session_state.current_tab = " Analisis Bahan"
     
     # Features Section
     st.markdown("""
@@ -518,7 +518,7 @@ def main():
     if st.session_state.current_tab == "🏠 Beranda":
         with tab1:
             show_home()
-    elif st.session_state.current_tab == "🔍 Analisis Bahan":
+    elif st.session_state.current_tab == "Analisis Bahan":
         with tab2:
             show_analyzer()
     elif st.session_state.current_tab == "ℹ️ Tentang Kami":
@@ -533,7 +533,7 @@ def main():
         if st.session_state.current_tab != "🏠 Beranda":
             show_home()
     with tab2:
-        if st.session_state.current_tab != "🔍 Analisis Bahan":
+        if st.session_state.current_tab != "Analisis Bahan":
             show_analyzer()
     with tab3:
         if st.session_state.current_tab != "ℹ️ Tentang Kami":
