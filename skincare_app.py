@@ -450,7 +450,7 @@ def show_about():
     """Tampilan halaman tentang kami"""
     st.markdown("""
     <div class="about-section">
-        <h1 style="text-align:center;">ℹ️ Tentang Pemeriksa Keamanan Skincare</h1>
+        <h1 style="text-align:center;">Tentang Pemeriksa Keamanan Skincare</h1>
         <p style="text-align:center; color:var(--text-light); max-width:800px; margin:0 auto 2rem;">
             Platform terpercaya untuk membantu Anda membuat keputusan yang lebih baik tentang produk perawatan kulit
         </p>
@@ -458,7 +458,7 @@ def show_about():
         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 2rem;">
             <div>
                 <h2>🎯 Misi Kami</h2>
-                <p>Kami berkomitmen untuk meningkatkan transparansi dalam industri kecantikan dengan memberikan informasi yang jelas dan dapat diakses tentang bahan-bahan dalam produk perawatan kulit. Tujuan kami adalah memberdayakan konsumen untuk membuat pilihan yang tepat berdasarkan data dan penelitian ilmiah.</p>
+                <p>Kami berkomitmen untuk meningkatkan transparansi dalam industri kecantikan dengan memberikan informasi yang jelas dan dapat diakses tentang bahan-bahan dalam produk perawatan kulit.</p>
                 
                 <h2 style="margin-top:2rem;">🔬 Metodologi</h2>
                 <p>Database kami dikembangkan berdasarkan:</p>
@@ -477,6 +477,14 @@ def show_about():
                     <li>Cosmetic Ingredient Review (CIR)</li>
                     <li>Journal of the American Academy of Dermatology</li>
                     <li>International Journal of Toxicology</li>
+                </ul>
+                
+                <h2 style="margin-top:2rem;">👩‍⚕️ Tim Ahli</h2>
+                <p>Konten kami ditinjau oleh:</p>
+                <ul>
+                    <li>Dermatolog bersertifikat</li>
+                    <li>Ahli toksikologi kosmetik</li>
+                    <li>Peneliti bahan kosmetik</li>
                 </ul>
             </div>
         </div>
