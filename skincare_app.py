@@ -15,7 +15,7 @@ st.set_page_config(
     initial_sidebar_state="collapsed"
 )
 
-# Custom CSS untuk meniru Vorrath Woodworks
+# Custom CSS dengan warna soft pink
 st.markdown("""
 <style>
     /* Font dan warna dasar */
@@ -26,6 +26,14 @@ st.markdown("""
         color: #333333;
     }
     
+    /* Warna tema soft pink */
+    :root {
+        --primary-color: #ffb6c1;
+        --primary-dark: #ff8fab;
+        --primary-light: #ffdfe5;
+        --secondary-color: #f8f9fa;
+    }
+    
     /* Header */
     .stApp header {
         background-color: white;
@@ -34,27 +42,27 @@ st.markdown("""
     
     /* Main container */
     .stApp {
-        background-color: #f9f9f9;
+        background-color: #fff9fa;
     }
     
     /* Judul utama */
     h1 {
-        color: #222222 !important;
+        color: #d35d6e !important;
         font-weight: 700 !important;
         margin-bottom: 0.5rem !important;
     }
     
     /* Subjudul */
     h2 {
-        color: #444444 !important;
+        color: #d35d6e !important;
         font-weight: 400 !important;
-        border-bottom: 1px solid #eeeeee;
+        border-bottom: 1px solid var(--primary-light);
         padding-bottom: 0.3rem;
     }
     
     /* Tombol */
     .stButton button {
-        background-color: #4a6fa5 !important;
+        background-color: var(--primary-color) !important;
         color: white !important;
         border-radius: 4px !important;
         border: none !important;
@@ -64,14 +72,14 @@ st.markdown("""
     }
     
     .stButton button:hover {
-        background-color: #3a5a8f !important;
+        background-color: var(--primary-dark) !important;
         transform: translateY(-1px);
     }
     
     /* Text area */
     .stTextArea textarea {
         border-radius: 4px !important;
-        border: 1px solid #dddddd !important;
+        border: 1px solid var(--primary-light) !important;
     }
     
     /* Tab */
@@ -81,7 +89,7 @@ st.markdown("""
     
     .stTabs [data-baseweb="tab"] {
         padding: 0.5rem 1rem !important;
-        background-color: #f0f0f0 !important;
+        background-color: var(--primary-light) !important;
         border-radius: 4px 4px 0 0 !important;
         margin-right: 0 !important;
     }
@@ -89,6 +97,7 @@ st.markdown("""
     .stTabs [aria-selected="true"] {
         background-color: white !important;
         font-weight: bold !important;
+        color: var(--primary-dark) !important;
     }
     
     /* Card fitur */
@@ -98,6 +107,7 @@ st.markdown("""
         border-radius: 8px;
         box-shadow: 0 2px 10px rgba(0,0,0,0.05);
         transition: all 0.3s ease;
+        border: 1px solid var(--primary-light);
     }
     
     .stColumn:hover {
@@ -142,17 +152,6 @@ DANGEROUS_INGREDIENTS = {
 
 def main():
     """Fungsi utama untuk tampilan Streamlit"""
-    # Header dengan logo dan navigasi sederhana
-    col1, col2 = st.columns([1, 4])
-    with col1:
-        st.image("https://via.placeholder.com/150x50?text=Skincare+Checker", width=150)
-    with col2:
-        st.markdown("<div style='text-align: right; padding-top: 1rem;'>"
-                    "<a href='#beranda' style='margin: 0 1rem; color: #333; text-decoration: none;'>Beranda</a>"
-                    "<a href='#analisis' style='margin: 0 1rem; color: #333; text-decoration: none;'>Analisis</a>"
-                    "<a href='#tentang' style='margin: 0 1rem; color: #333; text-decoration: none;'>Tentang</a>"
-                    "</div>", unsafe_allow_html=True)
-    
     st.title("🧪 Pemeriksa Keamanan Skincare")
     st.markdown("Periksa keamanan produk skincare Anda dengan mudah dan cepat")
     
@@ -166,20 +165,14 @@ def main():
     with tab3:
         show_about()
     
-    # Footer
+    # Footer sederhana
     st.markdown("---")
-    st.markdown("<footer>"
-                "© 2023 Pemeriksa Keamanan Skincare. All rights reserved.<br>"
-                "Dibuat dengan ❤️ untuk kulit yang lebih sehat"
-                "</footer>", unsafe_allow_html=True)
+    st.markdown("<footer>© 2023 Pemeriksa Keamanan Skincare</footer>", unsafe_allow_html=True)
 
 def show_home():
     """Tampilan halaman beranda"""
     st.header("Selamat Datang di Pemeriksa Keamanan Skincare")
     st.markdown("Platform terpercaya untuk menganalisis keamanan bahan-bahan dalam produk perawatan kulit Anda")
-    
-    # Hero section
-    st.image("https://via.placeholder.com/1200x400?text=Periksa+Keamanan+Skincare+Anda", use_column_width=True)
     
     cols = st.columns(4)
     features = [
@@ -192,32 +185,14 @@ def show_home():
     for col, (icon, title, desc) in zip(cols, features):
         with col:
             st.markdown(f"<div style='text-align: center;'>"
-                        f"<span style='font-size: 2rem;'>{icon}</span>"
-                        f"<h3>{title}</h3>"
+                        f"<span style='font-size: 2rem; color: #d35d6e;'>{icon}</span>"
+                        f"<h3 style='color: #d35d6e;'>{title}</h3>"
                         f"<p>{desc}</p>"
-                        f"</div>", unsafe_allow_html=True)
-    
-    # Testimoni
-    st.markdown("---")
-    st.subheader("Apa Kata Pengguna Kami")
-    testimonials = st.columns(3)
-    testimoni_data = [
-        ("Sangat membantu!", "Sarah - Jakarta"),
-        ("Aplikasi wajib untuk pecinta skincare!", "Dani - Bandung"),
-        ("Interface yang simpel dan mudah digunakan", "Rina - Surabaya")
-    ]
-    
-    for col, (text, author) in zip(testimonials, testimoni_data):
-        with col:
-            st.markdown(f"<div style='background: white; padding: 1.5rem; border-radius: 8px;'>"
-                        f"<p style='font-style: italic;'>{text}</p>"
-                        f"<p style='text-align: right; font-weight: bold;'>{author}</p>"
                         f"</div>", unsafe_allow_html=True)
 
 def show_analyzer():
     """Tampilan halaman analisis"""
     st.header("📝 Analisis Bahan Skincare")
-    st.markdown("Masukkan daftar bahan skincare Anda di bawah ini untuk memeriksa keamanannya")
     
     ingredients = st.text_area(
         "Masukkan Daftar Bahan Skincare:",
@@ -242,34 +217,16 @@ def show_about():
     membuat keputusan yang lebih baik tentang produk perawatan kulit.
     """)
     
-    # Tim
-    st.subheader("Tim Kami")
-    team_cols = st.columns(3)
-    team_members = [
-        ("Dr. Amanda", "Ahli Dermatologi"),
-        ("Rizky", "Pengembang Aplikasi"),
-        ("Dewi", "Spesialis Regulasi")
-    ]
+    st.markdown("""
+    ### 🎯 Tujuan Aplikasi
+    Kami berkomitmen untuk meningkatkan kesadaran konsumen tentang bahan-bahan dalam produk skincare.
     
-    for col, (name, role) in zip(team_cols, team_members):
-        with col:
-            st.image(f"https://via.placeholder.com/150?text={name.split()[0]}", width=100)
-            st.markdown(f"<div style='text-align: center;'>"
-                        f"<h4>{name}</h4>"
-                        f"<p>{role}</p>"
-                        f"</div>", unsafe_allow_html=True)
-    
-    with st.expander("📌 Informasi Lengkap"):
-        st.markdown("""
-        ### 🎯 Tujuan Aplikasi
-        Kami berkomitmen untuk meningkatkan kesadaran konsumen tentang bahan-bahan dalam produk skincare.
-        
-        ### 🔬 Metodologi
-        Database kami mencakup berbagai kategori bahan berbahaya berdasarkan:
-        - Regulasi Uni Eropa (EU Regulation No. 1223/2009)
-        - Penelitian ilmiah terpublikasi
-        - Panduan organisasi kesehatan internasional
-        """)
+    ### 🔬 Metodologi
+    Database kami mencakup berbagai kategori bahan berbahaya berdasarkan:
+    - Regulasi Uni Eropa (EU Regulation No. 1223/2009)
+    - Penelitian ilmiah terpublikasi
+    - Panduan organisasi kesehatan internasional
+    """)
 
 def analyze_ingredients(ingredients_text):
     """Fungsi untuk menganalisis bahan-bahan skincare"""
