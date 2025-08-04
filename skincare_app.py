@@ -447,66 +447,89 @@ def show_analyzer():
     st.markdown("</div>", unsafe_allow_html=True)
 
 def show_about():
-    """Tampilan halaman tentang kami"""
+   def show_about():
+    """Tampilan halaman tentang kami yang lebih sederhana dan pasti berfungsi"""
+    
+    # Header dengan markdown untuk styling
     st.markdown("""
-    <div class="about-section">
-        <h1 style="text-align:center;">Tentang Pemeriksa Keamanan Skincare</h1>
-        <p style="text-align:center; color:var(--text-light); max-width:800px; margin:0 auto 2rem;">
-            Platform terpercaya untuk membantu Anda membuat keputusan yang lebih baik tentang produk perawatan kulit
-        </p>
+    <style>
+        .about-header {
+            color: #d35d6e;
+            font-family: 'Playfair Display', serif;
+            text-align: center;
+            margin-bottom: 0.5rem;
+        }
+        .about-subheader {
+            color: #d35d6e;
+            font-family: 'Playfair Display', serif;
+            border-bottom: 2px solid #ffdfe5;
+            padding-bottom: 0.3rem;
+            margin-top: 1.5rem;
+        }
+    </style>
+    """, unsafe_allow_html=True)
+    
+    # Judul halaman
+    st.markdown('<h1 class="about-header">Tentang Pemeriksa Keamanan Skincare</h1>', unsafe_allow_html=True)
+    st.markdown("""
+    <p style="text-align:center; color:#888888; max-width:800px; margin:0 auto 2rem;">
+        Platform terpercaya untuk membantu Anda membuat keputusan yang lebih baik tentang produk perawatan kulit
+    </p>
+    """, unsafe_allow_html=True)
+    
+    # Membagi layout menjadi 2 kolom
+    col1, col2 = st.columns(2)
+    
+    with col1:
+        st.markdown('<h2 class="about-subheader">🎯 Misi Kami</h2>', unsafe_allow_html=True)
+        st.write("Kami berkomitmen untuk meningkatkan transparansi dalam industri kecantikan dengan memberikan informasi yang jelas dan dapat diakses tentang bahan-bahan dalam produk perawatan kulit.")
         
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 2rem;">
-            <div>
-                <h2>🎯 Misi Kami</h2>
-                <p>Kami berkomitmen untuk meningkatkan transparansi dalam industri kecantikan dengan memberikan informasi yang jelas dan dapat diakses tentang bahan-bahan dalam produk perawatan kulit.</p>
-                
-                <h2 style="margin-top:2rem;">🔬 Metodologi</h2>
-                <p>Database kami dikembangkan berdasarkan:</p>
-                <ul>
-                    <li>Regulasi Uni Eropa (EU Regulation No. 1223/2009)</li>
-                    <li>Pedoman FDA tentang kosmetik</li>
-                    <li>Penelitian ilmiah peer-reviewed</li>
-                    <li>Rekomendasi dari dermatolog terkemuka</li>
-                </ul>
-            </div>
-            <div>
-                <h2>📚 Sumber Data</h2>
-                <p>Informasi dalam aplikasi ini bersumber dari:</p>
-                <ul>
-                    <li>Environmental Working Group's Skin Deep Database</li>
-                    <li>Cosmetic Ingredient Review (CIR)</li>
-                    <li>Journal of the American Academy of Dermatology</li>
-                    <li>International Journal of Toxicology</li>
-                </ul>
-                
-                <h2 style="margin-top:2rem;">👩‍⚕️ Tim Ahli</h2>
-                <p>Konten kami ditinjau oleh:</p>
-                <ul>
-                    <li>Dermatolog bersertifikat</li>
-                    <li>Ahli toksikologi kosmetik</li>
-                    <li>Peneliti bahan kosmetik</li>
-                </ul>
-            </div>
-        </div>
+        st.markdown('<h2 class="about-subheader">🔬 Metodologi</h2>', unsafe_allow_html=True)
+        st.write("Database kami dikembangkan berdasarkan:")
+        st.markdown("""
+        - Regulasi Uni Eropa (EU Regulation No. 1223/2009)
+        - Pedoman FDA tentang kosmetik
+        - Penelitian ilmiah peer-reviewed
+        - Rekomendasi dari dermatolog terkemuka
+        """)
+    
+    with col2:
+        st.markdown('<h2 class="about-subheader">📚 Sumber Data</h2>', unsafe_allow_html=True)
+        st.write("Informasi dalam aplikasi ini bersumber dari:")
+        st.markdown("""
+        - Environmental Working Group's Skin Deep Database
+        - Cosmetic Ingredient Review (CIR)
+        - Journal of the American Academy of Dermatology
+        - International Journal of Toxicology
+        """)
         
-        <div style="background-color: #fff9fa; border-radius: 12px; padding: 1.5rem; margin-top: 2rem;">
-            <h2 style="color:#d35d6e; text-align:center;">💡 Tips Memilih Skincare Aman</h2>
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem;">
-                <div style="background-color: white; padding: 1rem; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
-                    <h3 style="color:#d35d6e; margin-top:0;">Baca Label</h3>
-                    <p>Selalu periksa daftar bahan sebelum membeli produk skincare</p>
-                </div>
-                <div style="background-color: white; padding: 1rem; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
-                    <h3 style="color:#d35d6e; margin-top:0;">Mulai dari Sederhana</h3>
-                    <p>Produk dengan daftar bahan yang lebih pendek cenderung lebih aman</p>
-                </div>
-                <div style="background-color: white; padding: 1rem; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
-                    <h3 style="color:#d35d6e; margin-top:0;">Uji Sensitivitas</h3>
-                    <p>Selalu lakukan patch test sebelum menggunakan produk baru</p>
-                </div>
-            </div>
-        </div>
-    </div>
+        st.markdown('<h2 class="about-subheader">👩‍⚕️ Tim Ahli</h2>', unsafe_allow_html=True)
+        st.write("Konten kami ditinjau oleh:")
+        st.markdown("""
+        - Dermatolog bersertifikat
+        - Ahli toksikologi kosmetik
+        - Peneliti bahan kosmetik
+        """)
+    
+    # Tips memilih skincare
+    st.markdown('<h2 class="about-subheader" style="text-align:center; color:#d35d6e;">💡 Tips Memilih Skincare Aman</h2>', unsafe_allow_html=True)
+    
+    tips_col1, tips_col2, tips_col3 = st.columns(3)
+    
+    with tips_col1:
+        with st.container():
+            st.markdown("**Baca Label**")
+            st.write("Selalu periksa daftar bahan sebelum membeli produk skincare")
+    
+    with tips_col2:
+        with st.container():
+            st.markdown("**Mulai dari Sederhana**")
+            st.write("Produk dengan daftar bahan yang lebih pendek cenderung lebih aman")
+    
+    with tips_col3:
+        with st.container():
+            st.markdown("**Uji Sensitivitas**")
+            st.write("Selalu lakukan patch test sebelum menggunakan produk baru")
     """, unsafe_allow_html=True)
 
 def main():
