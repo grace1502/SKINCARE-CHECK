@@ -486,7 +486,7 @@ def show_about():
           """, unsafe_allow_html=True)
           
         <div style="background-color: #fff9fa; border-radius: 12px; padding: 1.5rem; margin-top: 2rem;">
-            <h2 style="color:#d35d6e; text-align:center;">💡 Tips Memilih Skincare Aman</h2>
+         <h2 style="color:#d35d6e; text-align:center;">Tips Memilih Skincare Aman</h2>
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem;">
                 <div style="background-color: white; padding: 1rem; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
                     <h3 style="color:#d35d6e; margin-top:0;">Baca Label</h3>
