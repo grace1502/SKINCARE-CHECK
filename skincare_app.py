@@ -390,6 +390,7 @@ def show_home():
     st.markdown("""
     <div class="main-container">
         <h2 style="text-align:center; margin-bottom:2rem;">Bagaimana Cara Kerjanya?</h2>
+       """, unsafe_allow_html=True)
 
         st.markdown("""
         <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
@@ -428,6 +429,7 @@ def show_analyzer():
         </p>
     """, unsafe_allow_html=True)
     
+    """, unsafe_allow_html=True)
     ingredients = st.text_area(
         "**Daftar Bahan:**",
         placeholder="Contoh: Aqua, Glycerin, Alcohol, Fragrance, Sodium Laureth Sulfate, Methylparaben",
