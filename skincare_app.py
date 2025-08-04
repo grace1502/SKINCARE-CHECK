@@ -422,7 +422,7 @@ def show_analyzer():
     """Tampilan halaman analisis"""
     st.markdown("""
     <div class="analysis-section">
-        <h1 style="text-align:center; margin-bottom:1.5rem;">🔍 Analisis Bahan Skincare</h1>
+        <h1 style="text-align:center; margin-bottom:1.5rem;"> Analisis Bahan Skincare</h1>
         <p style="text-align:center; color:var(--text-light); max-width:700px; margin:0 auto 2rem;">
             Masukkan daftar bahan produk skincare Anda di bawah ini untuk memeriksa potensi bahan berbahaya
         </p>
