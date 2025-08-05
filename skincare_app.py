@@ -352,9 +352,6 @@ def show_home():
     </div>
     """, unsafe_allow_html=True)
     
-    if st.button("Mulai Analisis Sekarang", type="primary"):
-        st.session_state.current_tab = "🔍 Analisis Bahan"
-    
     # Features Section
     st.markdown("""
     <div class="main-container">
@@ -503,37 +500,17 @@ def show_about():
 
 def main():
     """Fungsi utama untuk tampilan Streamlit"""
-    # Initialize session state for tab control
-    if 'current_tab' not in st.session_state:
-        st.session_state.current_tab = "🏠 Beranda"
-    
     # Navigation tabs
     tab1, tab2, tab3 = st.tabs(["🏠 Beranda", "🔍 Analisis Bahan", "ℹ️ Tentang Kami"])
     
-    # Display the appropriate tab based on session state
-    if st.session_state.current_tab == "🏠 Beranda":
-        with tab1:
-            show_home()
-    elif st.session_state.current_tab == "🔍 Analisis Bahan":
-        with tab2:
-            show_analyzer()
-    elif st.session_state.current_tab == "ℹ️ Tentang Kami":
-        with tab3:
-            show_about()
-    else:
-        with tab1:
-            show_home()
-    
-    # Always show all tabs content for navigation
     with tab1:
-        if st.session_state.current_tab != "🏠 Beranda":
-            show_home()
+        show_home()
+    
     with tab2:
-        if st.session_state.current_tab != "🔍 Analisis Bahan":
-            show_analyzer()
+        show_analyzer()
+    
     with tab3:
-        if st.session_state.current_tab != "ℹ️ Tentang Kami":
-            show_about()
+        show_about()
     
     # Footer
     st.markdown("""
