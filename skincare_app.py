@@ -284,7 +284,7 @@ def main():
     st.markdown("### Temukan kebenaran di balik bahan-bahan produk perawatan kulit Anda")
     
     # Navigation
-    tab1, tab2, tab3 = st.tabs(["🏠 Beranda", "🔍 Analisis Bahan", "ℹ️ Tentang Kami"])
+    tab1, tab2, tab3 = st.tabs(["🏠 Beranda", "🔍 Analisis Bahan", "ℹ️ Tentang Website"])
     
     with tab1:
         st.markdown("---")
@@ -460,7 +460,7 @@ def main():
         st.markdown("""
         <div style="background: linear-gradient(135deg, #fff3e0 0%, #ffecb3 100%); padding: 1.5rem; border-radius: 12px; border-left: 4px solid #ff9800; margin-top: 2rem;">
             <h4 style="color: #ef6c00; margin-top: 0;">⚠️ Disclaimer</h4>
-            <p style="margin-bottom: 0; line-height: 1.6; color: #bf360c;">Aplikasi ini hanya untuk tujuan informasi dan tidak menggantikan nasihat profesional dari dermatolog atau ahli kesehatan kulit. Selalu konsultasikan dengan profesional kesehatan untuk masalah kulit yang serius.</p>
+            <p style="margin-bottom: 0; line-height: 1.6; color: #bf360c;">Website ini hanya untuk tujuan informasi dan tidak menggantikan nasihat profesional dari dermatolog atau ahli kesehatan kulit. Selalu konsultasikan dengan profesional kesehatan untuk masalah kulit yang serius.</p>
         </div>
         """, unsafe_allow_html=True)
     
@@ -468,7 +468,7 @@ def main():
     st.markdown("---")
     st.markdown("""
     <div style="text-align: center; color: #888888; font-size: 0.9rem; padding: 1rem 0;">
-        <p>© 2023 Pemeriksa Keamanan Skincare | Dibuat dengan ❤️ untuk kulit yang lebih sehat</p>
+        <p>© 2023 Pemeriksa Keamanan Skincare | Dibuat dengan ❤️ untuk hidup yang lebih sehat</p>
     </div>
     """, unsafe_allow_html=True)
 
