@@ -281,7 +281,7 @@ def display_results(results):
 def main():
     # Header
     st.title("Pemeriksa Keamanan Skincare")
-    st.markdown("### Analisis lengkap untuk produk perawatan kulit Anda")
+    st.markdown("### Temukan Analisis Mendalam Mengenai Produk Perawatan Kulit Anda")
     
     # Navigation
     tab1, tab2, tab3 = st.tabs(["🏠 Beranda", "🔍 Analisis Bahan", "ℹ️ Tentang Website"])
