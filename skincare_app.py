@@ -223,9 +223,35 @@ def analyze_ingredients(ingredients_text):
 def display_results(results):
     """Fungsi untuk menampilkan hasil analisis"""
     if results['is_safe']:
-        st.success("✅ **Produk Ini Aman!**\n\nTidak terdeteksi bahan berbahaya dalam daftar yang diberikan. Tetap perhatikan reaksi kulit Anda terhadap produk baru dan selalu lakukan patch test sebelum penggunaan penuh.")
+        st.success("""
+        ✅ **Produk Ini Aman!**
+        
+        Tidak terdeteksi bahan berbahaya dalam daftar yang diberikan. Produk ini tampaknya menggunakan formulasi yang lebih aman untuk kulit. 
+        
+        **Namun tetap perhatikan:**
+        - Reaksi kulit Anda terhadap produk baru
+        - Selalu lakukan patch test sebelum penggunaan penuh
+        - Hentikan penggunaan jika terjadi iritasi atau reaksi alergi
+        - Konsultasikan dengan dermatolog jika memiliki kulit sensitif atau kondisi kulit tertentu
+        """)
+        
+        st.info("""
+        **🌟 Tips Penggunaan Produk Aman:**
+        
+        - **Patch Test:** Oleskan sedikit produk di belakang telinga atau pergelangan tangan, tunggu 24-48 jam
+        - **Gradual Introduction:** Mulai gunakan produk secara bertahap, 2-3 kali seminggu
+        - **Monitor Reaksi:** Perhatikan tanda-tanda kemerahan, gatal, atau iritasi
+        - **Storage:** Simpan produk di tempat sejuk dan kering untuk menjaga kualitas
+        """)
     else:
         st.error(f"⚠️ **Ditemukan {len(results['dangerous_ingredients'])} Bahan Potensial Berbahaya**")
+        
+        st.warning("""
+        **🚨 Peringatan Penting:**
+        
+        Produk ini mengandung bahan-bahan yang berpotensi menimbulkan efek samping atau reaksi negatif pada kulit. 
+        Kami menyarankan untuk mempertimbangkan kembali penggunaan produk ini, terutama jika Anda memiliki kulit sensitif.
+        """)
         
         for ing in results['dangerous_ingredients']:
             with st.expander(f"🚨 {ing['name'].title()} - Risiko: {ing['risk']}"):
@@ -234,7 +260,7 @@ def display_results(results):
                 st.write(f"**Detail:** {ing['details']}")
         
         st.info("""
-        **💡 Rekomendasi:**
+        **💡 Rekomendasi Alternatif:**
         
         Pertimbangkan untuk mencari produk dengan label:
         - **Paraben-free** - Bebas paraben
@@ -242,6 +268,13 @@ def display_results(results):
         - **Fragrance-free** - Bebas wewangian sintetis
         - **Hypoallergenic** - Formulasi untuk kulit sensitif
         - **Non-comedogenic** - Tidak menyumbat pori
+        - **Dermatologist-tested** - Telah diuji dermatolog
+        
+        **Langkah Selanjutnya:**
+        - Konsultasikan dengan dermatolog sebelum menggunakan produk
+        - Cari merek yang transparan tentang formulasi mereka
+        - Baca review dari pengguna dengan tipe kulit serupa
+        - Pertimbangkan produk dengan sertifikasi organik atau natural
         """)
 
 # Main App
