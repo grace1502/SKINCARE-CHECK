@@ -281,7 +281,7 @@ def display_results(results):
 def main():
     # Header
     st.title("Pemeriksa Keamanan Skincare")
-    st.markdown("### Temukan kebenaran di balik bahan-bahan produk perawatan kulit Anda")
+    st.markdown("### Analisis lengkap untuk produk perawatan kulit Anda"")
     
     # Navigation
     tab1, tab2, tab3 = st.tabs(["🏠 Beranda", "🔍 Analisis Bahan", "ℹ️ Tentang Website"])
@@ -468,7 +468,7 @@ def main():
     st.markdown("---")
     st.markdown("""
     <div style="text-align: center; color: #888888; font-size: 0.9rem; padding: 1rem 0;">
-        <p>© 2025 Pemeriksa Keamanan Skincare | Dibuat dengan ❤️ untuk hidup yang lebih sehat</p>
+        <p>© 2025 Pemeriksa Keamanan Skincare | Dibuat dengan ❤️ untuk kulit wajah yang lebih sehat</p>
     </div>
     """, unsafe_allow_html=True)
 
