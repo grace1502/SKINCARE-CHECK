@@ -291,7 +291,7 @@ def main():
         # Hero Section
         st.markdown("""
         <div style="text-align: center; padding: 2rem; background: linear-gradient(135deg, rgba(255,182,193,0.2) 0%, rgba(255,255,255,0.8) 100%); border-radius: 15px; margin-bottom: 2rem;">
-            <h2>🌟 Analisis Instan Berdasarkan Penelitian Ilmiah</h2>
+            <h2>Analisis Instan Berdasarkan Penelitian Ilmiah</h2>
             <p style="font-size: 1.1rem;">Platform terpercaya untuk membantu Anda membuat keputusan yang lebih baik tentang produk perawatan kulit</p>
         </div>
         """, unsafe_allow_html=True)
@@ -338,7 +338,7 @@ def main():
         st.markdown("---")
         
         # How it works
-        st.subheader("🔄 Bagaimana Cara Kerjanya?")
+        st.subheader("Bagaimana Cara Kerjanya?")
         
         col1, col2, col3 = st.columns(3)
         
@@ -365,7 +365,7 @@ def main():
     
     with tab2:
         st.markdown("---")
-        st.subheader("🔍 Analisis Bahan Skincare")
+        st.subheader("Analisis Bahan Skincare")
         st.write("Masukkan daftar bahan produk skincare Anda di bawah ini untuk memeriksa potensi bahan berbahaya")
         
         # Input form
