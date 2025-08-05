@@ -26,12 +26,12 @@ st.markdown("""
     
     /* Warna tema soft pink */
     :root {
-        --primary-color: #ffb6c1;
-        --primary-dark: #ff8fab;
-        --primary-light: #ffdfe5;
+        --primary-color: #e91e63;
+        --primary-dark: #c2185b;
+        --primary-light: #f8bbd9;
         --secondary-color: #f8f9fa;
-        --text-dark: #4a4a4a;
-        --text-light: #888888;
+        --text-dark: #2c2c2c;
+        --text-light: #555555;
     }
     
     /* Background dengan overlay */
@@ -54,16 +54,16 @@ st.markdown("""
     
     /* Judul utama */
     h1 {
-        color: #d35d6e !important;
+        color: #c2185b !important;
         font-family: 'Playfair Display', serif !important;
         font-weight: 700 !important;
         margin-bottom: 0.5rem !important;
-        text-shadow: 1px 1px 3px rgba(0,0,0,0.05);
+        text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
     }
     
     /* Subjudul */
     h2 {
-        color: #d35d6e !important;
+        color: #c2185b !important;
         font-family: 'Playfair Display', serif !important;
         font-weight: 500 !important;
         border-bottom: 2px solid var(--primary-light);
@@ -73,26 +73,40 @@ st.markdown("""
     
     h3 {
         font-family: 'Playfair Display', serif !important;
-        color: var(--text-dark) !important;
+        color: #2c2c2c !important;
         font-weight: 500 !important;
+    }
+    
+    h4 {
+        color: #2c2c2c !important;
+        font-weight: 600 !important;
+    }
+    
+    /* Text color improvements */
+    p, div, span {
+        color: #2c2c2c !important;
+    }
+    
+    .stMarkdown p {
+        color: #2c2c2c !important;
     }
     
     /* Tombol */
     .stButton button {
-        background-color: var(--primary-color) !important;
+        background-color: #e91e63 !important;
         color: white !important;
         border-radius: 8px !important;
         border: none !important;
         padding: 0.7rem 2rem !important;
-        font-weight: 500 !important;
+        font-weight: 600 !important;
         transition: all 0.3s ease;
-        box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
     }
     
     .stButton button:hover {
-        background-color: var(--primary-dark) !important;
+        background-color: #c2185b !important;
         transform: translateY(-2px);
-        box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+        box-shadow: 0 6px 12px rgba(0,0,0,0.15);
     }
     
     /* Text area */
@@ -111,17 +125,20 @@ st.markdown("""
     
     .stTabs [data-baseweb="tab"] {
         padding: 0.8rem 1.5rem !important;
-        background-color: var(--primary-light) !important;
+        background-color: #f5f5f5 !important;
+        color: #2c2c2c !important;
         border-radius: 8px !important;
         margin-right: 0 !important;
         font-weight: 500 !important;
         transition: all 0.3s ease;
+        border: 1px solid #e0e0e0 !important;
     }
     
     .stTabs [aria-selected="true"] {
-        background-color: var(--primary-color) !important;
+        background-color: #e91e63 !important;
         font-weight: 600 !important;
         color: white !important;
+        border: 1px solid #e91e63 !important;
     }
     
     /* Hasil analisis */
@@ -253,36 +270,36 @@ def main():
         with col1:
             st.markdown("""
             <div style="text-align: center; padding: 1rem; background: white; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.05);">
-                <div style="font-size: 2.5rem; color: #d35d6e;">🔬</div>
-                <h4>Analisis Mendalam</h4>
-                <p>Sistem memeriksa berbagai jenis bahan berbahaya berdasarkan database terpercaya</p>
+                <div style="font-size: 2.5rem; color: #e91e63;">🔬</div>
+                <h4 style="color: #2c2c2c; margin: 0.5rem 0;">Analisis Mendalam</h4>
+                <p style="color: #555555;">Sistem memeriksa berbagai jenis bahan berbahaya berdasarkan database terpercaya</p>
             </div>
             """, unsafe_allow_html=True)
         
         with col2:
             st.markdown("""
             <div style="text-align: center; padding: 1rem; background: white; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.05);">
-                <div style="font-size: 2.5rem; color: #d35d6e;">⚡</div>
-                <h4>Hasil Instan</h4>
-                <p>Dapatkan hasil analisis komprehensif dalam hitungan detik</p>
+                <div style="font-size: 2.5rem; color: #e91e63;">⚡</div>
+                <h4 style="color: #2c2c2c; margin: 0.5rem 0;">Hasil Instan</h4>
+                <p style="color: #555555;">Dapatkan hasil analisis komprehensif dalam hitungan detik</p>
             </div>
             """, unsafe_allow_html=True)
         
         with col3:
             st.markdown("""
             <div style="text-align: center; padding: 1rem; background: white; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.05);">
-                <div style="font-size: 2.5rem; color: #d35d6e;">📚</div>
-                <h4>Edukasi Komprehensif</h4>
-                <p>Pelajari tentang bahan berbahaya dan alternatif yang lebih aman</p>
+                <div style="font-size: 2.5rem; color: #e91e63;">📚</div>
+                <h4 style="color: #2c2c2c; margin: 0.5rem 0;">Edukasi Komprehensif</h4>
+                <p style="color: #555555;">Pelajari tentang bahan berbahaya dan alternatif yang lebih aman</p>
             </div>
             """, unsafe_allow_html=True)
         
         with col4:
             st.markdown("""
             <div style="text-align: center; padding: 1rem; background: white; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.05);">
-                <div style="font-size: 2.5rem; color: #d35d6e;">🛡️</div>
-                <h4>Keamanan Terjamin</h4>
-                <p>Berdasarkan regulasi dan penelitian ilmiah terbaru</p>
+                <div style="font-size: 2.5rem; color: #e91e63;">🛡️</div>
+                <h4 style="color: #2c2c2c; margin: 0.5rem 0;">Keamanan Terjamin</h4>
+                <p style="color: #555555;">Berdasarkan regulasi dan penelitian ilmiah terbaru</p>
             </div>
             """, unsafe_allow_html=True)
         
@@ -297,22 +314,22 @@ def main():
             st.markdown("""
             **1️⃣ Masukkan Daftar Bahan**
             
-            Salin dan tempel daftar bahan (INGREDIENTS) dari produk skincare Anda
-            """)
+            <span style="color: #555555;">Salin dan tempel daftar bahan (INGREDIENTS) dari produk skincare Anda</span>
+            """, unsafe_allow_html=True)
         
         with col2:
             st.markdown("""
             **2️⃣ Proses Analisis**
             
-            Sistem akan memindai bahan-bahan berbahaya dalam database kami
-            """)
+            <span style="color: #555555;">Sistem akan memindai bahan-bahan berbahaya dalam database kami</span>
+            """, unsafe_allow_html=True)
         
         with col3:
             st.markdown("""
             **3️⃣ Dapatkan Hasil**
             
-            Lihat laporan lengkap tentang keamanan produk dan rekomendasi alternatif
-            """)
+            <span style="color: #555555;">Lihat laporan lengkap tentang keamanan produk dan rekomendasi alternatif</span>
+            """, unsafe_allow_html=True)
     
     with tab2:
         st.markdown("---")
