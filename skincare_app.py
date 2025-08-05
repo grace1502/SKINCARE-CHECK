@@ -354,7 +354,7 @@ def main():
             st.markdown("""
             **2️⃣ Proses Analisis**
             
-            <span style="color: #555555;">Sistem akan memindai bahan-bahan berbahaya </span>
+            <span style="color: #555555;">Sistem akan memindai bahan-bahan yang terindikasi berbahaya </span>
             """, unsafe_allow_html=True)
         
         with col3:
@@ -408,7 +408,7 @@ def main():
             # Mission section dengan styling
             st.markdown("""
             <div style="background: white; padding: 1.5rem; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); margin-bottom: 1.5rem;">
-                <h4 style="color: #e91e63; margin-top: 0;">🎯 Misi Kami</h4>
+                <h4 style="color: #e91e63; margin-top: 0;">🎯 Misi </h4>
                 <p style="line-height: 1.6;">Berkomitmen untuk meningkatkan transparansi dalam industri kecantikan dengan memberikan informasi yang jelas dan dapat diakses tentang bahan-bahan dalam produk perawatan kulit. Tujuan dibuatnya sistem ini adalah memberdayakan konsumen untuk membuat pilihan yang tepat berdasarkan data dan penelitian ilmiah.</p>
             </div>
             """, unsafe_allow_html=True)
@@ -417,7 +417,7 @@ def main():
             st.markdown("""
             <div style="background: white; padding: 1.5rem; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.05);">
                 <h4 style="color: #e91e63; margin-top: 0;">🔬 Metodologi</h4>
-                <p style="margin-bottom: 1rem; line-height: 1.6;">Database kami dikembangkan berdasarkan:</p>
+                <p style="margin-bottom: 1rem; line-height: 1.6;">Website ini dikembangkan berdasarkan:</p>
                 <ul style="line-height: 1.6;">
                     <li>Regulasi Uni Eropa (EU Regulation No. 1223/2009)</li>
                      <li>Lembaga pengawas BPOM</li>
@@ -432,12 +432,12 @@ def main():
             st.markdown("""
             <div style="background: white; padding: 1.5rem; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); margin-bottom: 1.5rem;">
                 <h4 style="color: #e91e63; margin-top: 0;">📚 Sumber Data</h4>
-                <p style="margin-bottom: 1rem; line-height: 1.6;">Informasi dalam aplikasi ini bersumber dari:</p>
+                <p style="margin-bottom: 1rem; line-height: 1.6;">Informasi dalam website ini bersumber dari:</p>
                 <ul style="line-height: 1.6;">
                     <li>Environmental Working Group's Skin Deep Database</li>
                     <li>Cosmetic Ingredient Review (CIR)</li>
                     <li>Journal of the American Academy of Dermatology</li>
-                    <li>International Journal of Toxicology</li>
+                    <li>BPOM RI</li>
                 </ul>
             </div>
             """, unsafe_allow_html=True)
@@ -468,7 +468,7 @@ def main():
     st.markdown("---")
     st.markdown("""
     <div style="text-align: center; color: #888888; font-size: 0.9rem; padding: 1rem 0;">
-        <p>© 2023 Pemeriksa Keamanan Skincare | Dibuat dengan ❤️ untuk hidup yang lebih sehat</p>
+        <p>© 2025 Pemeriksa Keamanan Skincare | Dibuat dengan ❤️ untuk hidup yang lebih sehat</p>
     </div>
     """, unsafe_allow_html=True)
 
