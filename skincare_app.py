@@ -387,7 +387,7 @@ def display_results(results):
         st.warning(f"🔍 **Ditemukan {len(results['unknown_ingredients'])} Bahan Tidak Dikenali**")
         
         with st.expander("Lihat Bahan yang Tidak Dikenali"):
-            st.write("**Bahan-bahan berikut tidak terdeteksi dalam database kami:**")
+            st.write("**Bahan-bahan berikut tidak terdeteksi pada sistem:**")
             
             # Group ingredients for better display
             unknown_list = results['unknown_ingredients']
