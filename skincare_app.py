@@ -161,42 +161,134 @@ st.markdown("""
 
 # Database bahan berbahaya
 DANGEROUS_INGREDIENTS = {
-    'paraben': {
-        'description': 'Dapat mengganggu sistem hormon (Regulasi EU No. 1223/2009)',
-        'category': 'Pengganggu Endokrin',
-        'risk_level': 'Tinggi',
-        'common_names': ['methylparaben', 'propylparaben', 'butylparaben'],
-        'details': 'Paraben adalah pengawet yang umum digunakan dalam kosmetik dan produk perawatan pribadi. Studi menunjukkan paraben dapat meniru estrogen dan berpotensi mengganggu sistem hormon tubuh. Regulasi Uni Eropa telah membatasi penggunaan beberapa jenis paraben dalam produk kosmetik.'
-    },
-    'sulfate': {
-        'description': 'Bersifat keras dan dapat mengiritasi kulit sensitif',
-        'category': 'Iritan',
-        'risk_level': 'Sedang',
-        'common_names': ['sodium lauryl sulfate', 'sls', 'sodium laureth sulfate'],
-        'details': 'Sulfate adalah surfaktan yang digunakan untuk membuat busa dalam produk pembersih. Bahan ini dapat menghilangkan minyak alami kulit, menyebabkan kekeringan dan iritasi, terutama pada kulit sensitif. Alternatif yang lebih lembut termasuk decyl glucoside atau coco-glucoside.'
-    },
-    'phthalate': {
-        'description': 'Dikaitkan dengan gangguan hormon dan reproduksi',
-        'category': 'Pengganggu Endokrin',
-        'risk_level': 'Tinggi',
-        'common_names': ['dibutyl phthalate', 'dbp', 'diethyl phthalate'],
-        'details': 'Phthalates sering digunakan sebagai pelarut dan pengikat wewangian. Bahan ini telah dikaitkan dengan masalah reproduksi dan perkembangan. Banyak negara telah melarang penggunaan phthalates tertentu dalam produk kosmetik dan mainan anak-anak.'
-    },
-    'formaldehyde': {
-        'description': 'Karsinogen yang diketahui dan iritan kuat',
-        'category': 'Karsinogen',
-        'risk_level': 'Tinggi',
-        'common_names': ['formalin', 'methanal', 'methyl aldehyde'],
-        'details': 'Formaldehyde dan pelepas formaldehyde digunakan sebagai pengawet. Zat ini diklasifikasikan sebagai karsinogen manusia dan dapat menyebabkan iritasi kulit, mata, dan saluran pernapasan. Hindari produk yang mengandung DMDM hydantoin, imidazolidinyl urea, atau quaternium-15.'
-    },
-    'fragrance': {
-        'description': 'Dapat menyebabkan iritasi dan reaksi alergi',
-        'category': 'Alergen',
-        'risk_level': 'Sedang',
-        'common_names': ['parfum', 'aroma', 'perfume'],
-        'details': 'Istilah "fragrance" atau "parfum" dapat mencakup ratusan bahan kimia berbeda yang tidak diungkapkan. Banyak di antaranya dapat menyebabkan iritasi kulit, alergi, atau gangguan hormon. Pilih produk yang bebas wewangian atau menggunakan minyak esensial alami sebagai alternatif.'
-    }
-}
+            'paraben': {
+                'description': 'Dapat mengganggu hormon (EU Regulation No. 1223/2009)',
+                'category': 'Endocrine Disruptor',
+                'risk_level': 'High',
+                'common_names': ['methylparaben', 'propylparaben', 'butylparaben']
+            },
+            'sulfate': {
+                'description': 'Bersifat keras dan dapat mengiritasi kulit',
+                'category': 'Irritant',
+                'risk_level': 'Medium',
+                'common_names': ['sodium lauryl sulfate', 'sls', 'sodium laureth sulfate']
+            },
+            'phthalate': {
+                'description': 'May disrupt hormones and affect reproductive health (EU Regulation No. 1223/2009)',
+                'category': 'Endocrine Disruptor',
+                'risk_level': 'High',
+                'common_names': ['dibutyl phthalate (dbp)', 'diethylhexyl phthalate (dehp)']
+            },
+            'formaldehyde': {
+                'description': 'Known carcinogen and skin sensitizer',
+                'category': 'Carcinogen, Allergen',
+                'risk_level': 'High',
+                'common_names': ['formalin', 'methylene glycol', 'quaternium-15']
+            },
+            'mercury': {
+                'description': 'Neurotoxin, harmful to kidney and nervous system',
+                'category': 'Heavy Metal, Neurotoxin',
+                'risk_level': 'Critical',
+                'common_names': ['calomel', 'mercuric chloride']
+            },
+            'hydroquinone': {
+                'description': 'Skin lightener, can cause ochronosis (skin discoloration)',
+                'category': 'Skin Irritant, Pigmentation Disrupter',
+                'risk_level': 'High',
+                'common_names': ['dihydroxybenzene', 'quinol']
+            },
+            'triclosan': {
+                'description': 'May disrupt hormones and contribute to antibiotic resistance',
+                'category': 'Endocrine Disruptor, Antibiotic Resistance',
+                'risk_level': 'High',
+                'common_names': ['triclosan', 'tcs']
+            },
+            'alcohol': {
+                'description': 'Can be drying and irritating for some skin types (depending on type and concentration)',
+                'category': 'Irritant, Drying Agent',
+                'risk_level': 'Medium',
+                'common_names': ['ethanol', 'isopropyl alcohol', 'sd alcohol']
+            },
+            'fragrance': {
+                'description': 'Common allergen and can cause skin irritation (often a mix of undisclosed chemicals)',
+                'category': 'Allergen, Irritant',
+                'risk_level': 'Medium',
+                'common_names': ['parfum', 'perfume', 'aroma']
+            },
+            'lead': {
+                'description': 'Neurotoxin, harmful to nervous system (especially in children)',
+                'category': 'Heavy Metal, Neurotoxin',
+                'risk_level': 'Critical',
+                'common_names': ['lead acetate']
+            },
+             'toluene': {
+                'description': 'Can affect respiratory system and nervous system',
+                'category': 'Toxin',
+                'risk_level': 'High',
+                'common_names': ['methylbenzene', 'toluol']
+            },
+            'bha': {
+                'description': 'Possible endocrine disruptor and carcinogen',
+                'category': 'Endocrine Disruptor, Possible Carcinogen',
+                'risk_level': 'High',
+                'common_names': ['butylated hydroxyanisole']
+            },
+            'bht': {
+                'description': 'Possible endocrine disruptor and skin allergen',
+                'category': 'Endocrine Disruptor, Allergen',
+                'risk_level': 'Medium',
+                'common_names': ['butylated hydroxytoluene']
+            },
+            'petrolatum': {
+                'description': 'Can be contaminated with PAHs (polycyclic aromatic hydrocarbons) if not refined properly',
+                'category': 'Contaminant Risk',
+                'risk_level': 'Medium',
+                'common_names': ['petroleum jelly', 'mineral oil jelly']
+            },
+             'phenoxyethanol': {
+                'description': 'Preservative, can be an allergen and skin irritant (restricted in some countries)',
+                'category': 'Preservative, Allergen, Irritant',
+                'risk_level': 'Medium',
+                'common_names': ['ethylene glycol phenyl ether']
+            },
+            'propylene glycol': {
+                'description': 'Can be a skin irritant and allergen',
+                'category': 'Irritant, Allergen',
+                'risk_level': 'Medium',
+                'common_names': ['1,2-propanediol']
+            },
+            'siloxane': {
+                'description': 'Possible endocrine disruptors (especially cyclosiloxanes like cyclopentasiloxane and cyclohexasiloxane)',
+                'category': 'Endocrine Disruptor',
+                'risk_level': 'High',
+                'common_names': ['cyclopentasiloxane', 'cyclohexasiloxane', 'dimethicone', 'cyclomethicone']
+            },
+             'oxybenzone': {
+                'description': 'Sunscreen ingredient, can be a hormone disruptor and marine pollutant',
+                'category': 'Endocrine Disruptor, Environmental Hazard',
+                'risk_level': 'High',
+                'common_names': ['benzophenone-3']
+            },
+            'benzoyl peroxide': {
+                'description': 'Can be a skin irritant and sensitizer',
+                'category': 'Irritant, Sensitizer',
+                'risk_level': 'Medium',
+                'common_names': ['benzyl peroxide']
+            },
+            'resorcinol': {
+                'description': 'Possible endocrine disruptor and allergen',
+                'category': 'Endocrine Disruptor, Allergen',
+                'risk_level': 'High',
+                'common_names': ['1,3-benzenediol']
+            },
+            'synthetic dyes': {
+                'description': 'Some synthetic dyes (e.g., coal tar dyes) can be carcinogens or allergens',
+                'category': 'Possible Carcinogen, Allergen',
+                'risk_level': 'High',
+                'common_names': ['ci 19140', 'yellow 5', 'red 40']
+            }
+        }
+
 
 def analyze_ingredients(ingredients_text):
     """Fungsi untuk menganalisis bahan-bahan skincare"""
