@@ -4,7 +4,6 @@
 
 import streamlit as st
 import time
-from PIL import Image
 
 # Konfigurasi halaman
 st.set_page_config(
@@ -51,12 +50,6 @@ st.markdown("""
         box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
         padding: 2rem;
         margin-bottom: 2rem;
-    }
-    
-    /* Header */
-    .stApp header {
-        background-color: white;
-        box-shadow: 0 2px 15px rgba(0,0,0,0.08);
     }
     
     /* Judul utama */
@@ -131,29 +124,6 @@ st.markdown("""
         color: white !important;
     }
     
-    /* Card fitur */
-    .feature-card {
-        background-color: white;
-        padding: 1.5rem;
-        border-radius: 12px;
-        box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-        transition: all 0.3s ease;
-        border: none;
-        height: 100%;
-        text-align: center;
-    }
-    
-    .feature-card:hover {
-        transform: translateY(-8px);
-        box-shadow: 0 12px 20px rgba(0,0,0,0.1);
-    }
-    
-    .feature-icon {
-        font-size: 2.5rem;
-        color: #d35d6e;
-        margin-bottom: 1rem;
-    }
-    
     /* Hasil analisis */
     .stAlert {
         border-radius: 12px !important;
@@ -168,67 +138,6 @@ st.markdown("""
         color: var(--text-light);
         font-size: 0.9rem;
         border-top: 1px solid #f0f0f0;
-    }
-    
-    /* Hero section */
-    .hero {
-        background: linear-gradient(135deg, rgba(255,182,193,0.2) 0%, rgba(255,255,255,0.8) 100%);
-        border-radius: 15px;
-        padding: 3rem;
-        margin-bottom: 3rem;
-        text-align: center;
-    }
-    
-    /* About section */
-    .about-section {
-        background-color: white;
-        border-radius: 15px;
-        padding: 2rem;
-        box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-        margin-bottom: 2rem;
-    }
-    
-    /* Analysis section */
-    .analysis-section {
-        background-color: white;
-        border-radius: 15px;
-        padding: 2rem;
-        box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-    }
-    
-    /* Ingredient card */
-    .ingredient-card {
-        background-color: white;
-        border-radius: 12px;
-        padding: 1.5rem;
-        margin-bottom: 1rem;
-        box-shadow: 0 3px 10px rgba(0,0,0,0.05);
-        border-left: 4px solid #d35d6e;
-    }
-    
-    .ingredient-header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-bottom: 0.5rem;
-    }
-    
-    .risk-high {
-        background-color: #ffebee;
-        color: #c62828;
-        padding: 0.3rem 0.8rem;
-        border-radius: 20px;
-        font-size: 0.8rem;
-        font-weight: 600;
-    }
-    
-    .risk-medium {
-        background-color: #fff8e1;
-        color: #ff8f00;
-        padding: 0.3rem 0.8rem;
-        border-radius: 20px;
-        font-size: 0.8rem;
-        font-weight: 600;
     }
 </style>
 """, unsafe_allow_html=True)
@@ -297,227 +206,187 @@ def analyze_ingredients(ingredients_text):
 def display_results(results):
     """Fungsi untuk menampilkan hasil analisis"""
     if results['is_safe']:
-        st.success("""
-        <div style="text-align:center; padding:2rem;">
-            <h2 style="color:#2e7d32;">✅ Produk Ini Aman!</h2>
-            <p style="font-size:1.1rem;">Tidak terdeteksi bahan berbahaya dalam daftar yang diberikan</p>
-            <p style="margin-top:1.5rem;">Tetap perhatikan reaksi kulit Anda terhadap produk baru dan selalu lakukan patch test sebelum penggunaan penuh.</p>
-        </div>
-        """, unsafe_allow_html=True)
+        st.success("✅ **Produk Ini Aman!**\n\nTidak terdeteksi bahan berbahaya dalam daftar yang diberikan. Tetap perhatikan reaksi kulit Anda terhadap produk baru dan selalu lakukan patch test sebelum penggunaan penuh.")
     else:
-        st.error(f"""
-        <div style="text-align:center; padding:1rem 0 2rem;">
-            <h2 style="color:#c62828;">⚠️ Ditemukan {len(results['dangerous_ingredients'])} Bahan Potensial Berbahaya</h2>
-            <p style="font-size:1.1rem;">Berikut bahan-bahan yang perlu diperhatikan:</p>
-        </div>
-        """, unsafe_allow_html=True)
+        st.error(f"⚠️ **Ditemukan {len(results['dangerous_ingredients'])} Bahan Potensial Berbahaya**")
         
         for ing in results['dangerous_ingredients']:
-            risk_class = "risk-high" if ing['risk'] == "Tinggi" else "risk-medium"
-            st.markdown(f"""
-            <div class="ingredient-card">
-                <div class="ingredient-header">
-                    <h3 style="margin:0; color:#d35d6e;">{ing['name'].title()}</h3>
-                    <span class="{risk_class}">Risiko: {ing['risk']}</span>
-                </div>
-                <p><strong>Kategori:</strong> {ing['category']}</p>
-                <p><strong>Deskripsi:</strong> {ing['description']}</p>
-                <p><strong>Detail:</strong> {ing['details']}</p>
-            </div>
-            """, unsafe_allow_html=True)
+            with st.expander(f"🚨 {ing['name'].title()} - Risiko: {ing['risk']}"):
+                st.write(f"**Kategori:** {ing['category']}")
+                st.write(f"**Deskripsi:** {ing['description']}")
+                st.write(f"**Detail:** {ing['details']}")
         
-        st.markdown("""
-        <div style="margin-top:2rem; background-color:#fff9fa; padding:1.5rem; border-radius:12px;">
-            <h3 style="color:#d35d6e; margin-top:0;">💡 Rekomendasi</h3>
-            <p>Pertimbangkan untuk mencari produk dengan label:</p>
-            <ul>
-                <li><strong>Paraben-free</strong> - Bebas paraben</li>
-                <li><strong>Sulfate-free</strong> - Bebas sulfate</li>
-                <li><strong>Fragrance-free</strong> - Bebas wewangian sintetis</li>
-                <li><strong>Hypoallergenic</strong> - Formulasi untuk kulit sensitif</li>
-                <li><strong>Non-comedogenic</strong> - Tidak menyumbat pori</li>
-            </ul>
-        </div>
-        """, unsafe_allow_html=True)
+        st.info("""
+        **💡 Rekomendasi:**
+        
+        Pertimbangkan untuk mencari produk dengan label:
+        - **Paraben-free** - Bebas paraben
+        - **Sulfate-free** - Bebas sulfate  
+        - **Fragrance-free** - Bebas wewangian sintetis
+        - **Hypoallergenic** - Formulasi untuk kulit sensitif
+        - **Non-comedogenic** - Tidak menyumbat pori
+        """)
 
-def show_home():
-    """Tampilan halaman beranda"""
-    # Hero Section
-    st.markdown("""
-    <div class="hero">
-        <h1 style="font-size:2.8rem;">🧪 Pemeriksa Keamanan Skincare</h1>
-        <p style="font-size:1.2rem; color:var(--text-dark); max-width:800px; margin:0 auto 1.5rem;">
-            Temukan kebenaran di balik bahan-bahan produk perawatan kulit Anda. Analisis instan berdasarkan penelitian ilmiah dan regulasi internasional.
-        </p>
-    </div>
-    """, unsafe_allow_html=True)
-    
-    # Features Section
-    st.markdown("""
-    <div class="main-container">
-        <h2 style="text-align:center; margin-bottom:2rem;">Kenapa Memilih Pemeriksa Kami?</h2>
-        
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem;">
-            <div class="feature-card">
-                <div class="feature-icon">🔬</div>
-                <h3>Analisis Mendalam</h3>
-                <p>Sistem kami memeriksa berbagai jenis bahan berbahaya berdasarkan database terpercaya</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">⚡</div>
-                <h3>Hasil Instan</h3>
-                <p>Dapatkan hasil analisis komprehensif dalam hitungan detik</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">📚</div>
-                <h3>Edukasi Komprehensif</h3>
-                <p>Pelajari tentang bahan berbahaya dan alternatif yang lebih aman</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">🛡️</div>
-                <h3>Keamanan Terjamin</h3>
-                <p>Berdasarkan regulasi dan penelitian ilmiah terbaru</p>
-            </div>
-        </div>
-    </div>
-    """, unsafe_allow_html=True)
-    
-    # How It Works Section
-    st.markdown("""
-    <div class="main-container">
-        <h2 style="text-align:center; margin-bottom:2rem;">Bagaimana Cara Kerjanya?</h2>
-        
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
-            <div style="display: flex; gap: 1rem; align-items: flex-start;">
-                <div style="background-color: #d35d6e; color: white; border-radius: 50%; width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">1</div>
-                <div>
-                    <h3 style="margin-top:0;">Masukkan Daftar Bahan</h3>
-                    <p>Salin dan tempel daftar bahan (INGREDIENTS) dari produk skincare Anda</p>
-                </div>
-            </div>
-            <div style="display: flex; gap: 1rem; align-items: flex-start;">
-                <div style="background-color: #d35d6e; color: white; border-radius: 50%; width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">2</div>
-                <div>
-                    <h3 style="margin-top:0;">Proses Analisis</h3>
-                    <p>Sistem kami akan memindai bahan-bahan berbahaya dalam database kami</p>
-                </div>
-            </div>
-            <div style="display: flex; gap: 1rem; align-items: flex-start;">
-                <div style="background-color: #d35d6e; color: white; border-radius: 50%; width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">3</div>
-                <div>
-                    <h3 style="margin-top:0;">Dapatkan Hasil</h3>
-                    <p>Lihat laporan lengkap tentang keamanan produk dan rekomendasi alternatif</p>
-                </div>
-            </div>
-        </div>
-    </div>
-    """, unsafe_allow_html=True)
-
-def show_analyzer():
-    """Tampilan halaman analisis"""
-    st.markdown("""
-    <div class="analysis-section">
-        <h1 style="text-align:center; margin-bottom:1.5rem;">🔍 Analisis Bahan Skincare</h1>
-        <p style="text-align:center; color:var(--text-light); max-width:700px; margin:0 auto 2rem;">
-            Masukkan daftar bahan produk skincare Anda di bawah ini untuk memeriksa potensi bahan berbahaya
-        </p>
-    """, unsafe_allow_html=True)
-    
-    ingredients = st.text_area(
-        "**Daftar Bahan:**",
-        placeholder="Contoh: Aqua, Glycerin, Alcohol, Fragrance, Sodium Laureth Sulfate, Methylparaben",
-        height=180,
-        key="ingredients_input"
-    )
-    
-    col1, col2, col3 = st.columns([1,2,1])
-    with col2:
-        if st.button("**🔍 Analisis Bahan**", type="primary", use_container_width=True):
-            if not ingredients.strip():
-                st.warning("Silakan masukkan daftar bahan terlebih dahulu")
-            else:
-                with st.spinner("🔬 Menganalisis bahan-bahan..."):
-                    time.sleep(1.5)  # Simulasi proses analisis
-                    results = analyze_ingredients(ingredients)
-                    display_results(results)
-    
-    st.markdown("</div>", unsafe_allow_html=True)
-
-def show_about():
-    """Tampilan halaman tentang kami"""
-    st.markdown("""
-    <div class="about-section">
-        <h1 style="text-align:center;">ℹ️ Tentang Pemeriksa Keamanan Skincare</h1>
-        <p style="text-align:center; color:var(--text-light); max-width:800px; margin:0 auto 2rem;">
-            Platform terpercaya untuk membantu Anda membuat keputusan yang lebih baik tentang produk perawatan kulit
-        </p>
-        
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 2rem;">
-            <div>
-                <h2>🎯 Misi Kami</h2>
-                <p>Kami berkomitmen untuk meningkatkan transparansi dalam industri kecantikan dengan memberikan informasi yang jelas dan dapat diakses tentang bahan-bahan dalam produk perawatan kulit. Tujuan kami adalah memberdayakan konsumen untuk membuat pilihan yang tepat berdasarkan data dan penelitian ilmiah.</p>
-                
-                <h2 style="margin-top:2rem;">🔬 Metodologi</h2>
-                <p>Database kami dikembangkan berdasarkan:</p>
-                <ul>
-                    <li>Regulasi Uni Eropa (EU Regulation No. 1223/2009)</li>
-                    <li>Pedoman FDA tentang kosmetik</li>
-                    <li>Penelitian ilmiah peer-reviewed</li>
-                    <li>Rekomendasi dari dermatolog terkemuka</li>
-                </ul>
-            </div>
-            <div>
-                <h2>📚 Sumber Data</h2>
-                <p>Informasi dalam aplikasi ini bersumber dari:</p>
-                <ul>
-                    <li>Environmental Working Group's Skin Deep Database</li>
-                    <li>Cosmetic Ingredient Review (CIR)</li>
-                    <li>Journal of the American Academy of Dermatology</li>
-                    <li>International Journal of Toxicology</li>
-                </ul>
-            </div>
-        </div>
-        
-        <div style="background-color: #fff9fa; border-radius: 12px; padding: 1.5rem; margin-top: 2rem;">
-            <h2 style="color:#d35d6e; text-align:center;">💡 Tips Memilih Skincare Aman</h2>
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem;">
-                <div style="background-color: white; padding: 1rem; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
-                    <h3 style="color:#d35d6e; margin-top:0;">Baca Label</h3>
-                    <p>Selalu periksa daftar bahan sebelum membeli produk skincare</p>
-                </div>
-                <div style="background-color: white; padding: 1rem; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
-                    <h3 style="color:#d35d6e; margin-top:0;">Mulai dari Sederhana</h3>
-                    <p>Produk dengan daftar bahan yang lebih pendek cenderung lebih aman</p>
-                </div>
-                <div style="background-color: white; padding: 1rem; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
-                    <h3 style="color:#d35d6e; margin-top:0;">Uji Sensitivitas</h3>
-                    <p>Selalu lakukan patch test sebelum menggunakan produk baru</p>
-                </div>
-            </div>
-        </div>
-    </div>
-    """, unsafe_allow_html=True)
-
+# Main App
 def main():
-    """Fungsi utama untuk tampilan Streamlit"""
-    # Navigation tabs
+    # Header
+    st.title("🧪 Pemeriksa Keamanan Skincare")
+    st.markdown("### Temukan kebenaran di balik bahan-bahan produk perawatan kulit Anda")
+    
+    # Navigation
     tab1, tab2, tab3 = st.tabs(["🏠 Beranda", "🔍 Analisis Bahan", "ℹ️ Tentang Kami"])
     
     with tab1:
-        show_home()
+        st.markdown("---")
+        
+        # Hero Section
+        st.markdown("""
+        <div style="text-align: center; padding: 2rem; background: linear-gradient(135deg, rgba(255,182,193,0.2) 0%, rgba(255,255,255,0.8) 100%); border-radius: 15px; margin-bottom: 2rem;">
+            <h2>🌟 Analisis Instan Berdasarkan Penelitian Ilmiah</h2>
+            <p style="font-size: 1.1rem;">Platform terpercaya untuk membantu Anda membuat keputusan yang lebih baik tentang produk perawatan kulit</p>
+        </div>
+        """, unsafe_allow_html=True)
+        
+        # Features
+        col1, col2, col3, col4 = st.columns(4)
+        
+        with col1:
+            st.markdown("""
+            <div style="text-align: center; padding: 1rem; background: white; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.05);">
+                <div style="font-size: 2.5rem; color: #d35d6e;">🔬</div>
+                <h4>Analisis Mendalam</h4>
+                <p>Sistem memeriksa berbagai jenis bahan berbahaya berdasarkan database terpercaya</p>
+            </div>
+            """, unsafe_allow_html=True)
+        
+        with col2:
+            st.markdown("""
+            <div style="text-align: center; padding: 1rem; background: white; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.05);">
+                <div style="font-size: 2.5rem; color: #d35d6e;">⚡</div>
+                <h4>Hasil Instan</h4>
+                <p>Dapatkan hasil analisis komprehensif dalam hitungan detik</p>
+            </div>
+            """, unsafe_allow_html=True)
+        
+        with col3:
+            st.markdown("""
+            <div style="text-align: center; padding: 1rem; background: white; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.05);">
+                <div style="font-size: 2.5rem; color: #d35d6e;">📚</div>
+                <h4>Edukasi Komprehensif</h4>
+                <p>Pelajari tentang bahan berbahaya dan alternatif yang lebih aman</p>
+            </div>
+            """, unsafe_allow_html=True)
+        
+        with col4:
+            st.markdown("""
+            <div style="text-align: center; padding: 1rem; background: white; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.05);">
+                <div style="font-size: 2.5rem; color: #d35d6e;">🛡️</div>
+                <h4>Keamanan Terjamin</h4>
+                <p>Berdasarkan regulasi dan penelitian ilmiah terbaru</p>
+            </div>
+            """, unsafe_allow_html=True)
+        
+        st.markdown("---")
+        
+        # How it works
+        st.subheader("🔄 Bagaimana Cara Kerjanya?")
+        
+        col1, col2, col3 = st.columns(3)
+        
+        with col1:
+            st.markdown("""
+            **1️⃣ Masukkan Daftar Bahan**
+            
+            Salin dan tempel daftar bahan (INGREDIENTS) dari produk skincare Anda
+            """)
+        
+        with col2:
+            st.markdown("""
+            **2️⃣ Proses Analisis**
+            
+            Sistem akan memindai bahan-bahan berbahaya dalam database kami
+            """)
+        
+        with col3:
+            st.markdown("""
+            **3️⃣ Dapatkan Hasil**
+            
+            Lihat laporan lengkap tentang keamanan produk dan rekomendasi alternatif
+            """)
     
     with tab2:
-        show_analyzer()
+        st.markdown("---")
+        st.subheader("🔍 Analisis Bahan Skincare")
+        st.write("Masukkan daftar bahan produk skincare Anda di bawah ini untuk memeriksa potensi bahan berbahaya")
+        
+        # Input form
+        ingredients = st.text_area(
+            "**Daftar Bahan (INGREDIENTS):**",
+            placeholder="Contoh: Aqua, Glycerin, Alcohol, Fragrance, Sodium Laureth Sulfate, Methylparaben",
+            height=150,
+            help="Salin dan tempel daftar bahan dari kemasan produk atau website resmi"
+        )
+        
+        col1, col2, col3 = st.columns([1,2,1])
+        with col2:
+            if st.button("🔍 **Analisis Bahan**", type="primary", use_container_width=True):
+                if not ingredients.strip():
+                    st.warning("⚠️ Silakan masukkan daftar bahan terlebih dahulu")
+                else:
+                    with st.spinner("🔬 Menganalisis bahan-bahan..."):
+                        time.sleep(1.5)  # Simulasi proses analisis
+                        results = analyze_ingredients(ingredients)
+                        st.markdown("---")
+                        display_results(results)
     
     with tab3:
-        show_about()
+        st.markdown("---")
+        st.subheader("ℹ️ Tentang Pemeriksa Keamanan Skincare")
+        
+        col1, col2 = st.columns(2)
+        
+        with col1:
+            st.markdown("""
+            **🎯 Misi Kami**
+            
+            Kami berkomitmen untuk meningkatkan transparansi dalam industri kecantikan dengan memberikan informasi yang jelas dan dapat diakses tentang bahan-bahan dalam produk perawatan kulit. Tujuan kami adalah memberdayakan konsumen untuk membuat pilihan yang tepat berdasarkan data dan penelitian ilmiah.
+            
+            **🔬 Metodologi**
+            
+            Database kami dikembangkan berdasarkan:
+            - Regulasi Uni Eropa (EU Regulation No. 1223/2009)
+            - Pedoman FDA tentang kosmetik
+            - Penelitian ilmiah peer-reviewed
+            - Rekomendasi dari dermatolog terkemuka
+            """)
+        
+        with col2:
+            st.markdown("""
+            **📚 Sumber Data**
+            
+            Informasi dalam aplikasi ini bersumber dari:
+            - Environmental Working Group's Skin Deep Database
+            - Cosmetic Ingredient Review (CIR)
+            - Journal of the American Academy of Dermatology
+            - International Journal of Toxicology
+            
+            **💡 Tips Memilih Skincare Aman**
+            
+            - **Baca Label:** Selalu periksa daftar bahan sebelum membeli
+            - **Mulai Sederhana:** Produk dengan daftar bahan pendek cenderung lebih aman
+            - **Uji Sensitivitas:** Selalu lakukan patch test sebelum penggunaan penuh
+            """)
+        
+        st.info("""
+        **⚠️ Disclaimer:** Aplikasi ini hanya untuk tujuan informasi dan tidak menggantikan nasihat profesional dari dermatolog atau ahli kesehatan kulit.
+        """)
     
     # Footer
+    st.markdown("---")
     st.markdown("""
-    <footer>
+    <div style="text-align: center; color: #888888; font-size: 0.9rem; padding: 1rem 0;">
         <p>© 2023 Pemeriksa Keamanan Skincare | Dibuat dengan ❤️ untuk kulit yang lebih sehat</p>
-        <p style="font-size:0.8rem;">Disclaimer: Aplikasi ini hanya untuk tujuan informasi dan tidak menggantikan nasihat profesional.</p>
-    </footer>
+    </div>
     """, unsafe_allow_html=True)
 
 if __name__ == "__main__":
