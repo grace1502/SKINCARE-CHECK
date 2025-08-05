@@ -8,7 +8,7 @@ import time
 # Konfigurasi halaman
 st.set_page_config(
     page_title="Pemeriksa Keamanan Skincare",
-     page_icon="",
+     page_icon="🧪",
     layout="wide",
     initial_sidebar_state="collapsed"
 )
@@ -280,7 +280,7 @@ def display_results(results):
 # Main App
 def main():
     # Header
-    st.title("🧪 Pemeriksa Keamanan Skincare")
+    st.title("Pemeriksa Keamanan Skincare")
     st.markdown("### Temukan kebenaran di balik bahan-bahan produk perawatan kulit Anda")
     
     # Navigation
