@@ -305,7 +305,7 @@ def main():
             <div style="text-align: center; padding: 1rem; background: white; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.05);">
                 <div style="font-size: 2.5rem; color: #e91e63;">🔬</div>
                 <h4 style="color: #2c2c2c; margin: 0.5rem 0;">Analisis Mendalam</h4>
-                <p style="color: #555555;">Sistem memeriksa berbagai jenis bahan berbahaya berdasarkan database terpercaya</p>
+                <p style="color: #555555;">Sistem memeriksa berbagai jenis bahan berbahaya berdasarkan sumber terpercaya</p>
             </div>
             """, unsafe_allow_html=True)
         
@@ -354,7 +354,7 @@ def main():
             st.markdown("""
             **2️⃣ Proses Analisis**
             
-            <span style="color: #555555;">Sistem akan memindai bahan-bahan berbahaya dalam database kami</span>
+            <span style="color: #555555;">Sistem akan memindai bahan-bahan berbahaya </span>
             """, unsafe_allow_html=True)
         
         with col3:
@@ -409,7 +409,7 @@ def main():
             st.markdown("""
             <div style="background: white; padding: 1.5rem; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); margin-bottom: 1.5rem;">
                 <h4 style="color: #e91e63; margin-top: 0;">🎯 Misi Kami</h4>
-                <p style="line-height: 1.6;">Kami berkomitmen untuk meningkatkan transparansi dalam industri kecantikan dengan memberikan informasi yang jelas dan dapat diakses tentang bahan-bahan dalam produk perawatan kulit. Tujuan kami adalah memberdayakan konsumen untuk membuat pilihan yang tepat berdasarkan data dan penelitian ilmiah.</p>
+                <p style="line-height: 1.6;">Berkomitmen untuk meningkatkan transparansi dalam industri kecantikan dengan memberikan informasi yang jelas dan dapat diakses tentang bahan-bahan dalam produk perawatan kulit. Tujuan dibuatnya sistem ini adalah memberdayakan konsumen untuk membuat pilihan yang tepat berdasarkan data dan penelitian ilmiah.</p>
             </div>
             """, unsafe_allow_html=True)
             
@@ -420,9 +420,9 @@ def main():
                 <p style="margin-bottom: 1rem; line-height: 1.6;">Database kami dikembangkan berdasarkan:</p>
                 <ul style="line-height: 1.6;">
                     <li>Regulasi Uni Eropa (EU Regulation No. 1223/2009)</li>
+                     <li>Lembaga pengawas BPOM</li>
                     <li>Pedoman FDA tentang kosmetik</li>
                     <li>Penelitian ilmiah peer-reviewed</li>
-                    <li>Rekomendasi dari dermatolog terkemuka</li>
                 </ul>
             </div>
             """, unsafe_allow_html=True)
