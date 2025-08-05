@@ -391,7 +391,7 @@ def main():
     
     with tab3:
         st.markdown("---")
-        st.subheader("ℹ️ Tentang Pemeriksa Keamanan Skincare")
+     
         
         # Hero section untuk About
         st.markdown("""
