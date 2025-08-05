@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # app.py - Aplikasi Web Streamlit
 # Pemeriksa Keamanan Bahan Skincare
 # Jalankan dengan: streamlit run app.py
@@ -329,7 +328,7 @@ def display_results(results):
         
         st.markdown("""
         <div style="margin-top:2rem; background-color:#fff9fa; padding:1.5rem; border-radius:12px;">
-            <h3 style="color:#d35d6e; margin-top:0;"> Rekomendasi</h3>
+            <h3 style="color:#d35d6e; margin-top:0;">💡 Rekomendasi</h3>
             <p>Pertimbangkan untuk mencari produk dengan label:</p>
             <ul>
                 <li><strong>Paraben-free</strong> - Bebas paraben</li>
@@ -354,7 +353,7 @@ def show_home():
     """, unsafe_allow_html=True)
     
     if st.button("Mulai Analisis Sekarang", type="primary"):
-        st.session_state.current_tab = " Analisis Bahan"
+        st.session_state.current_tab = "🔍 Analisis Bahan"
     
     # Features Section
     st.markdown("""
@@ -390,9 +389,7 @@ def show_home():
     st.markdown("""
     <div class="main-container">
         <h2 style="text-align:center; margin-bottom:2rem;">Bagaimana Cara Kerjanya?</h2>
-       """, unsafe_allow_html=True)
-
-        st.markdown("""
+        
         <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
             <div style="display: flex; gap: 1rem; align-items: flex-start;">
                 <div style="background-color: #d35d6e; color: white; border-radius: 50%; width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">1</div>
@@ -423,13 +420,12 @@ def show_analyzer():
     """Tampilan halaman analisis"""
     st.markdown("""
     <div class="analysis-section">
-        <h1 style="text-align:center; margin-bottom:1.5rem;"> Analisis Bahan Skincare</h1>
+        <h1 style="text-align:center; margin-bottom:1.5rem;">🔍 Analisis Bahan Skincare</h1>
         <p style="text-align:center; color:var(--text-light); max-width:700px; margin:0 auto 2rem;">
             Masukkan daftar bahan produk skincare Anda di bawah ini untuk memeriksa potensi bahan berbahaya
         </p>
     """, unsafe_allow_html=True)
     
-    """, unsafe_allow_html=True)
     ingredients = st.text_area(
         "**Daftar Bahan:**",
         placeholder="Contoh: Aqua, Glycerin, Alcohol, Fragrance, Sodium Laureth Sulfate, Methylparaben",
@@ -458,8 +454,7 @@ def show_about():
         <p style="text-align:center; color:var(--text-light); max-width:800px; margin:0 auto 2rem;">
             Platform terpercaya untuk membantu Anda membuat keputusan yang lebih baik tentang produk perawatan kulit
         </p>
-
-        st.markdown("""
+        
         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 2rem;">
             <div>
                 <h2>🎯 Misi Kami</h2>
@@ -485,10 +480,9 @@ def show_about():
                 </ul>
             </div>
         </div>
-          """, unsafe_allow_html=True)
-          
+        
         <div style="background-color: #fff9fa; border-radius: 12px; padding: 1.5rem; margin-top: 2rem;">
-         <h2 style="color:#d35d6e; text-align:center;">Tips Memilih Skincare Aman</h2>
+            <h2 style="color:#d35d6e; text-align:center;">💡 Tips Memilih Skincare Aman</h2>
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem;">
                 <div style="background-color: white; padding: 1rem; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
                     <h3 style="color:#d35d6e; margin-top:0;">Baca Label</h3>
@@ -520,7 +514,7 @@ def main():
     if st.session_state.current_tab == "🏠 Beranda":
         with tab1:
             show_home()
-    elif st.session_state.current_tab == "Analisis Bahan":
+    elif st.session_state.current_tab == "🔍 Analisis Bahan":
         with tab2:
             show_analyzer()
     elif st.session_state.current_tab == "ℹ️ Tentang Kami":
@@ -535,7 +529,7 @@ def main():
         if st.session_state.current_tab != "🏠 Beranda":
             show_home()
     with tab2:
-        if st.session_state.current_tab != "Analisis Bahan":
+        if st.session_state.current_tab != "🔍 Analisis Bahan":
             show_analyzer()
     with tab3:
         if st.session_state.current_tab != "ℹ️ Tentang Kami":
@@ -544,10 +538,10 @@ def main():
     # Footer
     st.markdown("""
     <footer>
-      <p>(C) 2023 Pemeriksa Keamanan Skincare | Dibuat dengan untuk kulit yang lebih sehat</p>
+        <p>© 2023 Pemeriksa Keamanan Skincare | Dibuat dengan ❤️ untuk kulit yang lebih sehat</p>
         <p style="font-size:0.8rem;">Disclaimer: Aplikasi ini hanya untuk tujuan informasi dan tidak menggantikan nasihat profesional.</p>
     </footer>
-    "", unsafe_allow_html=True)
+    """, unsafe_allow_html=True)
 
 if __name__ == "__main__":
     main()
