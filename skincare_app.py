@@ -396,7 +396,7 @@ def main():
         # Hero section untuk About
         st.markdown("""
         <div style="text-align: center; padding: 2rem; background: linear-gradient(135deg, rgba(255,182,193,0.2) 0%, rgba(255,255,255,0.8) 100%); border-radius: 15px; margin-bottom: 2rem;">
-            <h3>🌟 Transparansi untuk Kulit yang Lebih Sehat</h3>
+            <h3>Transparansi agar terhindar dari skincare berbahayat</h3>
             <p style="font-size: 1.1rem;">Memberdayakan konsumen dengan informasi berbasis sains tentang keamanan produk skincare</p>
         </div>
         """, unsafe_allow_html=True)
