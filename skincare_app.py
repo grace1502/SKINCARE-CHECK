@@ -360,43 +360,76 @@ def main():
         st.markdown("---")
         st.subheader("ℹ️ Tentang Pemeriksa Keamanan Skincare")
         
+        # Hero section untuk About
+        st.markdown("""
+        <div style="text-align: center; padding: 2rem; background: linear-gradient(135deg, rgba(255,182,193,0.2) 0%, rgba(255,255,255,0.8) 100%); border-radius: 15px; margin-bottom: 2rem;">
+            <h3>🌟 Transparansi untuk Kulit yang Lebih Sehat</h3>
+            <p style="font-size: 1.1rem;">Memberdayakan konsumen dengan informasi berbasis sains tentang keamanan produk skincare</p>
+        </div>
+        """, unsafe_allow_html=True)
+        
+        # Main content dalam 2 kolom yang seimbang
         col1, col2 = st.columns(2)
         
         with col1:
+            # Mission section dengan styling
             st.markdown("""
-            **🎯 Misi Kami**
+            <div style="background: white; padding: 1.5rem; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); margin-bottom: 1.5rem;">
+                <h4 style="color: #e91e63; margin-top: 0;">🎯 Misi Kami</h4>
+                <p style="line-height: 1.6;">Kami berkomitmen untuk meningkatkan transparansi dalam industri kecantikan dengan memberikan informasi yang jelas dan dapat diakses tentang bahan-bahan dalam produk perawatan kulit. Tujuan kami adalah memberdayakan konsumen untuk membuat pilihan yang tepat berdasarkan data dan penelitian ilmiah.</p>
+            </div>
+            """, unsafe_allow_html=True)
             
-            Kami berkomitmen untuk meningkatkan transparansi dalam industri kecantikan dengan memberikan informasi yang jelas dan dapat diakses tentang bahan-bahan dalam produk perawatan kulit. Tujuan kami adalah memberdayakan konsumen untuk membuat pilihan yang tepat berdasarkan data dan penelitian ilmiah.
-            
-            **🔬 Metodologi**
-            
-            Database kami dikembangkan berdasarkan:
-            - Regulasi Uni Eropa (EU Regulation No. 1223/2009)
-            - Pedoman FDA tentang kosmetik
-            - Penelitian ilmiah peer-reviewed
-            - Rekomendasi dari dermatolog terkemuka
-            """)
+            # Methodology section
+            st.markdown("""
+            <div style="background: white; padding: 1.5rem; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.05);">
+                <h4 style="color: #e91e63; margin-top: 0;">🔬 Metodologi</h4>
+                <p style="margin-bottom: 1rem; line-height: 1.6;">Database kami dikembangkan berdasarkan:</p>
+                <ul style="line-height: 1.6;">
+                    <li>Regulasi Uni Eropa (EU Regulation No. 1223/2009)</li>
+                    <li>Pedoman FDA tentang kosmetik</li>
+                    <li>Penelitian ilmiah peer-reviewed</li>
+                    <li>Rekomendasi dari dermatolog terkemuka</li>
+                </ul>
+            </div>
+            """, unsafe_allow_html=True)
         
         with col2:
+            # Data sources section
             st.markdown("""
-            **📚 Sumber Data**
+            <div style="background: white; padding: 1.5rem; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); margin-bottom: 1.5rem;">
+                <h4 style="color: #e91e63; margin-top: 0;">📚 Sumber Data</h4>
+                <p style="margin-bottom: 1rem; line-height: 1.6;">Informasi dalam aplikasi ini bersumber dari:</p>
+                <ul style="line-height: 1.6;">
+                    <li>Environmental Working Group's Skin Deep Database</li>
+                    <li>Cosmetic Ingredient Review (CIR)</li>
+                    <li>Journal of the American Academy of Dermatology</li>
+                    <li>International Journal of Toxicology</li>
+                </ul>
+            </div>
+            """, unsafe_allow_html=True)
             
-            Informasi dalam aplikasi ini bersumber dari:
-            - Environmental Working Group's Skin Deep Database
-            - Cosmetic Ingredient Review (CIR)
-            - Journal of the American Academy of Dermatology
-            - International Journal of Toxicology
-            
-            **💡 Tips Memilih Skincare Aman**
-            
-            - **Baca Label:** Selalu periksa daftar bahan sebelum membeli
-            - **Mulai Sederhana:** Produk dengan daftar bahan pendek cenderung lebih aman
-            - **Uji Sensitivitas:** Selalu lakukan patch test sebelum penggunaan penuh
-            """)
+            # Tips section
+            st.markdown("""
+            <div style="background: white; padding: 1.5rem; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.05);">
+                <h4 style="color: #e91e63; margin-top: 0;">💡 Tips Memilih Skincare Aman</h4>
+                <ul style="line-height: 1.6;">
+                    <li><strong>Baca Label:</strong> Selalu periksa daftar bahan sebelum membeli</li>
+                    <li><strong>Mulai Sederhana:</strong> Produk dengan daftar bahan pendek cenderung lebih aman</li>
+                    <li><strong>Uji Sensitivitas:</strong> Selalu lakukan patch test sebelum penggunaan penuh</li>
+                    <li><strong>Konsultasi Ahli:</strong> Tanyakan pada dermatolog untuk kulit sensitif</li>
+                </ul>
+            </div>
+            """, unsafe_allow_html=True)
         
-        st.info("""
-        **⚠️ Disclaimer:** Aplikasi ini hanya untuk tujuan informasi dan tidak menggantikan nasihat profesional dari dermatolog atau ahli kesehatan kulit.
-        """)
+        # Disclaimer dengan styling yang lebih menarik
+        st.markdown("---")
+        st.markdown("""
+        <div style="background: linear-gradient(135deg, #fff3e0 0%, #ffecb3 100%); padding: 1.5rem; border-radius: 12px; border-left: 4px solid #ff9800; margin-top: 2rem;">
+            <h4 style="color: #ef6c00; margin-top: 0;">⚠️ Disclaimer</h4>
+            <p style="margin-bottom: 0; line-height: 1.6; color: #bf360c;">Aplikasi ini hanya untuk tujuan informasi dan tidak menggantikan nasihat profesional dari dermatolog atau ahli kesehatan kulit. Selalu konsultasikan dengan profesional kesehatan untuk masalah kulit yang serius.</p>
+        </div>
+        """, unsafe_allow_html=True)
     
     # Footer
     st.markdown("---")
