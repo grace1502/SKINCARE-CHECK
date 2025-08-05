@@ -38,7 +38,7 @@ st.markdown("""
     /* Background dengan overlay */
     .stApp {
         background: linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)), 
-                    url('https://images.unsplash.com/photo-1556228578-8c89e6adf883?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+                    url('https://imgur.com/rb8Pp3q-1556228578-8c89e6adf883?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
         background-size: cover;
         background-attachment: fixed;
         background-position: center;
