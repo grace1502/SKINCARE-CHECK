@@ -4,7 +4,6 @@
 
 import streamlit as st
 import time
-import re
 
 # Konfigurasi halaman
 st.set_page_config(
@@ -199,107 +198,30 @@ DANGEROUS_INGREDIENTS = {
     }
 }
 
-# Database bahan yang dikenal (aman)
-KNOWN_SAFE_INGREDIENTS = {
-    'aqua', 'water', 'glycerin', 'glycerine', 'hyaluronic acid', 'niacinamide', 
-    'ceramide', 'panthenol', 'tocopherol', 'vitamin e', 'aloe vera', 'retinol',
-    'salicylic acid', 'lactic acid', 'glycolic acid', 'mandelic acid', 'azelaic acid',
-    'zinc oxide', 'titanium dioxide', 'dimethicone', 'cyclomethicone', 'squalane',
-    'jojoba oil', 'argan oil', 'rosehip oil', 'shea butter', 'cocoa butter',
-    'petrolatum', 'mineral oil', 'lanolin', 'beeswax', 'carnauba wax',
-    'stearic acid', 'palmitic acid', 'oleic acid', 'linoleic acid', 'cetyl alcohol',
-    'stearyl alcohol', 'cetearyl alcohol', 'sodium chloride', 'potassium sorbate',
-    'phenoxyethanol', 'ethylhexylglycerin', 'caprylyl glycol', 'pentylene glycol',
-    'propylene glycol', 'butylene glycol', 'hexylene glycol', 'dipropylene glycol',
-    'peg', 'ppg', 'carbomer', 'acrylates', 'xanthan gum', 'sodium hydroxide',
-    'citric acid', 'sodium citrate', 'disodium edta', 'tetrasodium edta',
-    'allantoin', 'bisabolol', 'chamomile', 'green tea', 'vitamin c', 'ascorbic acid',
-    'magnesium ascorbyl phosphate', 'sodium ascorbyl phosphate', 'kojic acid',
-    'arbutin', 'licorice extract', 'centella asiatica', 'calendula', 'cucumber',
-    'almond oil', 'coconut oil', 'olive oil', 'sunflower oil', 'grapeseed oil'
-}
-
-def parse_ingredients(ingredients_text):
-    """Fungsi untuk memparse dan membersihkan daftar bahan"""
-    # Bersihkan teks dan split berdasarkan koma
-    ingredients_text = ingredients_text.replace('\n', ' ').replace('\r', ' ')
-    ingredients_list = [ing.strip().lower() for ing in re.split(r'[,;]+', ingredients_text) if ing.strip()]
-    
-    # Filter bahan yang terlalu pendek atau kosong
-    ingredients_list = [ing for ing in ingredients_list if len(ing) > 2]
-    
-    return ingredients_list
-
-def categorize_ingredients(ingredients_list):
-    """Fungsi untuk mengkategorikan bahan menjadi berbahaya, aman, dan tidak dikenal"""
-    dangerous = []
-    safe = []
-    unknown = []
-    
-    for ingredient in ingredients_list:
-        ingredient_lower = ingredient.lower()
-        
-        # Cek apakah bahan berbahaya
-        is_dangerous = False
-        for dangerous_key, data in DANGEROUS_INGREDIENTS.items():
-            all_names = [dangerous_key] + data['common_names']
-            if any(name in ingredient_lower for name in all_names):
-                dangerous.append({
-                    'name': dangerous_key,
-                    'original_name': ingredient,
-                    'risk': data['risk_level'],
-                    'category': data['category'],
-                    'description': data['description'],
-                    'details': data['details']
-                })
-                is_dangerous = True
-                break
-        
-        if not is_dangerous:
-            # Cek apakah bahan aman yang dikenal
-            is_known_safe = False
-            for safe_ingredient in KNOWN_SAFE_INGREDIENTS:
-                if safe_ingredient in ingredient_lower or ingredient_lower in safe_ingredient:
-                    safe.append(ingredient)
-                    is_known_safe = True
-                    break
-            
-            # Jika tidak termasuk berbahaya atau aman yang dikenal, masukkan ke unknown
-            if not is_known_safe:
-                unknown.append(ingredient)
-    
-    return dangerous, safe, unknown
-
 def analyze_ingredients(ingredients_text):
     """Fungsi untuk menganalisis bahan-bahan skincare"""
-    ingredients_list = parse_ingredients(ingredients_text)
-    dangerous, safe, unknown = categorize_ingredients(ingredients_list)
+    found_ingredients = []
+    text_lower = ingredients_text.lower()
+    
+    for ing, data in DANGEROUS_INGREDIENTS.items():
+        # Cek nama utama dan nama alternatif
+        all_names = [ing] + data['common_names']
+        if any(name in text_lower for name in all_names):
+            found_ingredients.append({
+                'name': ing,
+                'risk': data['risk_level'],
+                'category': data['category'],
+                'description': data['description'],
+                'details': data['details']
+            })
     
     return {
-        'is_safe': len(dangerous) == 0,
-        'dangerous_ingredients': dangerous,
-        'safe_ingredients': safe,
-        'unknown_ingredients': unknown,
-        'total_ingredients': len(ingredients_list)
+        'is_safe': len(found_ingredients) == 0,
+        'dangerous_ingredients': found_ingredients
     }
 
 def display_results(results):
     """Fungsi untuk menampilkan hasil analisis"""
-    # Summary statistics
-    col1, col2, col3, col4 = st.columns(4)
-    
-    with col1:
-        st.metric("Total Bahan", results['total_ingredients'])
-    with col2:
-        st.metric("Bahan Berbahaya", len(results['dangerous_ingredients']))
-    with col3:
-        st.metric("Bahan Aman", len(results['safe_ingredients']))
-    with col4:
-        st.metric("Tidak Dikenali", len(results['unknown_ingredients']))
-    
-    st.markdown("---")
-    
-    # Main safety assessment
     if results['is_safe']:
         st.success("""
         ✅ **Produk Ini Aman!**
@@ -332,7 +254,7 @@ def display_results(results):
         """)
         
         for ing in results['dangerous_ingredients']:
-            with st.expander(f"🚨 {ing['name'].title()} (Ditemukan sebagai: {ing['original_name']}) - Risiko: {ing['risk']}"):
+            with st.expander(f"🚨 {ing['name'].title()} - Risiko: {ing['risk']}"):
                 st.write(f"**Kategori:** {ing['category']}")
                 st.write(f"**Deskripsi:** {ing['description']}")
                 st.write(f"**Detail:** {ing['details']}")
@@ -354,53 +276,6 @@ def display_results(results):
         - Baca review dari pengguna dengan tipe kulit serupa
         - Pertimbangkan produk dengan sertifikasi organik atau natural
         """)
-    
-    # Display unknown ingredients if any
-    if results['unknown_ingredients']:
-        st.markdown("---")
-        st.warning(f"🔍 **Ditemukan {len(results['unknown_ingredients'])} Bahan Tidak Dikenali**")
-        
-        with st.expander("Lihat Bahan yang Tidak Dikenali"):
-            st.write("**Bahan-bahan berikut tidak terdeteksi dalam database kami:**")
-            
-            # Group ingredients for better display
-            unknown_list = results['unknown_ingredients']
-            for i in range(0, len(unknown_list), 3):
-                cols = st.columns(3)
-                for j, col in enumerate(cols):
-                    if i + j < len(unknown_list):
-                        col.write(f"• {unknown_list[i + j].title()}")
-            
-            st.info("""
-            **ℹ️ Catatan tentang Bahan Tidak Dikenali:**
-            
-            - Bahan-bahan ini mungkin aman tetapi tidak terdapat dalam database kami saat ini
-            - Database kami fokus pada bahan-bahan yang paling umum dan yang berpotensi berbahaya
-            - Bahan tidak dikenal bisa berupa:
-              - Nama dagang atau merek khusus
-              - Ekstrak tumbuhan yang jarang digunakan
-              - Bahan baru yang belum banyak diteliti
-              - Varian nama dari bahan yang sudah dikenal
-            
-            **Rekomendasi:**
-            - Lakukan riset mandiri untuk bahan yang tidak dikenal
-            - Konsultasikan dengan dermatolog jika ragu
-            - Lakukan patch test sebelum penggunaan
-            - Perhatikan reaksi kulit setelah pemakaian
-            """)
-    
-    # Display safe ingredients summary
-    if results['safe_ingredients']:
-        st.markdown("---")
-        st.success(f"✅ **Ditemukan {len(results['safe_ingredients'])} Bahan Aman**")
-        
-        with st.expander("Lihat Bahan yang Aman"):
-            safe_list = results['safe_ingredients']
-            for i in range(0, len(safe_list), 4):
-                cols = st.columns(4)
-                for j, col in enumerate(cols):
-                    if i + j < len(safe_list):
-                        col.write(f"• {safe_list[i + j].title()}")
 
 # Main App
 def main():
