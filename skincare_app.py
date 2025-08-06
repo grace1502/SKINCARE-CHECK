@@ -92,11 +92,6 @@ st.markdown("""
         color: #2c2c2c !important;
     }
     
-    /* Hide metric values */
-    .metric-container [data-testid="metric-container"] > div > div:nth-child(2) {
-        display: none !important;
-    }
-    
     /* Tombol */
     .stButton button {
         background-color: #e91e63 !important;
@@ -400,78 +395,42 @@ def analyze_ingredients(ingredients_text):
         'total_ingredients': len(ingredients_list)
     }
 
-def check_unknown_ingredients(unknown_ingredients):
-    """Fungsi untuk memberikan peringatan bahan yang tidak dikenali"""
-    if len(unknown_ingredients) > 0:
-        return True
-    return False
-
-def display_unknown_warning(unknown_ingredients):
-    """Fungsi untuk menampilkan peringatan bahan tidak dikenali"""
-    if check_unknown_ingredients(unknown_ingredients):
-        st.warning(f"""
-        **Peringatan: Ditemukan {len(unknown_ingredients)} bahan yang tidak dikenali dalam database kami**
-        
-        Bahan-bahan berikut tidak terdaftar dalam sistem keamanan kami:
-        """)
-        
-        # Tampilkan bahan yang tidak dikenali dalam format yang rapi
-        for i, ingredient in enumerate(unknown_ingredients, 1):
-            st.write(f"{i}. **{ingredient.title()}**")
-        
-        st.info("""
-        **Rekomendasi untuk bahan yang tidak dikenali:**
-        
-        - **Riset Mandiri:** Cari informasi tentang bahan tersebut dari sumber terpercaya
-        - **Konsultasi Ahli:** Tanyakan pada dermatolog atau ahli kosmetik
-        - **Patch Test:** Selalu lakukan uji sensitivitas sebelum penggunaan penuh
-        - **Hati-hati:** Mulai dengan penggunaan minimal untuk melihat reaksi kulit
-        - **Dokumentasi:** Catat reaksi kulit untuk referensi masa depan
-        
-        **Catatan:** Bahan yang tidak dikenali belum tentu berbahaya, namun kehati-hatian tetap diperlukan.
-        """)
-
 def display_results(results):
     """Fungsi untuk menampilkan hasil analisis"""
-    # Summary statistics tanpa angka
+    # Summary statistics
     col1, col2, col3, col4 = st.columns(4)
     
     with col1:
-        st.metric("Total Bahan", "")
+        st.metric("Total Bahan", results['total_ingredients'])
     with col2:
-        st.metric("Bahan Berbahaya", "")
+        st.metric("Bahan Berbahaya", len(results['dangerous_ingredients']))
     with col3:
-        st.metric("Bahan Aman", "")
+        st.metric("Bahan Aman", len(results['safe_ingredients']))
     with col4:
-        st.metric("Tidak Dikenali", "")
+        st.metric("Tidak Dikenali", len(results['unknown_ingredients']))
     
     st.markdown("---")
-    
-    # Tampilkan peringatan untuk bahan tidak dikenali terlebih dahulu
-    if results['unknown_ingredients']:
-        display_unknown_warning(results['unknown_ingredients'])
-        st.markdown("---")
     
     # Main safety assessment
     if len(results['dangerous_ingredients']) > 0:
         # Ada bahan berbahaya
-        st.error(f"**Ditemukan {len(results['dangerous_ingredients'])} Bahan Potensial Berbahaya**")
+        st.error(f"⚠️ **Ditemukan {len(results['dangerous_ingredients'])} Bahan Potensial Berbahaya**")
         
         st.warning("""
-        **Peringatan Penting:**
+        **🚨 Peringatan Penting:**
         
         Produk ini mengandung bahan-bahan yang berpotensi menimbulkan efek samping atau reaksi negatif pada kulit. 
         Kami menyarankan untuk mempertimbangkan kembali penggunaan produk ini, terutama jika Anda memiliki kulit sensitif.
         """)
         
         for ing in results['dangerous_ingredients']:
-            with st.expander(f"**{ing['name'].title()} (Ditemukan sebagai: {ing['original_name']}) - Risiko: {ing['risk']}**"):
+            with st.expander(f"🚨 {ing['name'].title()} (Ditemukan sebagai: {ing['original_name']}) - Risiko: {ing['risk']}"):
                 st.write(f"**Kategori:** {ing['category']}")
                 st.write(f"**Deskripsi:** {ing['description']}")
                 st.write(f"**Detail:** {ing['details']}")
         
         st.info("""
-        **Rekomendasi Alternatif:**
+        **💡 Rekomendasi Alternatif:**
         
         Pertimbangkan untuk mencari produk dengan label:
         - **Paraben-free** - Bebas paraben
@@ -491,7 +450,7 @@ def display_results(results):
     elif len(results['safe_ingredients']) > 0 and len(results['unknown_ingredients']) == 0:
         # Hanya ada bahan aman, tidak ada yang tidak dikenali
         st.success("""
-        **Produk Ini Aman!**
+        ✅ **Produk Ini Aman!**
         
         Tidak terdeteksi bahan berbahaya dalam daftar yang diberikan. Produk ini tampaknya menggunakan formulasi yang lebih aman untuk kulit. 
         
@@ -503,19 +462,57 @@ def display_results(results):
         """)
         
         st.info("""
-        **Tips Penggunaan Produk:**
+        **🌟 Tips Penggunaan Produk Aman:**
         
         - **Patch Test:** Oleskan sedikit produk di belakang telinga atau pergelangan tangan, tunggu 24-48 jam
         - **Gradual Introduction:** Mulai gunakan produk secara bertahap, 2-3 kali seminggu
         - **Monitor Reaksi:** Perhatikan tanda-tanda kemerahan, gatal, atau iritasi
         - **Storage:** Simpan produk di tempat sejuk dan kering untuk menjaga kualitas
-        - **Research:** Cari informasi lebih lanjut tentang bahan yang tidak dikenali
         """)
+    
+    elif len(results['safe_ingredients']) > 0 and len(results['unknown_ingredients']) > 0:
+        # Ada bahan aman dan bahan tidak dikenali
+        st.success("""
+        ✅ **Produk Ini Aman!**
+        
+        Tidak terdeteksi bahan berbahaya dalam daftar yang diberikan. Produk ini tampaknya menggunakan formulasi yang lebih aman untuk kulit. 
+        
+        **Namun tetap perhatikan:**
+        - Reaksi kulit Anda terhadap produk baru
+        - Selalu lakukan patch test sebelum penggunaan penuh
+        - Hentikan penggunaan jika terjadi iritasi atau reaksi alergi
+        - Konsultasikan dengan dermatolog jika memiliki kulit sensitif atau kondisi kulit tertentu
+        """)
+        
+        st.info("""
+        **🌟 Tips Penggunaan Produk Aman:**
+        
+        - **Patch Test:** Oleskan sedikit produk di belakang telinga atau pergelangan tangan, tunggu 24-48 jam
+        - **Gradual Introduction:** Mulai gunakan produk secara bertahap, 2-3 kali seminggu
+        - **Monitor Reaksi:** Perhatikan tanda-tanda kemerahan, gatal, atau iritasi
+        - **Storage:** Simpan produk di tempat sejuk dan kering untuk menjaga kualitas
+        """)
+    
+    # Display unknown ingredients if any
+    if results['unknown_ingredients']:
+        st.markdown("---")
+        st.warning(f"🔍 **Ditemukan {len(results['unknown_ingredients'])} Bahan Tidak Dikenali**")
+        
+        with st.expander("Lihat Bahan yang Tidak Dikenali"):
+            st.write("**Bahan-bahan berikut tidak terdeteksi pada sistem:**")
+            
+            # Group ingredients for better display
+            unknown_list = results['unknown_ingredients']
+            for i in range(0, len(unknown_list), 3):
+                cols = st.columns(3)
+                for j, col in enumerate(cols):
+                    if i + j < len(unknown_list):
+                        col.write(f"• {unknown_list[i + j].title()}")
     
     # Display safe ingredients summary
     if results['safe_ingredients']:
         st.markdown("---")
-        st.success(f"**Ditemukan {len(results['safe_ingredients'])} Bahan Aman**")
+        st.success(f"✅ **Ditemukan {len(results['safe_ingredients'])} Bahan Aman**")
         
         with st.expander("Lihat Bahan yang Aman"):
             safe_list = results['safe_ingredients']
@@ -721,27 +718,4 @@ def main():
     """, unsafe_allow_html=True)
 
 if __name__ == "__main__":
-    main() Aman:**
-        
-        - **Patch Test:** Oleskan sedikit produk di belakang telinga atau pergelangan tangan, tunggu 24-48 jam
-        - **Gradual Introduction:** Mulai gunakan produk secara bertahap, 2-3 kali seminggu
-        - **Monitor Reaksi:** Perhatikan tanda-tanda kemerahan, gatal, atau iritasi
-        - **Storage:** Simpan produk di tempat sejuk dan kering untuk menjaga kualitas
-        """)
-    
-    elif len(results['safe_ingredients']) > 0 and len(results['unknown_ingredients']) > 0:
-        # Ada bahan aman dan bahan tidak dikenali
-        st.success("""
-        **Produk Ini Relatif Aman!**
-        
-        Tidak terdeteksi bahan berbahaya dalam daftar yang diberikan. Namun, terdapat beberapa bahan yang tidak dikenali dalam database kami. 
-        
-        **Rekomendasi:**
-        - Lakukan riset tambahan untuk bahan yang tidak dikenali
-        - Selalu lakukan patch test sebelum penggunaan penuh
-        - Konsultasikan dengan dermatolog jika ragu
-        - Monitor reaksi kulit dengan cermat
-        """)
-        
-        st.info("""
-        **🌟 Tips Penggunaan Produk
+    main()
