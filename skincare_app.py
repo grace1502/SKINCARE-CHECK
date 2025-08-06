@@ -410,7 +410,7 @@ def display_unknown_warning(unknown_ingredients):
     """Fungsi untuk menampilkan peringatan bahan tidak dikenali"""
     if check_unknown_ingredients(unknown_ingredients):
         st.warning(f"""
-        ⚠️ **Peringatan: Ditemukan {len(unknown_ingredients)} bahan yang tidak dikenali dalam database kami**
+        **Peringatan: Ditemukan {len(unknown_ingredients)} bahan yang tidak dikenali dalam database kami**
         
         Bahan-bahan berikut tidak terdaftar dalam sistem keamanan kami:
         """)
@@ -420,7 +420,7 @@ def display_unknown_warning(unknown_ingredients):
             st.write(f"{i}. **{ingredient.title()}**")
         
         st.info("""
-        **💡 Rekomendasi untuk bahan yang tidak dikenali:**
+        **Rekomendasi untuk bahan yang tidak dikenali:**
         
         - **Riset Mandiri:** Cari informasi tentang bahan tersebut dari sumber terpercaya
         - **Konsultasi Ahli:** Tanyakan pada dermatolog atau ahli kosmetik
@@ -455,23 +455,23 @@ def display_results(results):
     # Main safety assessment
     if len(results['dangerous_ingredients']) > 0:
         # Ada bahan berbahaya
-        st.error(f"⚠️ **Ditemukan {len(results['dangerous_ingredients'])} Bahan Potensial Berbahaya**")
+        st.error(f"**Ditemukan {len(results['dangerous_ingredients'])} Bahan Potensial Berbahaya**")
         
         st.warning("""
-        **🚨 Peringatan Penting:**
+        **Peringatan Penting:**
         
         Produk ini mengandung bahan-bahan yang berpotensi menimbulkan efek samping atau reaksi negatif pada kulit. 
         Kami menyarankan untuk mempertimbangkan kembali penggunaan produk ini, terutama jika Anda memiliki kulit sensitif.
         """)
         
         for ing in results['dangerous_ingredients']:
-            with st.expander(f"🚨 {ing['name'].title()} (Ditemukan sebagai: {ing['original_name']}) - Risiko: {ing['risk']}"):
+            with st.expander(f"**{ing['name'].title()} (Ditemukan sebagai: {ing['original_name']}) - Risiko: {ing['risk']}**"):
                 st.write(f"**Kategori:** {ing['category']}")
                 st.write(f"**Deskripsi:** {ing['description']}")
                 st.write(f"**Detail:** {ing['details']}")
         
         st.info("""
-        **💡 Rekomendasi Alternatif:**
+        **Rekomendasi Alternatif:**
         
         Pertimbangkan untuk mencari produk dengan label:
         - **Paraben-free** - Bebas paraben
@@ -491,7 +491,7 @@ def display_results(results):
     elif len(results['safe_ingredients']) > 0 and len(results['unknown_ingredients']) == 0:
         # Hanya ada bahan aman, tidak ada yang tidak dikenali
         st.success("""
-        ✅ **Produk Ini Aman!**
+        **Produk Ini Aman!**
         
         Tidak terdeteksi bahan berbahaya dalam daftar yang diberikan. Produk ini tampaknya menggunakan formulasi yang lebih aman untuk kulit. 
         
@@ -503,7 +503,7 @@ def display_results(results):
         """)
         
         st.info("""
-        **🌟 Tips Penggunaan Produk:**
+        **Tips Penggunaan Produk:**
         
         - **Patch Test:** Oleskan sedikit produk di belakang telinga atau pergelangan tangan, tunggu 24-48 jam
         - **Gradual Introduction:** Mulai gunakan produk secara bertahap, 2-3 kali seminggu
@@ -515,7 +515,7 @@ def display_results(results):
     # Display safe ingredients summary
     if results['safe_ingredients']:
         st.markdown("---")
-        st.success(f"✅ **Ditemukan {len(results['safe_ingredients'])} Bahan Aman**")
+        st.success(f"**Ditemukan {len(results['safe_ingredients'])} Bahan Aman**")
         
         with st.expander("Lihat Bahan yang Aman"):
             safe_list = results['safe_ingredients']
@@ -732,7 +732,7 @@ if __name__ == "__main__":
     elif len(results['safe_ingredients']) > 0 and len(results['unknown_ingredients']) > 0:
         # Ada bahan aman dan bahan tidak dikenali
         st.success("""
-        ✅ **Produk Ini Relatif Aman!**
+        **Produk Ini Relatif Aman!**
         
         Tidak terdeteksi bahan berbahaya dalam daftar yang diberikan. Namun, terdapat beberapa bahan yang tidak dikenali dalam database kami. 
         
