@@ -577,15 +577,15 @@ def main():
         col1, col2, col3, col4 = st.columns(4)
         
         with col1:
-            st.markdown("""
-            <div style="text-align: center; padding: 1rem; background: white; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); margin-bottom: 1rem;">
-                <img src="https://i.ibb.co.com/tw5rDgSY/Vegan-make-up-zo-herken-je-het.jpg" alt="Vegan-make-up-zo-herken-je-het" border="0"></a>
-                     alt="Facial Cleanser" 
-                     style="width: 100%; height: 120px; object-fit: cover; border-radius: 8px; margin-bottom: 0.5rem;">
-                <h4 style="color: #2c2c2c; margin: 0.5rem 0;">Pembersih Wajah</h4>
-                <p style="color: #555555; font-size: 0.9rem;">Facial wash, micellar water, cleansing oil</p>
-            </div>
-            """, unsafe_allow_html=True)
+           st.markdown("""
+    <div style="text-align: center; padding: 1rem; background: white; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); margin-bottom: 1rem;">
+    <img src="https://i.ibb.co/XXXXXXX/cleanser.jpg" 
+         alt="Facial Cleanser" 
+         style="width:100%; height:120px; object-fit: cover; border-radius: 8px; margin-bottom: 0.5rem;">
+    <h4 style="color: #2c2c2c; margin: 0.5rem 0;">Pembersih Wajah</h4>
+    <p style="color: #555555; font-size: 0.9rem;">Facial wash, micellar water, cleansing oil</p>
+</div>
+""", unsafe_allow_html=True)
         
         with col2:
             st.markdown("""
