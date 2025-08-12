@@ -577,9 +577,9 @@ def main():
         col1, col2, col3, col4 = st.columns(4)
         
         with col1:
-           st.markdown("""
-    <div style="text-align: center; padding: 1rem; background: white; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); margin-bottom: 1rem;">
-    <img src="https://i.ibb.co/XXXXXXX/cleanser.jpg" 
+          st.markdown("""
+<div style="text-align: center; padding: 1rem; background: white; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); margin-bottom: 1rem;">
+    <img src="https://images.unsplash.com/photo-1556229010-aa4cdd6b1be0?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" 
          alt="Facial Cleanser" 
          style="width:100%; height:120px; object-fit: cover; border-radius: 8px; margin-bottom: 0.5rem;">
     <h4 style="color: #2c2c2c; margin: 0.5rem 0;">Pembersih Wajah</h4>
