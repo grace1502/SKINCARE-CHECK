@@ -18,10 +18,10 @@ st.set_page_config(
 st.markdown("""
 <style>
     /* Font dan warna dasar */
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Merriweather:wght@300;400;700&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;700&display=swap');
     
     html, body, [class*="css"] {
-        font-family: 'Inter', sans-serif;
+        font-family: 'Poppins', sans-serif;
         color: #333333;
     }
     
@@ -56,7 +56,7 @@ st.markdown("""
     /* Judul utama */
     h1 {
         color: #c2185b !important;
-        font-family: 'Merriweather', serif !important;
+        font-family: 'Playfair Display', serif !important;
         font-weight: 700 !important;
         margin-bottom: 0.5rem !important;
         text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
@@ -65,7 +65,7 @@ st.markdown("""
     /* Subjudul */
     h2 {
         color: #c2185b !important;
-        font-family: 'Merriweather', serif !important;
+        font-family: 'Playfair Display', serif !important;
         font-weight: 500 !important;
         border-bottom: 2px solid var(--primary-light);
         padding-bottom: 0.5rem;
@@ -73,7 +73,7 @@ st.markdown("""
     }
     
     h3 {
-        font-family: 'Merriweather', serif !important;
+        font-family: 'Playfair Display', serif !important;
         color: #2c2c2c !important;
         font-weight: 500 !important;
     }
@@ -86,12 +86,10 @@ st.markdown("""
     /* Text color improvements */
     p, div, span {
         color: #2c2c2c !important;
-        font-family: 'Inter', sans-serif !important;
     }
     
     .stMarkdown p {
         color: #2c2c2c !important;
-        font-family: 'Inter', sans-serif !important;
     }
     
     /* Tombol */
@@ -102,7 +100,6 @@ st.markdown("""
         border: none !important;
         padding: 0.7rem 2rem !important;
         font-weight: 600 !important;
-        font-family: 'Inter', sans-serif !important;
         transition: all 0.3s ease;
         box-shadow: 0 4px 6px rgba(0,0,0,0.1);
     }
@@ -119,7 +116,6 @@ st.markdown("""
         border: 1px solid var(--primary-light) !important;
         padding: 1rem !important;
         box-shadow: 0 2px 5px rgba(0,0,0,0.03);
-        font-family: 'Inter', sans-serif !important;
     }
     
     /* Tab */
@@ -135,7 +131,6 @@ st.markdown("""
         border-radius: 8px !important;
         margin-right: 0 !important;
         font-weight: 500 !important;
-        font-family: 'Inter', sans-serif !important;
         transition: all 0.3s ease;
         border: 1px solid #e0e0e0 !important;
     }
@@ -161,17 +156,6 @@ st.markdown("""
         color: var(--text-light);
         font-size: 0.9rem;
         border-top: 1px solid #f0f0f0;
-    }
-
-    /* Custom image styling */
-    .skincare-image {
-        border-radius: 15px;
-        box-shadow: 0 8px 20px rgba(0,0,0,0.1);
-        transition: transform 0.3s ease;
-    }
-    
-    .skincare-image:hover {
-        transform: scale(1.02);
     }
 </style>
 """, unsafe_allow_html=True)
@@ -550,80 +534,15 @@ def main():
     with tab1:
         st.markdown("---")
         
-        # Hero Section dengan gambar produk skincare
-        col1, col2 = st.columns([2, 1])
-        
-        with col1:
-            st.markdown("""
-            <div style="padding: 2rem; background: linear-gradient(135deg, rgba(255,182,193,0.2) 0%, rgba(255,255,255,0.8) 100%); border-radius: 15px; margin-bottom: 2rem;">
-                <h2>Analisis Instan Berdasarkan Penelitian Ilmiah</h2>
-                <p style="font-size: 1.1rem;">Platform terpercaya untuk membantu Anda membuat keputusan yang lebih baik tentang produk perawatan kulit</p>
-            </div>
-            """, unsafe_allow_html=True)
-        
-        with col2:
-            st.markdown("""
-            <div style="text-align: center; padding: 1rem;">
-                <img src="https://images.unsplash.com/photo-1570194065650-d99fb4bedf0a?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" 
-                     alt="Skincare Products" 
-                     class="skincare-image"
-                     style="width: 100%; height: 250px; object-fit: cover; border-radius: 15px; box-shadow: 0 8px 20px rgba(0,0,0,0.1);">
-            </div>
-            """, unsafe_allow_html=True)
-        
-        # Product showcase images
-        st.markdown("### 🧴 Jenis Produk yang Dapat Dianalisis")
-        
-        col1, col2, col3, col4 = st.columns(4)
-        
-        with col1:
-          st.markdown("""
-<div style="text-align: center; padding: 1rem; background: white; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); margin-bottom: 1rem;">
-    <img src="https://images.unsplash.com/photo-1556229010-aa4cdd6b1be0?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" 
-         alt="Facial Cleanser" 
-         style="width:100%; height:120px; object-fit: cover; border-radius: 8px; margin-bottom: 0.5rem;">
-    <h4 style="color: #2c2c2c; margin: 0.5rem 0;">Pembersih Wajah</h4>
-    <p style="color: #555555; font-size: 0.9rem;">Facial wash, micellar water, cleansing oil</p>
-</div>
-""", unsafe_allow_html=True)
-        
-        with col2:
-            st.markdown("""
-            <div style="text-align: center; padding: 1rem; background: white; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); margin-bottom: 1rem;">
-                <img src="https://images.unsplash.com/photo-1571781926291-c477ebfd024b?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" 
-                     alt="Moisturizer" 
-                     style="width: 100%; height: 120px; object-fit: cover; border-radius: 8px; margin-bottom: 0.5rem;">
-                <h4 style="color: #2c2c2c; margin: 0.5rem 0;">Pelembap</h4>
-                <p style="color: #555555; font-size: 0.9rem;">Moisturizer, night cream, day cream</p>
-            </div>
-            """, unsafe_allow_html=True)
-        
-        with col3:
-            st.markdown("""
-            <div style="text-align: center; padding: 1rem; background: white; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); margin-bottom: 1rem;">
-                <img src="https://images.unsplash.com/photo-1620916566398-39f1143ab7be?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" 
-                     alt="Serum" 
-                     style="width: 100%; height: 120px; object-fit: cover; border-radius: 8px; margin-bottom: 0.5rem;">
-                <h4 style="color: #2c2c2c; margin: 0.5rem 0;">Serum & Essence</h4>
-                <p style="color: #555555; font-size: 0.9rem;">Vitamin C serum, hyaluronic acid, niacinamide</p>
-            </div>
-            """, unsafe_allow_html=True)
-        
-        with col4:
-            st.markdown("""
-            <div style="text-align: center; padding: 1rem; background: white; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); margin-bottom: 1rem;">
-                <img src="https://images.unsplash.com/photo-1596755389378-c31d21fd1273?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" 
-                     alt="Sunscreen" 
-                     style="width: 100%; height: 120px; object-fit: cover; border-radius: 8px; margin-bottom: 0.5rem;">
-                <h4 style="color: #2c2c2c; margin: 0.5rem 0;">Sunscreen</h4>
-                <p style="color: #555555; font-size: 0.9rem;">Physical & chemical sunscreen, SPF products</p>
-            </div>
-            """, unsafe_allow_html=True)
-        
-        st.markdown("---")
+        # Hero Section
+        st.markdown("""
+        <div style="text-align: center; padding: 2rem; background: linear-gradient(135deg, rgba(255,182,193,0.2) 0%, rgba(255,255,255,0.8) 100%); border-radius: 15px; margin-bottom: 2rem;">
+            <h2>Analisis Instan Berdasarkan Penelitian Ilmiah</h2>
+            <p style="font-size: 1.1rem;">Platform terpercaya untuk membantu Anda membuat keputusan yang lebih baik tentang produk perawatan kulit</p>
+        </div>
+        """, unsafe_allow_html=True)
         
         # Features
-        st.subheader("🔬 Fitur Unggulan")
         col1, col2, col3, col4 = st.columns(4)
         
         with col1:
@@ -664,62 +583,36 @@ def main():
         
         st.markdown("---")
         
-        # How it works dengan gambar
-        st.subheader("💡 Bagaimana Cara Kerjanya?")
+        # How it works
+        st.subheader("Bagaimana Cara Kerjanya?")
         
         col1, col2, col3 = st.columns(3)
         
         with col1:
             st.markdown("""
-            <div style="text-align: center; padding: 1.5rem; background: white; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.05);">
-                <img src="https://images.unsplash.com/photo-1583947215259-38e31be8751f?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" 
-                     alt="Input Ingredients" 
-                     style="width: 80px; height: 80px; object-fit: cover; border-radius: 50%; margin-bottom: 1rem;">
-                <h4 style="color: #2c2c2c;">1️⃣ Masukkan Daftar Bahan</h4>
-                <p style="color: #555555;">Salin dan tempel daftar bahan (INGREDIENTS) dari produk skincare Anda</p>
-            </div>
+            **1️⃣ Masukkan Daftar Bahan**
+            
+            <span style="color: #555555;">Salin dan tempel daftar bahan (INGREDIENTS) dari produk skincare Anda</span>
             """, unsafe_allow_html=True)
         
         with col2:
             st.markdown("""
-            <div style="text-align: center; padding: 1.5rem; background: white; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.05);">
-                <img src="https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" 
-                     alt="Analysis Process" 
-                     style="width: 80px; height: 80px; object-fit: cover; border-radius: 50%; margin-bottom: 1rem;">
-                <h4 style="color: #2c2c2c;">2️⃣ Proses Analisis</h4>
-                <p style="color: #555555;">Sistem akan memindai bahan-bahan yang terindikasi berbahaya</p>
-            </div>
+            **2️⃣ Proses Analisis**
+            
+            <span style="color: #555555;">Sistem akan memindai bahan-bahan yang terindikasi berbahaya </span>
             """, unsafe_allow_html=True)
         
         with col3:
             st.markdown("""
-            <div style="text-align: center; padding: 1.5rem; background: white; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.05);">
-                <img src="https://images.unsplash.com/photo-1554475901-4538ddfbccc2?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" 
-                     alt="Results" 
-                     style="width: 80px; height: 80px; object-fit: cover; border-radius: 50%; margin-bottom: 1rem;">
-                <h4 style="color: #2c2c2c;">3️⃣ Dapatkan Hasil</h4>
-                <p style="color: #555555;">Lihat laporan lengkap tentang keamanan produk dan rekomendasi alternatif</p>
-            </div>
+            **3️⃣ Dapatkan Hasil**
+            
+            <span style="color: #555555;">Lihat laporan lengkap tentang keamanan produk dan rekomendasi alternatif</span>
             """, unsafe_allow_html=True)
     
     with tab2:
         st.markdown("---")
-        
-        # Header dengan gambar untuk tab analisis
-        col1, col2 = st.columns([2, 1])
-        
-        with col1:
-            st.subheader("🔍 Analisis Bahan Skincare")
-            st.write("Masukkan daftar bahan produk skincare Anda di bawah ini untuk memeriksa potensi bahan berbahaya")
-        
-        with col2:
-            st.markdown("""
-            <div style="text-align: center;">
-                <img src="https://images.unsplash.com/photo-1559056199-641a0ac8b55e?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" 
-                     alt="Skincare Analysis" 
-                     style="width: 100%; height: 120px; object-fit: cover; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
-            </div>
-            """, unsafe_allow_html=True)
+        st.subheader("Analisis Bahan Skincare")
+        st.write("Masukkan daftar bahan produk skincare Anda di bawah ini untuk memeriksa potensi bahan berbahaya")
         
         # Input form
         ingredients = st.text_area(
@@ -728,31 +621,6 @@ def main():
             height=150,
             help="Salin dan tempel daftar bahan dari kemasan produk atau website resmi"
         )
-        
-        # Example products dengan gambar
-        st.markdown("### 📋 Contoh Daftar Bahan Produk Populer")
-        
-        example_col1, example_col2 = st.columns(2)
-        
-        with example_col1:
-            if st.button("🧴 Contoh: Facial Cleanser"):
-                st.text_area(
-                    "Ingredients Facial Cleanser:",
-                    value="Aqua, Sodium Cocoyl Isethionate, Glycerin, Cocamidopropyl Betaine, Sodium Lauroyl Methyl Isethionate, Fragrance, PEG-120 Methyl Glucose Dioleate, Sodium Methyl Cocoyl Taurate, Citric Acid, Sodium Chloride, Sodium Benzoate, Polyquaternium-67, Disodium EDTA",
-                    height=100,
-                    disabled=True,
-                    key="example1"
-                )
-        
-        with example_col2:
-            if st.button("🌞 Contoh: Sunscreen"):
-                st.text_area(
-                    "Ingredients Sunscreen:",
-                    value="Aqua, Zinc Oxide, Titanium Dioxide, Caprylic/Capric Triglyceride, Propylene Glycol, Glycerin, Cetyl Alcohol, Dimethicone, Oxybenzone, Octinoxate, Phenoxyethanol, Fragrance, Triethanolamine",
-                    height=100,
-                    disabled=True,
-                    key="example2"
-                )
         
         col1, col2, col3 = st.columns([1,2,1])
         with col2:
@@ -768,26 +636,15 @@ def main():
     
     with tab3:
         st.markdown("---")
+     
         
-        # Hero section untuk About dengan gambar
-        col1, col2 = st.columns([2, 1])
-        
-        with col1:
-            st.markdown("""
-            <div style="padding: 2rem; background: linear-gradient(135deg, rgba(255,182,193,0.2) 0%, rgba(255,255,255,0.8) 100%); border-radius: 15px; margin-bottom: 2rem;">
-                <h3>Transparansi Untuk Kesehatan Kulit Anda</h3>
-                <p style="font-size: 1.1rem;">Memberdayakan konsumen dengan informasi berbasis sains tentang keamanan produk skincare</p>
-            </div>
-            """, unsafe_allow_html=True)
-        
-        with col2:
-            st.markdown("""
-            <div style="text-align: center;">
-                <img src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" 
-                     alt="Skincare Research" 
-                     style="width: 100%; height: 180px; object-fit: cover; border-radius: 15px; box-shadow: 0 8px 20px rgba(0,0,0,0.1);">
-            </div>
-            """, unsafe_allow_html=True)
+        # Hero section untuk About
+        st.markdown("""
+        <div style="text-align: center; padding: 2rem; background: linear-gradient(135deg, rgba(255,182,193,0.2) 0%, rgba(255,255,255,0.8) 100%); border-radius: 15px; margin-bottom: 2rem;">
+            <h3>Transparansi Untuk Kesehatan Kulit Anda</h3>
+            <p style="font-size: 1.1rem;">Memberdayakan konsumen dengan informasi berbasis sains tentang keamanan produk skincare</p>
+        </div>
+        """, unsafe_allow_html=True)
         
         # Main content dalam 2 kolom yang seimbang
         col1, col2 = st.columns(2)
@@ -840,45 +697,6 @@ def main():
                     <li><strong>Uji Sensitivitas:</strong> Selalu lakukan patch test sebelum penggunaan penuh</li>
                     <li><strong>Konsultasi Ahli:</strong> Tanyakan pada dermatolog untuk kulit sensitif</li>
                 </ul>
-            </div>
-            """, unsafe_allow_html=True)
-        
-        # Expert recommendations dengan gambar
-        st.markdown("---")
-        st.subheader("👩‍⚕️ Rekomendasi dari Para Ahli")
-        
-        col1, col2, col3 = st.columns(3)
-        
-        with col1:
-            st.markdown("""
-            <div style="background: white; padding: 1.5rem; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); text-align: center;">
-                <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" 
-                     alt="Dermatologist" 
-                     style="width: 80px; height: 80px; object-fit: cover; border-radius: 50%; margin-bottom: 1rem;">
-                <h4 style="color: #e91e63;">Dermatolog</h4>
-                <p style="color: #555555; font-size: 0.9rem;">"Selalu baca ingredients list dan lakukan patch test sebelum menggunakan produk baru"</p>
-            </div>
-            """, unsafe_allow_html=True)
-        
-        with col2:
-            st.markdown("""
-            <div style="background: white; padding: 1.5rem; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); text-align: center;">
-                <img src="https://images.unsplash.com/photo-1582750433449-648ed127bb54?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" 
-                     alt="Cosmetic Chemist" 
-                     style="width: 80px; height: 80px; object-fit: cover; border-radius: 50%; margin-bottom: 1rem;">
-                <h4 style="color: #e91e63;">Cosmetic Chemist</h4>
-                <p style="color: #555555; font-size: 0.9rem;">"Konsentrasi bahan adalah kunci - bahan yang aman bisa berbahaya jika berlebihan"</p>
-            </div>
-            """, unsafe_allow_html=True)
-        
-        with col3:
-            st.markdown("""
-            <div style="background: white; padding: 1.5rem; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); text-align: center;">
-                <img src="https://images.unsplash.com/photo-1594824388853-e4dd58d3d75d?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" 
-                     alt="Beauty Expert" 
-                     style="width: 80px; height: 80px; object-fit: cover; border-radius: 50%; margin-bottom: 1rem;">
-                <h4 style="color: #e91e63;">Beauty Expert</h4>
-                <p style="color: #555555; font-size: 0.9rem;">"Produk mahal tidak selalu berarti aman - yang penting adalah formulasinya"</p>
             </div>
             """, unsafe_allow_html=True)
         
