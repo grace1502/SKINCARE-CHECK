@@ -18,10 +18,10 @@ st.set_page_config(
 st.markdown("""
 <style>
     /* Font dan warna dasar */
-    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;700&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;700&display=swap');
     
     html, body, [class*="css"] {
-        font-family: 'Poppins', sans-serif;
+        font-family: 'Inter', sans-serif;
         color: #333333;
     }
     
