@@ -37,11 +37,7 @@ st.markdown("""
     
     /* Background dengan overlay */
     .stApp {
-        background: linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)), 
-                    url('https://images.unsplash.com/photo-1556228578-8c89e6adf883?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
-        background-size: cover;
-        background-attachment: fixed;
-        background-position: center;
+        background: #ffffff;
     }
     
     /* Main container */
@@ -528,24 +524,24 @@ def display_results(results):
 def main():
     # Header dengan styling modern dan gambar
     st.markdown("""
-    <div style="position: relative; padding: 2rem 0; margin-bottom: 2rem; overflow: hidden;">
+    <div style="position: relative; padding: 2rem 0; margin-bottom: 2rem; background: linear-gradient(135deg, #fce4ec 0%, #f8bbd9 30%, #e1bee7 70%, #ffffff 100%); border-radius: 20px; overflow: hidden;">
         <!-- Background images scattered -->
-        <div style="position: absolute; top: 0; right: 0; width: 200px; height: 150px; background: url('https://images.unsplash.com/photo-1570194065650-d99fb4bedf0d?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80') no-repeat center center; background-size: cover; border-radius: 15px; opacity: 0.3; z-index: 0;"></div>
-        <div style="position: absolute; top: 20px; right: 220px; width: 80px; height: 80px; background: url('https://images.unsplash.com/photo-1612817288484-6f916006741a?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80') no-repeat center center; background-size: cover; border-radius: 12px; opacity: 0.4; z-index: 0;"></div>
-        <div style="position: absolute; top: 80px; right: 300px; width: 60px; height: 60px; background: url('https://images.unsplash.com/photo-1598662779094-110c2bad80b5?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80') no-repeat center center; background-size: cover; border-radius: 50%; opacity: 0.25; z-index: 0;"></div>
-        <div style="position: absolute; top: -10px; right: 320px; width: 70px; height: 70px; background: url('https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80') no-repeat center center; background-size: cover; border-radius: 8px; opacity: 0.3; z-index: 0;"></div>
-        <div style="position: absolute; top: 120px; right: 150px; width: 50px; height: 50px; background: url('https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80') no-repeat center center; background-size: cover; border-radius: 50%; opacity: 0.35; z-index: 0;"></div>
-        <div style="position: absolute; top: 40px; right: 380px; width: 45px; height: 45px; background: url('https://images.unsplash.com/photo-1617897903246-719242758050?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80') no-repeat center center; background-size: cover; border-radius: 12px; opacity: 0.3; z-index: 0;"></div>
-        <div style="position: absolute; top: 100px; right: 400px; width: 55px; height: 55px; background: url('https://images.unsplash.com/photo-1571875257727-256c39da42af?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80') no-repeat center center; background-size: cover; border-radius: 50%; opacity: 0.28; z-index: 0;"></div>
-        <div style="position: absolute; top: 10px; right: 450px; width: 40px; height: 40px; background: url('https://images.unsplash.com/photo-1583001931096-959e9a1a6223?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80') no-repeat center center; background-size: cover; border-radius: 8px; opacity: 0.32; z-index: 0;"></div>
-        <div style="position: absolute; top: 60px; right: 470px; width: 35px; height: 35px; background: url('https://images.unsplash.com/photo-1556228578-8c89e6adf883?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80') no-repeat center center; background-size: cover; border-radius: 50%; opacity: 0.25; z-index: 0;"></div>
-        <div style="position: absolute; top: 130px; right: 450px; width: 42px; height: 42px; background: url('https://images.unsplash.com/photo-1620916566398-39f1143ab7be?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80') no-repeat center center; background-size: cover; border-radius: 10px; opacity: 0.3; z-index: 0;"></div>
+        <div style="position: absolute; top: 0; right: 0; width: 200px; height: 150px; background: url('https://images.unsplash.com/photo-1570194065650-d99fb4bedf0d?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80') no-repeat center center; background-size: cover; border-radius: 15px; opacity: 0.4; z-index: 0;"></div>
+        <div style="position: absolute; top: 20px; right: 220px; width: 80px; height: 80px; background: url('https://images.unsplash.com/photo-1612817288484-6f916006741a?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80') no-repeat center center; background-size: cover; border-radius: 12px; opacity: 0.5; z-index: 0;"></div>
+        <div style="position: absolute; top: 80px; right: 300px; width: 60px; height: 60px; background: url('https://images.unsplash.com/photo-1598662779094-110c2bad80b5?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80') no-repeat center center; background-size: cover; border-radius: 50%; opacity: 0.35; z-index: 0;"></div>
+        <div style="position: absolute; top: -10px; right: 320px; width: 70px; height: 70px; background: url('https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80') no-repeat center center; background-size: cover; border-radius: 8px; opacity: 0.4; z-index: 0;"></div>
+        <div style="position: absolute; top: 120px; right: 150px; width: 50px; height: 50px; background: url('https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80') no-repeat center center; background-size: cover; border-radius: 50%; opacity: 0.45; z-index: 0;"></div>
+        <div style="position: absolute; top: 40px; right: 380px; width: 45px; height: 45px; background: url('https://images.unsplash.com/photo-1617897903246-719242758050?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80') no-repeat center center; background-size: cover; border-radius: 12px; opacity: 0.4; z-index: 0;"></div>
+        <div style="position: absolute; top: 100px; right: 400px; width: 55px; height: 55px; background: url('https://images.unsplash.com/photo-1571875257727-256c39da42af?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80') no-repeat center center; background-size: cover; border-radius: 50%; opacity: 0.38; z-index: 0;"></div>
+        <div style="position: absolute; top: 10px; right: 450px; width: 40px; height: 40px; background: url('https://images.unsplash.com/photo-1583001931096-959e9a1a6223?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80') no-repeat center center; background-size: cover; border-radius: 8px; opacity: 0.42; z-index: 0;"></div>
+        <div style="position: absolute; top: 60px; right: 470px; width: 35px; height: 35px; background: url('https://images.unsplash.com/photo-1556228578-8c89e6adf883?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80') no-repeat center center; background-size: cover; border-radius: 50%; opacity: 0.35; z-index: 0;"></div>
+        <div style="position: absolute; top: 130px; right: 450px; width: 42px; height: 42px; background: url('https://images.unsplash.com/photo-1620916566398-39f1143ab7be?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80') no-repeat center center; background-size: cover; border-radius: 10px; opacity: 0.4; z-index: 0;"></div>
         
         <!-- Left side background images -->
-        <div style="position: absolute; top: 20px; left: 20px; width: 50px; height: 50px; background: url('https://images.unsplash.com/photo-1564903078174-c237ffe27637?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80') no-repeat center center; background-size: cover; border-radius: 50%; opacity: 0.2; z-index: 0;"></div>
-        <div style="position: absolute; top: 80px; left: 80px; width: 38px; height: 38px; background: url('https://images.unsplash.com/photo-1596755389378-c31d21fd1273?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80') no-repeat center center; background-size: cover; border-radius: 8px; opacity: 0.25; z-index: 0;"></div>
-        <div style="position: absolute; top: 120px; left: 30px; width: 45px; height: 45px; background: url('https://images.unsplash.com/photo-1559056199-641a0ac8b55e?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80') no-repeat center center; background-size: cover; border-radius: 50%; opacity: 0.22; z-index: 0;"></div>
-        <div style="position: absolute; top: 40px; left: 120px; width: 42px; height: 42px; background: url('https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80') no-repeat center center; background-size: cover; border-radius: 12px; opacity: 0.28; z-index: 0;"></div>
+        <div style="position: absolute; top: 20px; left: 20px; width: 50px; height: 50px; background: url('https://images.unsplash.com/photo-1564903078174-c237ffe27637?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80') no-repeat center center; background-size: cover; border-radius: 50%; opacity: 0.3; z-index: 0;"></div>
+        <div style="position: absolute; top: 80px; left: 80px; width: 38px; height: 38px; background: url('https://images.unsplash.com/photo-1596755389378-c31d21fd1273?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80') no-repeat center center; background-size: cover; border-radius: 8px; opacity: 0.35; z-index: 0;"></div>
+        <div style="position: absolute; top: 120px; left: 30px; width: 45px; height: 45px; background: url('https://images.unsplash.com/photo-1559056199-641a0ac8b55e?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80') no-repeat center center; background-size: cover; border-radius: 50%; opacity: 0.32; z-index: 0;"></div>
+        <div style="position: absolute; top: 40px; left: 120px; width: 42px; height: 42px; background: url('https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80') no-repeat center center; background-size: cover; border-radius: 12px; opacity: 0.38; z-index: 0;"></div>
         
         <div style="position: relative; z-index: 1;">
             <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
