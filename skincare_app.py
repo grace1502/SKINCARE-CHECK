@@ -56,10 +56,12 @@ st.markdown("""
     /* Judul utama */
     h1 {
         color: #c2185b !important;
-        font-family: 'Playfair Display', serif !important;
-        font-weight: 700 !important;
+        font-family: 'Inter', sans-serif !important;
+        font-weight: 800 !important;
         margin-bottom: 0.5rem !important;
         text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
+        font-size: 3rem !important;
+        letter-spacing: -0.02em !important;
     }
     
     /* Subjudul */
@@ -524,7 +526,18 @@ def display_results(results):
 
 # Main App
 def main():
-    # Header
+    # Header dengan styling modern dan gambar
+    st.markdown("""
+    <div style="position: relative; padding: 2rem 0; margin-bottom: 2rem;">
+        <div style="position: absolute; top: 0; right: 0; width: 200px; height: 150px; background: url('https://images.unsplash.com/photo-1570194065650-d99fb4bedf0d?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80') no-repeat center center; background-size: cover; border-radius: 15px; opacity: 0.3; z-index: 0;"></div>
+        <div style="position: relative; z-index: 1;">
+            <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
+                <div style="width: 60px; height: 60px; background: url('https://images.unsplash.com/photo-1596755389378-c31d21fd1273?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80') no-repeat center center; background-size: cover; border-radius: 50%; border: 3px solid #e91e63;"></div>
+            </div>
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
+    
     st.title("Pemeriksa Keamanan Skincare")
     st.markdown("### Temukan Analisis Mendalam Mengenai Produk Perawatan Kulit Anda")
     
