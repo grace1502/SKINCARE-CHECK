@@ -530,9 +530,12 @@ def main():
     st.markdown("""
     <div style="position: relative; padding: 2rem 0; margin-bottom: 2rem;">
         <div style="position: absolute; top: 0; right: 0; width: 200px; height: 150px; background: url('https://images.unsplash.com/photo-1570194065650-d99fb4bedf0d?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80') no-repeat center center; background-size: cover; border-radius: 15px; opacity: 0.3; z-index: 0;"></div>
+        <div style="position: absolute; top: 20px; right: 220px; width: 80px; height: 80px; background: url('https://images.unsplash.com/photo-1612817288484-6f916006741a?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80') no-repeat center center; background-size: cover; border-radius: 12px; opacity: 0.4; z-index: 0;"></div>
         <div style="position: relative; z-index: 1;">
             <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
                 <div style="width: 60px; height: 60px; background: url('https://images.unsplash.com/photo-1596755389378-c31d21fd1273?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80') no-repeat center center; background-size: cover; border-radius: 50%; border: 3px solid #e91e63;"></div>
+                <div style="width: 45px; height: 45px; background: url('https://images.unsplash.com/photo-1556228578-dd6e31c8e88b?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80') no-repeat center center; background-size: cover; border-radius: 8px; border: 2px solid #f8bbd9; margin-left: -20px;"></div>
+                <div style="width: 50px; height: 50px; background: url('https://images.unsplash.com/photo-1571875257727-256c39da42af?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80') no-repeat center center; background-size: cover; border-radius: 50%; border: 2px solid #e91e63; margin-left: -15px; opacity: 0.9;"></div>
             </div>
         </div>
     </div>
