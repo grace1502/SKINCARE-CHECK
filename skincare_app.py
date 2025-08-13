@@ -524,34 +524,59 @@ def display_results(results):
 def main():
     # Header dengan styling modern dan gambar
     st.markdown("""
-    <div style="position: relative; padding: 2rem 0; margin-bottom: 2rem; background: linear-gradient(135deg, #fce4ec 0%, #f8bbd9 30%, #e1bee7 70%, #ffffff 100%); border-radius: 20px; overflow: hidden;">
-        <!-- Background images scattered -->
-        <div style="position: absolute; top: 0; right: 0; width: 200px; height: 150px; background: url('https://images.unsplash.com/photo-1570194065650-d99fb4bedf0d?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80') no-repeat center center; background-size: cover; border-radius: 15px; opacity: 0.4; z-index: 0;"></div>
-        <div style="position: absolute; top: 20px; right: 220px; width: 80px; height: 80px; background: url('https://images.unsplash.com/photo-1612817288484-6f916006741a?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80') no-repeat center center; background-size: cover; border-radius: 12px; opacity: 0.5; z-index: 0;"></div>
-        <div style="position: absolute; top: 80px; right: 300px; width: 60px; height: 60px; background: url('https://images.unsplash.com/photo-1598662779094-110c2bad80b5?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80') no-repeat center center; background-size: cover; border-radius: 50%; opacity: 0.35; z-index: 0;"></div>
-        <div style="position: absolute; top: -10px; right: 320px; width: 70px; height: 70px; background: url('https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80') no-repeat center center; background-size: cover; border-radius: 8px; opacity: 0.4; z-index: 0;"></div>
-        <div style="position: absolute; top: 120px; right: 150px; width: 50px; height: 50px; background: url('https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80') no-repeat center center; background-size: cover; border-radius: 50%; opacity: 0.45; z-index: 0;"></div>
-        <div style="position: absolute; top: 40px; right: 380px; width: 45px; height: 45px; background: url('https://images.unsplash.com/photo-1617897903246-719242758050?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80') no-repeat center center; background-size: cover; border-radius: 12px; opacity: 0.4; z-index: 0;"></div>
-        <div style="position: absolute; top: 100px; right: 400px; width: 55px; height: 55px; background: url('https://images.unsplash.com/photo-1571875257727-256c39da42af?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80') no-repeat center center; background-size: cover; border-radius: 50%; opacity: 0.38; z-index: 0;"></div>
-        <div style="position: absolute; top: 10px; right: 450px; width: 40px; height: 40px; background: url('https://images.unsplash.com/photo-1583001931096-959e9a1a6223?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80') no-repeat center center; background-size: cover; border-radius: 8px; opacity: 0.42; z-index: 0;"></div>
-        <div style="position: absolute; top: 60px; right: 470px; width: 35px; height: 35px; background: url('https://images.unsplash.com/photo-1556228578-8c89e6adf883?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80') no-repeat center center; background-size: cover; border-radius: 50%; opacity: 0.35; z-index: 0;"></div>
-        <div style="position: absolute; top: 130px; right: 450px; width: 42px; height: 42px; background: url('https://images.unsplash.com/photo-1620916566398-39f1143ab7be?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80') no-repeat center center; background-size: cover; border-radius: 10px; opacity: 0.4; z-index: 0;"></div>
-        
-        <!-- Left side background images -->
-        <div style="position: absolute; top: 20px; left: 20px; width: 50px; height: 50px; background: url('https://images.unsplash.com/photo-1564903078174-c237ffe27637?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80') no-repeat center center; background-size: cover; border-radius: 50%; opacity: 0.3; z-index: 0;"></div>
-        <div style="position: absolute; top: 80px; left: 80px; width: 38px; height: 38px; background: url('https://images.unsplash.com/photo-1596755389378-c31d21fd1273?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80') no-repeat center center; background-size: cover; border-radius: 8px; opacity: 0.35; z-index: 0;"></div>
-        <div style="position: absolute; top: 120px; left: 30px; width: 45px; height: 45px; background: url('https://images.unsplash.com/photo-1559056199-641a0ac8b55e?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80') no-repeat center center; background-size: cover; border-radius: 50%; opacity: 0.32; z-index: 0;"></div>
-        <div style="position: absolute; top: 40px; left: 120px; width: 42px; height: 42px; background: url('https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80') no-repeat center center; background-size: cover; border-radius: 12px; opacity: 0.38; z-index: 0;"></div>
-        
-        <div style="position: relative; z-index: 1;">
-            <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
-                <div style="width: 60px; height: 60px; background: url('https://images.unsplash.com/photo-1596755389378-c31d21fd1273?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80') no-repeat center center; background-size: cover; border-radius: 50%; border: 3px solid #e91e63; box-shadow: 0 4px 12px rgba(233, 30, 99, 0.3);"></div>
-                <div style="width: 45px; height: 45px; background: url('https://images.unsplash.com/photo-1556228578-dd6e31c8e88b?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80') no-repeat center center; background-size: cover; border-radius: 8px; border: 2px solid #f8bbd9; margin-left: -20px; box-shadow: 0 3px 8px rgba(248, 187, 217, 0.4);"></div>
-                <div style="width: 50px; height: 50px; background: url('https://images.unsplash.com/photo-1571875257727-256c39da42af?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80') no-repeat center center; background-size: cover; border-radius: 50%; border: 2px solid #e91e63; margin-left: -15px; opacity: 0.9; box-shadow: 0 3px 10px rgba(233, 30, 99, 0.25);"></div>
-                <div style="width: 40px; height: 40px; background: url('https://images.unsplash.com/photo-1583001931096-959e9a1a6223?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80') no-repeat center center; background-size: cover; border-radius: 10px; border: 2px solid #c2185b; margin-left: -10px; box-shadow: 0 2px 6px rgba(194, 24, 91, 0.3);"></div>
-            </div>
-        </div>
-    </div>
+  st.set_page_config(layout="wide")
+st.title("🛁 Produk Skincare")
+
+# Membuat 4 kolom untuk produk
+col1, col2, col3, col4 = st.columns(4)
+
+with col1:
+    # Produk 1 - Pembersih Wajah
+    st.image("https://images.unsplash.com/photo-1556229010-aa4cdd6b1be0?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80",
+             caption="Facial Cleanser",
+             width=200)
+    st.subheader("Pembersih Wajah")
+    st.markdown("""
+    - Facial wash
+    - Micellar water  
+    - Cleansing oil
+    """)
+
+with col2:
+    # Produk 2 - Pelembap
+    st.image("https://images.unsplash.com/photo-1571781926291-c477ebfd024b?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80",
+             caption="Moisturizer",
+             width=200)
+    st.subheader("Pelembap")
+    st.markdown("""
+    - Day cream
+    - Night cream
+    - Gel moisturizer
+    """)
+
+with col3:
+    # Produk 3 - Serum
+    st.image("https://images.unsplash.com/photo-1620916566398-39f1143ab7be?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80",
+             caption="Serum",
+             width=200)
+    st.subheader("Serum & Essence")
+    st.markdown("""
+    - Vitamin C
+    - Hyaluronic acid
+    - Niacinamide
+    """)
+
+with col4:
+    # Produk 4 - Sunscreen
+    st.image("https://images.unsplash.com/photo-1596755389378-c31d21fd1273?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80",
+             caption="Sunscreen",
+             width=200)
+    st.subheader("Tabir Surya")
+    st.markdown("""
+    - SPF 30+
+    - PA+++
+    - Water resistant
+    """)
     """, unsafe_allow_html=True)
     
     st.title("Pemeriksa Keamanan Skincare")
