@@ -666,8 +666,8 @@ def main():
             # Mission section dengan styling
             st.markdown("""
             <div style="background: white; padding: 1.5rem; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); margin-bottom: 1.5rem;">
-                <h4 style="color: #e91e63; margin-top: 0;">🎯 Misi </h4>
-                <p style="line-height: 1.6;">Berkomitmen untuk meningkatkan transparansi dalam industri kecantikan dengan memberikan informasi yang jelas dan dapat diakses tentang bahan-bahan dalam produk perawatan kulit. Tujuan dibuatnya sistem ini adalah memberdayakan konsumen untuk membuat pilihan yang tepat berdasarkan data dan penelitian ilmiah.</p>
+                <h4 style="color: #e91e63; margin-top: 0;">🎯 Tujuan </h4>
+                <p style="line-height: 1.6;">Bertujuan untuk meningkatkan transparansi dalam industri kecantikan dengan memberikan informasi yang jelas dan dapat diakses tentang bahan-bahan dalam produk perawatan kulit. Tujuan dibuatnya sistem ini adalah memberdayakan konsumen untuk membuat pilihan yang tepat berdasarkan data dan penelitian ilmiah.</p>
             </div>
             """, unsafe_allow_html=True)
             
