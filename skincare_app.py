@@ -162,6 +162,162 @@ st.markdown("""
 </style>
 """, unsafe_allow_html=True)
 
+# Tambahkan CSS ini setelah existing custom CSS di aplikasi utama
+st.markdown("""
+<style>
+    /* Mobile Responsive CSS */
+    @media (max-width: 768px) {
+        
+        /* Header adjustments */
+        h1 {
+            font-size: 2rem !important;
+            text-align: center !important;
+            margin-bottom: 1rem !important;
+        }
+        
+        h2 {
+            font-size: 1.4rem !important;
+            text-align: center !important;
+        }
+        
+        h3 {
+            font-size: 1.2rem !important;
+            text-align: center !important;
+        }
+        
+        /* Container padding adjustments */
+        .main-container {
+            padding: 1rem !important;
+            margin: 0.5rem !important;
+        }
+        
+        /* Button improvements */
+        .stButton button {
+            width: 100% !important;
+            padding: 1rem !important;
+            font-size: 1rem !important;
+        }
+        
+        /* Text area improvements */
+        .stTextArea textarea {
+            font-size: 1rem !important;
+            min-height: 120px !important;
+        }
+        
+        /* Tab improvements */
+        .stTabs [data-baseweb="tab"] {
+            padding: 0.6rem 0.8rem !important;
+            font-size: 0.9rem !important;
+        }
+        
+        /* Metric cards stack vertically */
+        .stMetric {
+            text-align: center !important;
+        }
+        
+        /* Alert boxes */
+        .stAlert {
+            padding: 1rem !important;
+            font-size: 0.9rem !important;
+        }
+        
+        /* Feature cards in homepage */
+        .stColumns > div {
+            margin-bottom: 1rem !important;
+        }
+        
+        /* Steps in homepage */
+        .stColumns > div h4 {
+            font-size: 1.1rem !important;
+        }
+        
+        /* Expander improvements */
+        .streamlit-expanderHeader {
+            font-size: 0.9rem !important;
+        }
+        
+        /* Background image adjustments */
+        .stApp {
+            background-attachment: scroll !important;
+        }
+        
+        /* Footer adjustments */
+        footer {
+            padding: 1rem 0 !important;
+            font-size: 0.8rem !important;
+        }
+        
+        /* Disclaimer box */
+        .disclaimer-box {
+            padding: 1rem !important;
+            font-size: 0.9rem !important;
+        }
+        
+        /* Results display improvements */
+        .metric-container {
+            display: grid !important;
+            grid-template-columns: 1fr 1fr !important;
+            gap: 0.5rem !important;
+            margin-bottom: 1rem !important;
+        }
+        
+        /* Ingredient lists */
+        ul {
+            padding-left: 1rem !important;
+        }
+        
+        li {
+            margin-bottom: 0.3rem !important;
+            font-size: 0.9rem !important;
+        }
+    }
+    
+    /* Small mobile devices */
+    @media (max-width: 480px) {
+        h1 {
+            font-size: 1.8rem !important;
+        }
+        
+        .main-container {
+            padding: 0.8rem !important;
+            margin: 0.3rem !important;
+        }
+        
+        .stTabs [data-baseweb="tab"] {
+            padding: 0.5rem 0.6rem !important;
+            font-size: 0.8rem !important;
+        }
+        
+        .metric-container {
+            grid-template-columns: 1fr !important;
+        }
+        
+        .stButton button {
+            padding: 0.8rem !important;
+            font-size: 0.9rem !important;
+        }
+    }
+    
+    /* Touch-friendly improvements */
+    .stButton button,
+    .stTabs [data-baseweb="tab"],
+    .streamlit-expanderHeader {
+        min-height: 44px !important; /* Apple's recommended touch target size */
+    }
+    
+    /* Improved scrolling on mobile */
+    .stTextArea textarea {
+        -webkit-overflow-scrolling: touch;
+    }
+    
+    /* Better spacing for mobile content */
+    .mobile-spacing {
+        margin: 1rem 0 !important;
+    }
+    
+</style>
+""", unsafe_allow_html=True)
+
 # Database bahan berbahaya
 DANGEROUS_INGREDIENTS = {
    'paraben': {
