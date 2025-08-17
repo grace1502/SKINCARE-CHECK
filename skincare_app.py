@@ -165,66 +165,80 @@ st.markdown("""
 # Tambahkan CSS ini setelah existing custom CSS di aplikasi utama
 st.markdown("""
 <style>
-    /* Global Text Overflow Fix - SANGAT PENTING */
-    * {
-        word-wrap: break-word !important;
-        overflow-wrap: break-word !important;
-        box-sizing: border-box !important;
-    }
-    
-    .stMarkdown, .stMarkdown *, 
-    .stText, .stText *,
-    p, div, span, li, h1, h2, h3, h4, h5, h6 {
-        max-width: 100% !important;
-        word-break: break-word !important;
-        overflow-wrap: break-word !important;
-        hyphens: auto !important;
-        white-space: normal !important;
-    }
-    
-    /* Container fixes */
-    .main .block-container {
-        max-width: 100% !important;
-        padding-left: 1rem !important;
-        padding-right: 1rem !important;
-    }
-    
-    /* Mobile Responsive CSS */
+    /* Global Mobile Text and Layout Fixes */
     @media (max-width: 768px) {
         
-        /* Container utama */
-        .main .block-container {
-            padding-left: 0.5rem !important;
-            padding-right: 0.5rem !important;
-            max-width: 100% !important;
+        /* Perbaikan untuk text overflow yang lebih komprehensif */
+        * {
+            word-wrap: break-word !important;
+            overflow-wrap: break-word !important;
+            word-break: break-word !important;
+            hyphens: auto !important;
         }
         
-        /* Header adjustments */
-        h1 {
-            font-size: 2rem !important;
+        /* Container dan layout fixes */
+        .main .block-container {
+            padding-left: 0.75rem !important;
+            padding-right: 0.75rem !important;
+            max-width: 100vw !important;
+            overflow-x: hidden !important;
+        }
+        
+        /* Header section mobile fixes */
+        .stMarkdown h1 {
+            font-size: 2.2rem !important;
+            line-height: 1.2 !important;
             text-align: center !important;
             margin-bottom: 1rem !important;
-            word-wrap: break-word !important;
+            padding: 0 0.5rem !important;
         }
         
-        h2 {
-            font-size: 1.4rem !important;
+        .stMarkdown h2 {
+            font-size: 1.5rem !important;
             text-align: center !important;
-            word-wrap: break-word !important;
+            line-height: 1.3 !important;
+            padding: 0 0.5rem !important;
         }
         
-        h3 {
-            font-size: 1.2rem !important;
+        .stMarkdown h3 {
+            font-size: 1.3rem !important;
             text-align: center !important;
-            word-wrap: break-word !important;
+            line-height: 1.3 !important;
+            padding: 0 0.5rem !important;
         }
         
-        /* Container padding adjustments */
-        .main-container {
+        .stMarkdown h4 {
+            font-size: 1.1rem !important;
+            line-height: 1.4 !important;
+            padding: 0 0.25rem !important;
+        }
+        
+        /* Hero section dan feature cards mobile */
+        .stMarkdown div[style*="text-align: center"] {
             padding: 1rem !important;
-            margin: 0.5rem !important;
-            max-width: 100% !important;
-            box-sizing: border-box !important;
+            margin-bottom: 1rem !important;
+        }
+        
+        .stMarkdown div[style*="background: linear-gradient"] {
+            padding: 1.5rem 1rem !important;
+            margin: 0.5rem 0 !important;
+        }
+        
+        /* Columns mobile stacking */
+        .stColumns {
+            gap: 0.5rem !important;
+        }
+        
+        .stColumns > div {
+            width: 100% !important;
+            margin-bottom: 1rem !important;
+            padding: 0.25rem !important;
+        }
+        
+        /* Feature cards mobile responsive */
+        .stColumns > div > div[style*="box-shadow"] {
+            padding: 1rem 0.5rem !important;
+            margin-bottom: 0.5rem !important;
         }
         
         /* Button improvements */
@@ -232,124 +246,173 @@ st.markdown("""
             width: 100% !important;
             padding: 1rem !important;
             font-size: 1rem !important;
-            box-sizing: border-box !important;
+            margin: 0.5rem 0 !important;
+            min-height: 50px !important;
         }
         
-        /* Text area improvements */
+        /* Text area mobile */
         .stTextArea textarea {
             font-size: 1rem !important;
-            min-height: 120px !important;
-            width: 100% !important;
-            box-sizing: border-box !important;
+            min-height: 150px !important;
+            padding: 1rem !important;
         }
         
-        /* Tab improvements */
+        /* Tab mobile fixes */
+        .stTabs [data-baseweb="tab-list"] {
+            flex-wrap: wrap !important;
+            gap: 0.25rem !important;
+        }
+        
         .stTabs [data-baseweb="tab"] {
-            padding: 0.6rem 0.8rem !important;
+            padding: 0.75rem 1rem !important;
             font-size: 0.9rem !important;
-            word-wrap: break-word !important;
+            margin-bottom: 0.25rem !important;
+            min-width: auto !important;
+            flex: 1 1 auto !important;
+            text-align: center !important;
         }
         
-        /* Metric cards stack vertically */
+        /* Metrics mobile stacking */
         .stMetric {
             text-align: center !important;
-            width: 100% !important;
-            box-sizing: border-box !important;
+            margin-bottom: 0.5rem !important;
         }
         
-        /* Alert boxes */
+        .stMetric > div {
+            padding: 0.5rem !important;
+        }
+        
+        /* Alert boxes mobile */
         .stAlert {
             padding: 1rem !important;
-            font-size: 0.9rem !important;
-            max-width: 100% !important;
-            box-sizing: border-box !important;
+            font-size: 0.95rem !important;
+            margin: 0.5rem 0 !important;
         }
         
-        /* Column fixes */
-        .stColumns {
-            gap: 0.5rem !important;
-        }
-        
-        .stColumns > div {
-            margin-bottom: 1rem !important;
-            width: 100% !important;
-            max-width: 100% !important;
-            padding-left: 0.25rem !important;
-            padding-right: 0.25rem !important;
-            box-sizing: border-box !important;
-        }
-        
-        /* Feature cards in homepage */
-        .stColumns > div h4 {
-            font-size: 1.1rem !important;
-            word-wrap: break-word !important;
-        }
-        
-        /* Expander improvements */
+        /* Expander mobile */
         .streamlit-expanderHeader {
-            font-size: 0.9rem !important;
-            word-wrap: break-word !important;
+            padding: 0.75rem !important;
+            font-size: 0.95rem !important;
         }
         
-        /* Background image adjustments */
-        .stApp {
-            background-attachment: scroll !important;
+        .streamlit-expanderContent {
+            padding: 0.75rem !important;
         }
         
-        /* Footer adjustments */
-        footer {
-            padding: 1rem 0 !important;
-            font-size: 0.8rem !important;
-            max-width: 100% !important;
-            box-sizing: border-box !important;
-        }
-        
-        /* Results display improvements */
-        .metric-container {
-            display: grid !important;
-            grid-template-columns: 1fr 1fr !important;
-            gap: 0.5rem !important;
-            margin-bottom: 1rem !important;
-            width: 100% !important;
-        }
-        
-        /* Ingredient lists */
-        ul {
-            padding-left: 1rem !important;
-            margin-right: 1rem !important;
-            max-width: 100% !important;
-            box-sizing: border-box !important;
+        /* List items mobile */
+        ul, ol {
+            padding-left: 1.2rem !important;
+            margin: 0.5rem 0 !important;
         }
         
         li {
-            margin-bottom: 0.3rem !important;
-            font-size: 0.9rem !important;
-            word-wrap: break-word !important;
-            overflow-wrap: break-word !important;
+            margin-bottom: 0.4rem !important;
+            line-height: 1.5 !important;
+            font-size: 0.95rem !important;
         }
         
-        /* Fix untuk teks panjang dalam cards */
-        .stMarkdown div {
-            max-width: 100% !important;
-            word-wrap: break-word !important;
-            overflow-wrap: break-word !important;
+        /* Paragraph spacing */
+        .stMarkdown p {
+            line-height: 1.6 !important;
+            margin: 0.75rem 0 !important;
+            font-size: 0.95rem !important;
+        }
+        
+        /* Results display mobile */
+        .stSuccess, .stError, .stWarning, .stInfo {
+            margin: 0.75rem 0 !important;
+            font-size: 0.95rem !important;
+        }
+        
+        /* Spacing between sections */
+        .stMarkdown hr {
+            margin: 1.5rem 0 !important;
+        }
+        
+        /* Footer mobile */
+        .stMarkdown div[style*="text-align: center"][style*="color: #888888"] {
+            font-size: 0.85rem !important;
+            padding: 1rem 0.5rem !important;
+            line-height: 1.4 !important;
         }
     }
     
-    /* Small mobile devices */
+    /* Small mobile devices (<=480px) */
     @media (max-width: 480px) {
+        
+        .main .block-container {
+            padding-left: 0.5rem !important;
+            padding-right: 0.5rem !important;
+        }
+        
+        .stMarkdown h1 {
+            font-size: 1.9rem !important;
+        }
+        
+        .stMarkdown h2 {
+            font-size: 1.3rem !important;
+        }
+        
+        .stMarkdown h3 {
+            font-size: 1.2rem !important;
+        }
+        
+        .stTabs [data-baseweb="tab"] {
+            padding: 0.6rem 0.75rem !important;
+            font-size: 0.85rem !important;
+        }
+        
+        .stButton button {
+            font-size: 0.95rem !important;
+            padding: 0.9rem !important;
+        }
+        
+        .stTextArea textarea {
+            font-size: 0.95rem !important;
+            min-height: 130px !important;
+        }
+        
+        .stMarkdown div[style*="background: linear-gradient"] {
+            padding: 1rem 0.75rem !important;
+        }
+        
+        .stColumns > div > div[style*="box-shadow"] {
+            padding: 0.75rem 0.5rem !important;
+        }
+        
+        .stAlert {
+            font-size: 0.9rem !important;
+            padding: 0.75rem !important;
+        }
+        
+        li {
+            font-size: 0.9rem !important;
+        }
+        
+        .stMarkdown p {
+            font-size: 0.9rem !important;
+        }
+    }
+    
+    /* Very small screens (<=360px) */
+    @media (max-width: 360px) {
+        
         .main .block-container {
             padding-left: 0.25rem !important;
             padding-right: 0.25rem !important;
         }
         
-        h1 {
-            font-size: 1.8rem !important;
+        .stMarkdown h1 {
+            font-size: 1.7rem !important;
         }
         
         .main-container {
-            padding: 0.8rem !important;
-            margin: 0.3rem !important;
+            padding: 0.75rem 0.5rem !important;
+            margin: 0.25rem !important;
+        }
+        
+        .stColumns > div {
+            padding: 0.1rem !important;
         }
         
         .stTabs [data-baseweb="tab"] {
@@ -357,19 +420,16 @@ st.markdown("""
             font-size: 0.8rem !important;
         }
         
-        .metric-container {
-            grid-template-columns: 1fr !important;
-        }
-        
         .stButton button {
-            padding: 0.8rem !important;
             font-size: 0.9rem !important;
+            padding: 0.8rem !important;
         }
-        
-        .stColumns > div {
-            padding-left: 0.1rem !important;
-            padding-right: 0.1rem !important;
-        }
+    }
+    
+    /* Prevent horizontal scrolling */
+    body, html, .stApp, .main {
+        overflow-x: hidden !important;
+        max-width: 100vw !important;
     }
     
     /* Touch-friendly improvements */
@@ -377,17 +437,20 @@ st.markdown("""
     .stTabs [data-baseweb="tab"],
     .streamlit-expanderHeader {
         min-height: 44px !important;
+        touch-action: manipulation !important;
     }
     
-    /* Improved scrolling on mobile */
-    .stTextArea textarea {
-        -webkit-overflow-scrolling: touch;
+    /* Smooth scrolling */
+    html {
+        scroll-behavior: smooth !important;
     }
     
-    /* Prevent horizontal scroll */
-    body, html, .stApp {
-        overflow-x: hidden !important;
-        max-width: 100% !important;
+    /* Better focus states for touch devices */
+    .stButton button:focus,
+    .stTabs [data-baseweb="tab"]:focus,
+    .stTextArea textarea:focus {
+        outline: 2px solid #e91e63 !important;
+        outline-offset: 2px !important;
     }
     
 </style>
