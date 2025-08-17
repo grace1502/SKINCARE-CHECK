@@ -162,10 +162,10 @@ st.markdown("""
 </style>
 """, unsafe_allow_html=True)
 
-# Tambahkan CSS ini setelah existing custom CSS di aplikasi utama
+# Custom CSS dengan desain aesthetic + MOBILE FIX
 st.markdown("""
 <style>
-    /* Global Text Overflow Fix - SANGAT PENTING */
+    /* GLOBAL MOBILE FIX - PENTING */
     * {
         word-wrap: break-word !important;
         overflow-wrap: break-word !important;
@@ -189,167 +189,236 @@ st.markdown("""
         padding-right: 1rem !important;
     }
     
-    /* Mobile Responsive CSS */
+    /* Prevent horizontal scroll */
+    body, html, .stApp {
+        overflow-x: hidden !important;
+        max-width: 100% !important;
+    }
+
+    /* Font dan warna dasar */
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;700&display=swap');
+    
+    html, body, [class*="css"] {
+        font-family: 'Inter', sans-serif;
+        color: #333333;
+    }
+    
+    /* Warna tema soft pink */
+    :root {
+        --primary-color: #e91e63;
+        --primary-dark: #c2185b;
+        --primary-light: #f8bbd9;
+        --secondary-color: #f8f9fa;
+        --text-dark: #2c2c2c;
+        --text-light: #555555;
+    }
+    
+    /* Background dengan overlay */
+    .stApp {
+        background: linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)), 
+                    url('https://images.unsplash.com/photo-1556228578-8c89e6adf883?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+        background-size: cover;
+        background-attachment: fixed;
+        background-position: center;
+    }
+    
+    /* Main container */
+    .main-container {
+        background-color: rgba(255, 255, 255, 0.95);
+        border-radius: 15px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        padding: 2rem;
+        margin-bottom: 2rem;
+        max-width: 100%;
+        box-sizing: border-box;
+    }
+    
+    /* Judul utama */
+    h1 {
+        color: #c2185b !important;
+        font-family: 'Inter', sans-serif !important;
+        font-weight: 800 !important;
+        margin-bottom: 0.5rem !important;
+        text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
+        font-size: clamp(2rem, 5vw, 3rem) !important;
+        letter-spacing: -0.02em !important;
+        word-wrap: break-word !important;
+        text-align: center !important;
+    }
+    
+    /* Subjudul */
+    h2 {
+        color: #c2185b !important;
+        font-family: 'Playfair Display', serif !important;
+        font-weight: 500 !important;
+        border-bottom: 2px solid var(--primary-light);
+        padding-bottom: 0.5rem;
+        margin-top: 1.5rem !important;
+        font-size: clamp(1.2rem, 4vw, 1.8rem) !important;
+        word-wrap: break-word !important;
+    }
+    
+    h3 {
+        font-family: 'Playfair Display', serif !important;
+        color: #2c2c2c !important;
+        font-weight: 500 !important;
+        font-size: clamp(1rem, 3.5vw, 1.4rem) !important;
+        word-wrap: break-word !important;
+    }
+    
+    h4 {
+        color: #2c2c2c !important;
+        font-weight: 600 !important;
+        font-size: clamp(0.9rem, 3vw, 1.2rem) !important;
+        word-wrap: break-word !important;
+    }
+    
+    /* Text color improvements */
+    p, div, span {
+        color: #2c2c2c !important;
+        word-wrap: break-word !important;
+        overflow-wrap: break-word !important;
+    }
+    
+    .stMarkdown p {
+        color: #2c2c2c !important;
+        word-wrap: break-word !important;
+    }
+    
+    /* Tombol */
+    .stButton button {
+        background-color: #e91e63 !important;
+        color: white !important;
+        border-radius: 8px !important;
+        border: none !important;
+        padding: 0.7rem 2rem !important;
+        font-weight: 600 !important;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        width: 100% !important;
+        box-sizing: border-box !important;
+    }
+    
+    .stButton button:hover {
+        background-color: #c2185b !important;
+        transform: translateY(-2px);
+        box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+    }
+    
+    /* Text area */
+    .stTextArea textarea {
+        border-radius: 8px !important;
+        border: 1px solid var(--primary-light) !important;
+        padding: 1rem !important;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.03);
+        width: 100% !important;
+        box-sizing: border-box !important;
+        font-size: clamp(0.9rem, 2.5vw, 1rem) !important;
+    }
+    
+    /* Tab */
+    .stTabs [data-baseweb="tab-list"] {
+        gap: 0.5rem;
+        margin-bottom: 1.5rem;
+        flex-wrap: wrap;
+    }
+    
+    .stTabs [data-baseweb="tab"] {
+        padding: 0.8rem 1.5rem !important;
+        background-color: #f5f5f5 !important;
+        color: #2c2c2c !important;
+        border-radius: 8px !important;
+        margin-right: 0 !important;
+        font-weight: 500 !important;
+        transition: all 0.3s ease;
+        border: 1px solid #e0e0e0 !important;
+        font-size: clamp(0.8rem, 2.5vw, 1rem) !important;
+        min-height: 44px !important;
+        word-wrap: break-word !important;
+        flex: 1;
+        text-align: center;
+    }
+    
+    .stTabs [aria-selected="true"] {
+        background-color: #e91e63 !important;
+        font-weight: 600 !important;
+        color: white !important;
+        border: 1px solid #e91e63 !important;
+    }
+    
+    /* Hasil analisis */
+    .stAlert {
+        border-radius: 12px !important;
+        padding: 1.5rem !important;
+        max-width: 100% !important;
+        box-sizing: border-box !important;
+        word-wrap: break-word !important;
+    }
+    
+    /* Columns responsive */
+    .stColumns {
+        gap: 0.5rem !important;
+    }
+    
+    .stColumns > div {
+        width: 100% !important;
+        max-width: 100% !important;
+        padding: 0.25rem !important;
+        box-sizing: border-box !important;
+    }
+    
+    /* Mobile Responsive */
     @media (max-width: 768px) {
-        
-        /* Container utama */
         .main .block-container {
             padding-left: 0.5rem !important;
             padding-right: 0.5rem !important;
-            max-width: 100% !important;
         }
         
-        /* Header adjustments */
-        h1 {
-            font-size: 2rem !important;
-            text-align: center !important;
-            margin-bottom: 1rem !important;
-            word-wrap: break-word !important;
-        }
-        
-        h2 {
-            font-size: 1.4rem !important;
-            text-align: center !important;
-            word-wrap: break-word !important;
-        }
-        
-        h3 {
-            font-size: 1.2rem !important;
-            text-align: center !important;
-            word-wrap: break-word !important;
-        }
-        
-        /* Container padding adjustments */
         .main-container {
             padding: 1rem !important;
             margin: 0.5rem !important;
-            max-width: 100% !important;
-            box-sizing: border-box !important;
         }
         
-        /* Button improvements */
-        .stButton button {
-            width: 100% !important;
-            padding: 1rem !important;
-            font-size: 1rem !important;
-            box-sizing: border-box !important;
-        }
-        
-        /* Text area improvements */
-        .stTextArea textarea {
-            font-size: 1rem !important;
-            min-height: 120px !important;
-            width: 100% !important;
-            box-sizing: border-box !important;
-        }
-        
-        /* Tab improvements */
         .stTabs [data-baseweb="tab"] {
             padding: 0.6rem 0.8rem !important;
-            font-size: 0.9rem !important;
-            word-wrap: break-word !important;
+            font-size: 0.85rem !important;
+            margin-bottom: 0.5rem;
         }
         
-        /* Metric cards stack vertically */
-        .stMetric {
-            text-align: center !important;
-            width: 100% !important;
-            box-sizing: border-box !important;
+        .stButton button {
+            padding: 1rem !important;
+            font-size: 1rem !important;
         }
         
-        /* Alert boxes */
+        .stTextArea textarea {
+            min-height: 120px !important;
+        }
+        
         .stAlert {
             padding: 1rem !important;
             font-size: 0.9rem !important;
-            max-width: 100% !important;
-            box-sizing: border-box !important;
-        }
-        
-        /* Column fixes */
-        .stColumns {
-            gap: 0.5rem !important;
         }
         
         .stColumns > div {
             margin-bottom: 1rem !important;
-            width: 100% !important;
-            max-width: 100% !important;
-            padding-left: 0.25rem !important;
-            padding-right: 0.25rem !important;
-            box-sizing: border-box !important;
+            padding: 0.1rem !important;
         }
         
-        /* Feature cards in homepage */
-        .stColumns > div h4 {
-            font-size: 1.1rem !important;
-            word-wrap: break-word !important;
-        }
-        
-        /* Expander improvements */
-        .streamlit-expanderHeader {
-            font-size: 0.9rem !important;
-            word-wrap: break-word !important;
-        }
-        
-        /* Background image adjustments */
+        /* Background scroll fix for mobile */
         .stApp {
             background-attachment: scroll !important;
         }
-        
-        /* Footer adjustments */
-        footer {
-            padding: 1rem 0 !important;
-            font-size: 0.8rem !important;
-            max-width: 100% !important;
-            box-sizing: border-box !important;
-        }
-        
-        /* Results display improvements */
-        .metric-container {
-            display: grid !important;
-            grid-template-columns: 1fr 1fr !important;
-            gap: 0.5rem !important;
-            margin-bottom: 1rem !important;
-            width: 100% !important;
-        }
-        
-        /* Ingredient lists */
-        ul {
-            padding-left: 1rem !important;
-            margin-right: 1rem !important;
-            max-width: 100% !important;
-            box-sizing: border-box !important;
-        }
-        
-        li {
-            margin-bottom: 0.3rem !important;
-            font-size: 0.9rem !important;
-            word-wrap: break-word !important;
-            overflow-wrap: break-word !important;
-        }
-        
-        /* Fix untuk teks panjang dalam cards */
-        .stMarkdown div {
-            max-width: 100% !important;
-            word-wrap: break-word !important;
-            overflow-wrap: break-word !important;
-        }
     }
     
-    /* Small mobile devices */
     @media (max-width: 480px) {
         .main .block-container {
             padding-left: 0.25rem !important;
             padding-right: 0.25rem !important;
         }
         
-        h1 {
-            font-size: 1.8rem !important;
-        }
-        
         .main-container {
             padding: 0.8rem !important;
-            margin: 0.3rem !important;
+            margin: 0.25rem !important;
         }
         
         .stTabs [data-baseweb="tab"] {
@@ -357,39 +426,24 @@ st.markdown("""
             font-size: 0.8rem !important;
         }
         
-        .metric-container {
-            grid-template-columns: 1fr !important;
-        }
-        
         .stButton button {
             padding: 0.8rem !important;
             font-size: 0.9rem !important;
         }
-        
-        .stColumns > div {
-            padding-left: 0.1rem !important;
-            padding-right: 0.1rem !important;
-        }
     }
     
-    /* Touch-friendly improvements */
-    .stButton button,
-    .stTabs [data-baseweb="tab"],
-    .streamlit-expanderHeader {
-        min-height: 44px !important;
+    /* Footer */
+    footer {
+        text-align: center;
+        padding: 2rem 0;
+        margin-top: 3rem;
+        color: var(--text-light);
+        font-size: clamp(0.8rem, 2vw, 0.9rem);
+        border-top: 1px solid #f0f0f0;
+        max-width: 100%;
+        box-sizing: border-box;
+        word-wrap: break-word;
     }
-    
-    /* Improved scrolling on mobile */
-    .stTextArea textarea {
-        -webkit-overflow-scrolling: touch;
-    }
-    
-    /* Prevent horizontal scroll */
-    body, html, .stApp {
-        overflow-x: hidden !important;
-        max-width: 100% !important;
-    }
-    
 </style>
 """, unsafe_allow_html=True)
 
