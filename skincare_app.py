@@ -162,10 +162,10 @@ st.markdown("""
 </style>
 """, unsafe_allow_html=True)
 
-# Custom CSS dengan desain aesthetic + MOBILE FIX
+# Tambahkan CSS ini setelah existing custom CSS di aplikasi utama
 st.markdown("""
 <style>
-    /* GLOBAL MOBILE FIX - PENTING */
+    /* Global Text Overflow Fix - SANGAT PENTING */
     * {
         word-wrap: break-word !important;
         overflow-wrap: break-word !important;
@@ -189,236 +189,167 @@ st.markdown("""
         padding-right: 1rem !important;
     }
     
-    /* Prevent horizontal scroll */
-    body, html, .stApp {
-        overflow-x: hidden !important;
-        max-width: 100% !important;
-    }
-
-    /* Font dan warna dasar */
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;700&display=swap');
-    
-    html, body, [class*="css"] {
-        font-family: 'Inter', sans-serif;
-        color: #333333;
-    }
-    
-    /* Warna tema soft pink */
-    :root {
-        --primary-color: #e91e63;
-        --primary-dark: #c2185b;
-        --primary-light: #f8bbd9;
-        --secondary-color: #f8f9fa;
-        --text-dark: #2c2c2c;
-        --text-light: #555555;
-    }
-    
-    /* Background dengan overlay */
-    .stApp {
-        background: linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)), 
-                    url('https://images.unsplash.com/photo-1556228578-8c89e6adf883?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
-        background-size: cover;
-        background-attachment: fixed;
-        background-position: center;
-    }
-    
-    /* Main container */
-    .main-container {
-        background-color: rgba(255, 255, 255, 0.95);
-        border-radius: 15px;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-        padding: 2rem;
-        margin-bottom: 2rem;
-        max-width: 100%;
-        box-sizing: border-box;
-    }
-    
-    /* Judul utama */
-    h1 {
-        color: #c2185b !important;
-        font-family: 'Inter', sans-serif !important;
-        font-weight: 800 !important;
-        margin-bottom: 0.5rem !important;
-        text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
-        font-size: clamp(2rem, 5vw, 3rem) !important;
-        letter-spacing: -0.02em !important;
-        word-wrap: break-word !important;
-        text-align: center !important;
-    }
-    
-    /* Subjudul */
-    h2 {
-        color: #c2185b !important;
-        font-family: 'Playfair Display', serif !important;
-        font-weight: 500 !important;
-        border-bottom: 2px solid var(--primary-light);
-        padding-bottom: 0.5rem;
-        margin-top: 1.5rem !important;
-        font-size: clamp(1.2rem, 4vw, 1.8rem) !important;
-        word-wrap: break-word !important;
-    }
-    
-    h3 {
-        font-family: 'Playfair Display', serif !important;
-        color: #2c2c2c !important;
-        font-weight: 500 !important;
-        font-size: clamp(1rem, 3.5vw, 1.4rem) !important;
-        word-wrap: break-word !important;
-    }
-    
-    h4 {
-        color: #2c2c2c !important;
-        font-weight: 600 !important;
-        font-size: clamp(0.9rem, 3vw, 1.2rem) !important;
-        word-wrap: break-word !important;
-    }
-    
-    /* Text color improvements */
-    p, div, span {
-        color: #2c2c2c !important;
-        word-wrap: break-word !important;
-        overflow-wrap: break-word !important;
-    }
-    
-    .stMarkdown p {
-        color: #2c2c2c !important;
-        word-wrap: break-word !important;
-    }
-    
-    /* Tombol */
-    .stButton button {
-        background-color: #e91e63 !important;
-        color: white !important;
-        border-radius: 8px !important;
-        border: none !important;
-        padding: 0.7rem 2rem !important;
-        font-weight: 600 !important;
-        transition: all 0.3s ease;
-        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-        width: 100% !important;
-        box-sizing: border-box !important;
-    }
-    
-    .stButton button:hover {
-        background-color: #c2185b !important;
-        transform: translateY(-2px);
-        box-shadow: 0 6px 12px rgba(0,0,0,0.15);
-    }
-    
-    /* Text area */
-    .stTextArea textarea {
-        border-radius: 8px !important;
-        border: 1px solid var(--primary-light) !important;
-        padding: 1rem !important;
-        box-shadow: 0 2px 5px rgba(0,0,0,0.03);
-        width: 100% !important;
-        box-sizing: border-box !important;
-        font-size: clamp(0.9rem, 2.5vw, 1rem) !important;
-    }
-    
-    /* Tab */
-    .stTabs [data-baseweb="tab-list"] {
-        gap: 0.5rem;
-        margin-bottom: 1.5rem;
-        flex-wrap: wrap;
-    }
-    
-    .stTabs [data-baseweb="tab"] {
-        padding: 0.8rem 1.5rem !important;
-        background-color: #f5f5f5 !important;
-        color: #2c2c2c !important;
-        border-radius: 8px !important;
-        margin-right: 0 !important;
-        font-weight: 500 !important;
-        transition: all 0.3s ease;
-        border: 1px solid #e0e0e0 !important;
-        font-size: clamp(0.8rem, 2.5vw, 1rem) !important;
-        min-height: 44px !important;
-        word-wrap: break-word !important;
-        flex: 1;
-        text-align: center;
-    }
-    
-    .stTabs [aria-selected="true"] {
-        background-color: #e91e63 !important;
-        font-weight: 600 !important;
-        color: white !important;
-        border: 1px solid #e91e63 !important;
-    }
-    
-    /* Hasil analisis */
-    .stAlert {
-        border-radius: 12px !important;
-        padding: 1.5rem !important;
-        max-width: 100% !important;
-        box-sizing: border-box !important;
-        word-wrap: break-word !important;
-    }
-    
-    /* Columns responsive */
-    .stColumns {
-        gap: 0.5rem !important;
-    }
-    
-    .stColumns > div {
-        width: 100% !important;
-        max-width: 100% !important;
-        padding: 0.25rem !important;
-        box-sizing: border-box !important;
-    }
-    
-    /* Mobile Responsive */
+    /* Mobile Responsive CSS */
     @media (max-width: 768px) {
+        
+        /* Container utama */
         .main .block-container {
             padding-left: 0.5rem !important;
             padding-right: 0.5rem !important;
+            max-width: 100% !important;
         }
         
+        /* Header adjustments */
+        h1 {
+            font-size: 2rem !important;
+            text-align: center !important;
+            margin-bottom: 1rem !important;
+            word-wrap: break-word !important;
+        }
+        
+        h2 {
+            font-size: 1.4rem !important;
+            text-align: center !important;
+            word-wrap: break-word !important;
+        }
+        
+        h3 {
+            font-size: 1.2rem !important;
+            text-align: center !important;
+            word-wrap: break-word !important;
+        }
+        
+        /* Container padding adjustments */
         .main-container {
             padding: 1rem !important;
             margin: 0.5rem !important;
+            max-width: 100% !important;
+            box-sizing: border-box !important;
         }
         
-        .stTabs [data-baseweb="tab"] {
-            padding: 0.6rem 0.8rem !important;
-            font-size: 0.85rem !important;
-            margin-bottom: 0.5rem;
-        }
-        
+        /* Button improvements */
         .stButton button {
+            width: 100% !important;
             padding: 1rem !important;
             font-size: 1rem !important;
+            box-sizing: border-box !important;
         }
         
+        /* Text area improvements */
         .stTextArea textarea {
+            font-size: 1rem !important;
             min-height: 120px !important;
+            width: 100% !important;
+            box-sizing: border-box !important;
         }
         
+        /* Tab improvements */
+        .stTabs [data-baseweb="tab"] {
+            padding: 0.6rem 0.8rem !important;
+            font-size: 0.9rem !important;
+            word-wrap: break-word !important;
+        }
+        
+        /* Metric cards stack vertically */
+        .stMetric {
+            text-align: center !important;
+            width: 100% !important;
+            box-sizing: border-box !important;
+        }
+        
+        /* Alert boxes */
         .stAlert {
             padding: 1rem !important;
             font-size: 0.9rem !important;
+            max-width: 100% !important;
+            box-sizing: border-box !important;
+        }
+        
+        /* Column fixes */
+        .stColumns {
+            gap: 0.5rem !important;
         }
         
         .stColumns > div {
             margin-bottom: 1rem !important;
-            padding: 0.1rem !important;
+            width: 100% !important;
+            max-width: 100% !important;
+            padding-left: 0.25rem !important;
+            padding-right: 0.25rem !important;
+            box-sizing: border-box !important;
         }
         
-        /* Background scroll fix for mobile */
+        /* Feature cards in homepage */
+        .stColumns > div h4 {
+            font-size: 1.1rem !important;
+            word-wrap: break-word !important;
+        }
+        
+        /* Expander improvements */
+        .streamlit-expanderHeader {
+            font-size: 0.9rem !important;
+            word-wrap: break-word !important;
+        }
+        
+        /* Background image adjustments */
         .stApp {
             background-attachment: scroll !important;
         }
+        
+        /* Footer adjustments */
+        footer {
+            padding: 1rem 0 !important;
+            font-size: 0.8rem !important;
+            max-width: 100% !important;
+            box-sizing: border-box !important;
+        }
+        
+        /* Results display improvements */
+        .metric-container {
+            display: grid !important;
+            grid-template-columns: 1fr 1fr !important;
+            gap: 0.5rem !important;
+            margin-bottom: 1rem !important;
+            width: 100% !important;
+        }
+        
+        /* Ingredient lists */
+        ul {
+            padding-left: 1rem !important;
+            margin-right: 1rem !important;
+            max-width: 100% !important;
+            box-sizing: border-box !important;
+        }
+        
+        li {
+            margin-bottom: 0.3rem !important;
+            font-size: 0.9rem !important;
+            word-wrap: break-word !important;
+            overflow-wrap: break-word !important;
+        }
+        
+        /* Fix untuk teks panjang dalam cards */
+        .stMarkdown div {
+            max-width: 100% !important;
+            word-wrap: break-word !important;
+            overflow-wrap: break-word !important;
+        }
     }
     
+    /* Small mobile devices */
     @media (max-width: 480px) {
         .main .block-container {
             padding-left: 0.25rem !important;
             padding-right: 0.25rem !important;
         }
         
+        h1 {
+            font-size: 1.8rem !important;
+        }
+        
         .main-container {
             padding: 0.8rem !important;
-            margin: 0.25rem !important;
+            margin: 0.3rem !important;
         }
         
         .stTabs [data-baseweb="tab"] {
@@ -426,24 +357,39 @@ st.markdown("""
             font-size: 0.8rem !important;
         }
         
+        .metric-container {
+            grid-template-columns: 1fr !important;
+        }
+        
         .stButton button {
             padding: 0.8rem !important;
             font-size: 0.9rem !important;
         }
+        
+        .stColumns > div {
+            padding-left: 0.1rem !important;
+            padding-right: 0.1rem !important;
+        }
     }
     
-    /* Footer */
-    footer {
-        text-align: center;
-        padding: 2rem 0;
-        margin-top: 3rem;
-        color: var(--text-light);
-        font-size: clamp(0.8rem, 2vw, 0.9rem);
-        border-top: 1px solid #f0f0f0;
-        max-width: 100%;
-        box-sizing: border-box;
-        word-wrap: break-word;
+    /* Touch-friendly improvements */
+    .stButton button,
+    .stTabs [data-baseweb="tab"],
+    .streamlit-expanderHeader {
+        min-height: 44px !important;
     }
+    
+    /* Improved scrolling on mobile */
+    .stTextArea textarea {
+        -webkit-overflow-scrolling: touch;
+    }
+    
+    /* Prevent horizontal scroll */
+    body, html, .stApp {
+        overflow-x: hidden !important;
+        max-width: 100% !important;
+    }
+    
 </style>
 """, unsafe_allow_html=True)
 
@@ -932,77 +878,83 @@ def main():
                         st.markdown("---")
                         display_results(results)
     
-   with tab3:
+    with tab3:
         st.markdown("---")
-        
-        # Hero section untuk About - Mobile Responsive
+     
+        # Hero section untuk About
         st.markdown("""
-        <div style="text-align: center; padding: 1.5rem; background: linear-gradient(135deg, rgba(255,182,193,0.2) 0%, rgba(255,255,255,0.8) 100%); border-radius: 15px; margin-bottom: 2rem; max-width: 100%; box-sizing: border-box;">
-            <h3 style="margin-bottom: 1rem; word-wrap: break-word;">Transparansi Untuk Kesehatan Kulit Anda</h3>
-            <p style="line-height: 1.5; word-wrap: break-word; overflow-wrap: break-word;">Memberdayakan konsumen dengan informasi berbasis sains tentang keamanan produk skincare</p>
+        <div style="text-align: center; padding: 2rem; background: linear-gradient(135deg, rgba(255,182,193,0.2) 0%, rgba(255,255,255,0.8) 100%); border-radius: 15px; margin-bottom: 2rem;">
+            <h3>Transparansi Untuk Kesehatan Kulit Anda</h3>
+            <p style="font-size: 1.1rem;">Memberdayakan konsumen dengan informasi berbasis sains tentang keamanan produk skincare</p>
         </div>
         """, unsafe_allow_html=True)
         
-        # Responsive columns - akan menjadi 1 kolom di mobile
-        col1, col2 = st.columns([1, 1])
+        # Main content dalam 2 kolom yang seimbang
+        col1, col2 = st.columns(2)
         
         with col1:
-            # Mission section dengan styling mobile-friendly
+            # Mission section dengan styling
             st.markdown("""
-            <div style="background: white; padding: 1.5rem; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); margin-bottom: 1.5rem; max-width: 100%; box-sizing: border-box; word-wrap: break-word;">
-                <h4 style="color: #e91e63; margin-top: 0; margin-bottom: 1rem; word-wrap: break-word;">🎯 Tujuan </h4>
-                <p style="line-height: 1.6; word-wrap: break-word; overflow-wrap: break-word; hyphens: auto;">Bertujuan untuk meningkatkan transparansi dalam industri kecantikan dengan memberikan informasi yang jelas dan dapat diakses tentang bahan-bahan dalam produk perawatan kulit. Tujuan dibuatnya sistem ini adalah memberdayakan konsumen untuk membuat pilihan yang tepat berdasarkan data dan penelitian ilmiah.</p>
+            <div style="background: white; padding: 1.5rem; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); margin-bottom: 1.5rem; height: 280px; display: flex; flex-direction: column;">
+                <h4 style="color: #e91e63; margin-top: 0;">🎯 Tujuan </h4>
+                <p style="line-height: 1.6; flex-grow: 1;">Bertujuan untuk meningkatkan transparansi dalam industri kecantikan dengan memberikan informasi yang jelas dan dapat diakses tentang bahan-bahan dalam produk perawatan kulit. Tujuan dibuatnya sistem ini adalah memberdayakan konsumen untuk membuat pilihan yang tepat berdasarkan data dan penelitian ilmiah.</p>
             </div>
             """, unsafe_allow_html=True)
             
             # Methodology section
             st.markdown("""
-            <div style="background: white; padding: 1.5rem; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); margin-bottom: 1.5rem; max-width: 100%; box-sizing: border-box; word-wrap: break-word;">
-                <h4 style="color: #e91e63; margin-top: 0; margin-bottom: 1rem; word-wrap: break-word;">🔬 Metodologi</h4>
-                <p style="margin-bottom: 1rem; line-height: 1.6; word-wrap: break-word;">Website ini dikembangkan berdasarkan:</p>
-                <ul style="line-height: 1.6; margin: 0; padding-left: 1.2rem; word-wrap: break-word; max-width: 100%;">
-                    <li style="margin-bottom: 0.5rem; word-wrap: break-word; overflow-wrap: break-word;">Regulasi Uni Eropa (EU Regulation No. 1223/2009)</li>
-                    <li style="margin-bottom: 0.5rem; word-wrap: break-word; overflow-wrap: break-word;">Lembaga pengawas BPOM</li>
-                    <li style="margin-bottom: 0.5rem; word-wrap: break-word; overflow-wrap: break-word;">Pedoman FDA tentang kosmetik</li>
-                    <li style="margin-bottom: 0.5rem; word-wrap: break-word; overflow-wrap: break-word;">Penelitian ilmiah peer-reviewed</li>
-                </ul>
+            <div style="background: white; padding: 1.5rem; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); height: 280px; display: flex; flex-direction: column;">
+                <h4 style="color: #e91e63; margin-top: 0;">🔬 Metodologi</h4>
+                <div style="flex-grow: 1;">
+                    <p style="margin-bottom: 1rem; line-height: 1.6;">Website ini dikembangkan berdasarkan:</p>
+                    <ul style="line-height: 1.6; margin: 0; padding-left: 1.2rem;">
+                        <li>Regulasi Uni Eropa (EU Regulation No. 1223/2009)</li>
+                        <li>Lembaga pengawas BPOM</li>
+                        <li>Pedoman FDA tentang kosmetik</li>
+                        <li>Penelitian ilmiah peer-reviewed</li>
+                    </ul>
+                </div>
             </div>
             """, unsafe_allow_html=True)
         
         with col2:
             # Data sources section
             st.markdown("""
-            <div style="background: white; padding: 1.5rem; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); margin-bottom: 1.5rem; max-width: 100%; box-sizing: border-box; word-wrap: break-word;">
-                <h4 style="color: #e91e63; margin-top: 0; margin-bottom: 1rem; word-wrap: break-word;">📚 Sumber Data</h4>
-                <p style="margin-bottom: 1rem; line-height: 1.6; word-wrap: break-word;">Informasi dalam website ini bersumber dari:</p>
-                <ul style="line-height: 1.6; margin: 0; padding-left: 1.2rem; word-wrap: break-word; max-width: 100%;">
-                    <li style="margin-bottom: 0.5rem; word-wrap: break-word; overflow-wrap: break-word;">Environmental Working Group's Skin Deep Database</li>
-                    <li style="margin-bottom: 0.5rem; word-wrap: break-word; overflow-wrap: break-word;">Cosmetic Ingredient Review (CIR)</li>
-                    <li style="margin-bottom: 0.5rem; word-wrap: break-word; overflow-wrap: break-word;">Journal of the American Academy of Dermatology</li>
-                    <li style="margin-bottom: 0.5rem; word-wrap: break-word; overflow-wrap: break-word;">BPOM RI</li>
-                </ul>
+            <div style="background: white; padding: 1.5rem; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); margin-bottom: 1.5rem; height: 280px; display: flex; flex-direction: column;">
+                <h4 style="color: #e91e63; margin-top: 0;">📚 Sumber Data</h4>
+                <div style="flex-grow: 1;">
+                    <p style="margin-bottom: 1rem; line-height: 1.6;">Informasi dalam website ini bersumber dari:</p>
+                    <ul style="line-height: 1.6; margin: 0; padding-left: 1.2rem;">
+                        <li>Environmental Working Group's Skin Deep Database</li>
+                        <li>Cosmetic Ingredient Review (CIR)</li>
+                        <li>Journal of the American Academy of Dermatology</li>
+                        <li>BPOM RI</li>
+                    </ul>
+                </div>
             </div>
             """, unsafe_allow_html=True)
             
             # Tips section
             st.markdown("""
-            <div style="background: white; padding: 1.5rem; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); margin-bottom: 1.5rem; max-width: 100%; box-sizing: border-box; word-wrap: break-word;">
-                <h4 style="color: #e91e63; margin-top: 0; margin-bottom: 1rem; word-wrap: break-word;">💡 Tips Memilih Skincare Aman</h4>
-                <ul style="line-height: 1.6; margin: 0; padding-left: 1.2rem; word-wrap: break-word; max-width: 100%;">
-                    <li style="margin-bottom: 0.5rem; word-wrap: break-word; overflow-wrap: break-word;"><strong>Baca Label:</strong> Selalu periksa daftar bahan sebelum membeli</li>
-                    <li style="margin-bottom: 0.5rem; word-wrap: break-word; overflow-wrap: break-word;"><strong>Mulai Sederhana:</strong> Produk dengan daftar bahan pendek cenderung lebih aman</li>
-                    <li style="margin-bottom: 0.5rem; word-wrap: break-word; overflow-wrap: break-word;"><strong>Uji Sensitivitas:</strong> Selalu lakukan patch test sebelum penggunaan penuh</li>
-                    <li style="margin-bottom: 0.5rem; word-wrap: break-word; overflow-wrap: break-word;"><strong>Konsultasi Ahli:</strong> Tanyakan pada dermatolog untuk kulit sensitif</li>
-                </ul>
+            <div style="background: white; padding: 1.5rem; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); height: 280px; display: flex; flex-direction: column;">
+                <h4 style="color: #e91e63; margin-top: 0;">💡 Tips Memilih Skincare Aman</h4>
+                <div style="flex-grow: 1;">
+                    <ul style="line-height: 1.6; margin: 0; padding-left: 1.2rem;">
+                        <li><strong>Baca Label:</strong> Selalu periksa daftar bahan sebelum membeli</li>
+                        <li><strong>Mulai Sederhana:</strong> Produk dengan daftar bahan pendek cenderung lebih aman</li>
+                        <li><strong>Uji Sensitivitas:</strong> Selalu lakukan patch test sebelum penggunaan penuh</li>
+                        <li><strong>Konsultasi Ahli:</strong> Tanyakan pada dermatolog untuk kulit sensitif</li>
+                    </ul>
+                </div>
             </div>
             """, unsafe_allow_html=True)
         
         # Disclaimer dengan styling yang lebih menarik
         st.markdown("---")
         st.markdown("""
-        <div style="background: linear-gradient(135deg, #fff3e0 0%, #ffecb3 100%); padding: 1.5rem; border-radius: 12px; border-left: 4px solid #ff9800; margin-top: 2rem; max-width: 100%; box-sizing: border-box; word-wrap: break-word;">
-            <h4 style="color: #ef6c00; margin-top: 0; margin-bottom: 1rem; word-wrap: break-word;">⚠️ Disclaimer</h4>
-            <p style="margin-bottom: 0; line-height: 1.6; color: #bf360c; word-wrap: break-word; overflow-wrap: break-word;">Website ini hanya untuk tujuan informasi dan tidak menggantikan nasihat profesional dari dermatolog atau ahli kesehatan kulit. Selalu konsultasikan dengan profesional kesehatan untuk masalah kulit yang serius.</p>
+        <div style="background: linear-gradient(135deg, #fff3e0 0%, #ffecb3 100%); padding: 1.5rem; border-radius: 12px; border-left: 4px solid #ff9800; margin-top: 2rem;">
+            <h4 style="color: #ef6c00; margin-top: 0;">⚠️ Disclaimer</h4>
+            <p style="margin-bottom: 0; line-height: 1.6; color: #bf360c;">Website ini hanya untuk tujuan informasi dan tidak menggantikan nasihat profesional dari dermatolog atau ahli kesehatan kulit. Selalu konsultasikan dengan profesional kesehatan untuk masalah kulit yang serius.</p>
         </div>
         """, unsafe_allow_html=True)
     
