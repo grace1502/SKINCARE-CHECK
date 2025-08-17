@@ -165,30 +165,66 @@ st.markdown("""
 # Tambahkan CSS ini setelah existing custom CSS di aplikasi utama
 st.markdown("""
 <style>
+    /* Global Text Overflow Fix - SANGAT PENTING */
+    * {
+        word-wrap: break-word !important;
+        overflow-wrap: break-word !important;
+        box-sizing: border-box !important;
+    }
+    
+    .stMarkdown, .stMarkdown *, 
+    .stText, .stText *,
+    p, div, span, li, h1, h2, h3, h4, h5, h6 {
+        max-width: 100% !important;
+        word-break: break-word !important;
+        overflow-wrap: break-word !important;
+        hyphens: auto !important;
+        white-space: normal !important;
+    }
+    
+    /* Container fixes */
+    .main .block-container {
+        max-width: 100% !important;
+        padding-left: 1rem !important;
+        padding-right: 1rem !important;
+    }
+    
     /* Mobile Responsive CSS */
     @media (max-width: 768px) {
+        
+        /* Container utama */
+        .main .block-container {
+            padding-left: 0.5rem !important;
+            padding-right: 0.5rem !important;
+            max-width: 100% !important;
+        }
         
         /* Header adjustments */
         h1 {
             font-size: 2rem !important;
             text-align: center !important;
             margin-bottom: 1rem !important;
+            word-wrap: break-word !important;
         }
         
         h2 {
             font-size: 1.4rem !important;
             text-align: center !important;
+            word-wrap: break-word !important;
         }
         
         h3 {
             font-size: 1.2rem !important;
             text-align: center !important;
+            word-wrap: break-word !important;
         }
         
         /* Container padding adjustments */
         .main-container {
             padding: 1rem !important;
             margin: 0.5rem !important;
+            max-width: 100% !important;
+            box-sizing: border-box !important;
         }
         
         /* Button improvements */
@@ -196,44 +232,63 @@ st.markdown("""
             width: 100% !important;
             padding: 1rem !important;
             font-size: 1rem !important;
+            box-sizing: border-box !important;
         }
         
         /* Text area improvements */
         .stTextArea textarea {
             font-size: 1rem !important;
             min-height: 120px !important;
+            width: 100% !important;
+            box-sizing: border-box !important;
         }
         
         /* Tab improvements */
         .stTabs [data-baseweb="tab"] {
             padding: 0.6rem 0.8rem !important;
             font-size: 0.9rem !important;
+            word-wrap: break-word !important;
         }
         
         /* Metric cards stack vertically */
         .stMetric {
             text-align: center !important;
+            width: 100% !important;
+            box-sizing: border-box !important;
         }
         
         /* Alert boxes */
         .stAlert {
             padding: 1rem !important;
             font-size: 0.9rem !important;
+            max-width: 100% !important;
+            box-sizing: border-box !important;
+        }
+        
+        /* Column fixes */
+        .stColumns {
+            gap: 0.5rem !important;
+        }
+        
+        .stColumns > div {
+            margin-bottom: 1rem !important;
+            width: 100% !important;
+            max-width: 100% !important;
+            padding-left: 0.25rem !important;
+            padding-right: 0.25rem !important;
+            box-sizing: border-box !important;
         }
         
         /* Feature cards in homepage */
-        .stColumns > div {
-            margin-bottom: 1rem !important;
-        }
-        
-        /* Steps in homepage */
         .stColumns > div h4 {
             font-size: 1.1rem !important;
+            word-wrap: break-word !important;
         }
         
         /* Expander improvements */
         .streamlit-expanderHeader {
             font-size: 0.9rem !important;
+            word-wrap: break-word !important;
         }
         
         /* Background image adjustments */
@@ -245,12 +300,8 @@ st.markdown("""
         footer {
             padding: 1rem 0 !important;
             font-size: 0.8rem !important;
-        }
-        
-        /* Disclaimer box */
-        .disclaimer-box {
-            padding: 1rem !important;
-            font-size: 0.9rem !important;
+            max-width: 100% !important;
+            box-sizing: border-box !important;
         }
         
         /* Results display improvements */
@@ -259,21 +310,39 @@ st.markdown("""
             grid-template-columns: 1fr 1fr !important;
             gap: 0.5rem !important;
             margin-bottom: 1rem !important;
+            width: 100% !important;
         }
         
         /* Ingredient lists */
         ul {
             padding-left: 1rem !important;
+            margin-right: 1rem !important;
+            max-width: 100% !important;
+            box-sizing: border-box !important;
         }
         
         li {
             margin-bottom: 0.3rem !important;
             font-size: 0.9rem !important;
+            word-wrap: break-word !important;
+            overflow-wrap: break-word !important;
+        }
+        
+        /* Fix untuk teks panjang dalam cards */
+        .stMarkdown div {
+            max-width: 100% !important;
+            word-wrap: break-word !important;
+            overflow-wrap: break-word !important;
         }
     }
     
     /* Small mobile devices */
     @media (max-width: 480px) {
+        .main .block-container {
+            padding-left: 0.25rem !important;
+            padding-right: 0.25rem !important;
+        }
+        
         h1 {
             font-size: 1.8rem !important;
         }
@@ -296,13 +365,18 @@ st.markdown("""
             padding: 0.8rem !important;
             font-size: 0.9rem !important;
         }
+        
+        .stColumns > div {
+            padding-left: 0.1rem !important;
+            padding-right: 0.1rem !important;
+        }
     }
     
     /* Touch-friendly improvements */
     .stButton button,
     .stTabs [data-baseweb="tab"],
     .streamlit-expanderHeader {
-        min-height: 44px !important; /* Apple's recommended touch target size */
+        min-height: 44px !important;
     }
     
     /* Improved scrolling on mobile */
@@ -310,9 +384,10 @@ st.markdown("""
         -webkit-overflow-scrolling: touch;
     }
     
-    /* Better spacing for mobile content */
-    .mobile-spacing {
-        margin: 1rem 0 !important;
+    /* Prevent horizontal scroll */
+    body, html, .stApp {
+        overflow-x: hidden !important;
+        max-width: 100% !important;
     }
     
 </style>
