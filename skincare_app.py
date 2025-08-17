@@ -323,44 +323,327 @@ st.markdown("""
         line-height: 1.4 !important;
     }
     
-    /* DESKTOP BREAKPOINT: >=769px */
-    @media (min-width: 769px) {
+    /* TABLET BREAKPOINT: 769px - 1024px */
+    @media (min-width: 769px) and (max-width: 1024px) {
         .main .block-container {
-            padding-left: 2rem !important;
-            padding-right: 2rem !important;
+            padding-left: 1.5rem !important;
+            padding-right: 1.5rem !important;
+            max-width: 100% !important;
         }
         
         h1, .stMarkdown h1 {
-            font-size: 3rem !important;
-            text-align: left !important;
+            font-size: 2.5rem !important;
+            text-align: center !important;
         }
         
         h2, .stMarkdown h2 {
-            font-size: 2rem !important;
-            text-align: left !important;
+            font-size: 1.8rem !important;
+            text-align: center !important;
         }
         
         h3, .stMarkdown h3 {
-            font-size: 1.5rem !important;
-            text-align: left !important;
+            font-size: 1.4rem !important;
+            text-align: center !important;
         }
         
         .stButton button {
             width: auto !important;
-            padding: 0.7rem 2rem !important;
+            padding: 0.8rem 2.5rem !important;
+            font-size: 1.1rem !important;
         }
         
         .stTabs [data-baseweb="tab"] {
             max-width: none !important;
             flex: 0 0 auto !important;
+            padding: 0.8rem 1.5rem !important;
+            font-size: 1rem !important;
         }
         
         .main-container {
             padding: 2rem !important;
+            max-width: 95% !important;
+            margin: 0 auto 2rem auto !important;
         }
         
         .stApp {
             background-attachment: fixed !important;
+        }
+        
+        /* Columns untuk tablet - 2 kolom */
+        .stColumns {
+            gap: 1rem !important;
+        }
+        
+        .stColumns > div {
+            flex: 1 1 calc(50% - 0.5rem) !important;
+            max-width: calc(50% - 0.5rem) !important;
+        }
+        
+        /* 4 kolom feature cards menjadi 2x2 */
+        .stColumns:has(> div:nth-child(4)) > div {
+            flex: 1 1 calc(50% - 0.5rem) !important;
+            max-width: calc(50% - 0.5rem) !important;
+            margin-bottom: 1rem !important;
+        }
+        
+        .stTextArea textarea {
+            min-height: 180px !important;
+            font-size: 1.05rem !important;
+        }
+        
+        .stMetric {
+            margin-bottom: 1rem !important;
+        }
+        
+        .stAlert {
+            font-size: 1rem !important;
+            padding: 1.2rem !important;
+        }
+        
+        /* Hero sections untuk tablet */
+        .stMarkdown div[style*="background: linear-gradient"] {
+            padding: 2rem 1.5rem !important;
+        }
+        
+        .stMarkdown div[style*="box-shadow"] {
+            padding: 1.5rem 1rem !important;
+        }
+    }
+    
+    /* DESKTOP/LAPTOP BREAKPOINT: >=1025px */
+    @media (min-width: 1025px) {
+        .main .block-container {
+            padding-left: 2rem !important;
+            padding-right: 2rem !important;
+            max-width: 1200px !important;
+            margin: 0 auto !important;
+        }
+        
+        h1, .stMarkdown h1 {
+            font-size: 3.2rem !important;
+            text-align: left !important;
+            margin-bottom: 1rem !important;
+        }
+        
+        h2, .stMarkdown h2 {
+            font-size: 2.2rem !important;
+            text-align: left !important;
+        }
+        
+        h3, .stMarkdown h3 {
+            font-size: 1.8rem !important;
+            text-align: left !important;
+        }
+        
+        h4, .stMarkdown h4 {
+            font-size: 1.3rem !important;
+        }
+        
+        .stButton button {
+            width: auto !important;
+            padding: 0.8rem 3rem !important;
+            font-size: 1.1rem !important;
+            min-height: 55px !important;
+            border-radius: 10px !important;
+        }
+        
+        .stTabs [data-baseweb="tab"] {
+            max-width: none !important;
+            flex: 0 0 auto !important;
+            padding: 1rem 2rem !important;
+            font-size: 1.1rem !important;
+            margin-right: 0.5rem !important;
+            border-radius: 10px !important;
+        }
+        
+        .main-container {
+            padding: 3rem !important;
+            max-width: 95% !important;
+            margin: 0 auto 3rem auto !important;
+            border-radius: 20px !important;
+        }
+        
+        .stApp {
+            background-attachment: fixed !important;
+        }
+        
+        /* Desktop columns - maintain original layout */
+        .stColumns {
+            gap: 1.5rem !important;
+        }
+        
+        .stColumns > div {
+            flex: 1 !important;
+            max-width: none !important;
+        }
+        
+        /* Feature cards - 4 columns desktop */
+        .stColumns:has(> div:nth-child(4)) > div {
+            flex: 1 1 calc(25% - 1.125rem) !important;
+            max-width: calc(25% - 1.125rem) !important;
+        }
+        
+        /* About page 2 columns */
+        .stColumns:has(> div:nth-child(2):last-child) > div {
+            flex: 1 1 calc(50% - 0.75rem) !important;
+            max-width: calc(50% - 0.75rem) !important;
+        }
+        
+        .stTextArea textarea {
+            min-height: 200px !important;
+            font-size: 1.1rem !important;
+            padding: 1.5rem !important;
+            border-radius: 12px !important;
+        }
+        
+        .stMetric {
+            margin-bottom: 1.5rem !important;
+            padding: 1rem !important;
+        }
+        
+        .stAlert {
+            font-size: 1.05rem !important;
+            padding: 1.5rem !important;
+            border-radius: 15px !important;
+            margin: 1rem 0 !important;
+        }
+        
+        /* Enhanced hero sections for desktop */
+        .stMarkdown div[style*="background: linear-gradient"] {
+            padding: 3rem 2rem !important;
+            border-radius: 20px !important;
+            margin: 2rem 0 !important;
+        }
+        
+        .stMarkdown div[style*="background: linear-gradient"] h2 {
+            font-size: 2.5rem !important;
+            margin-bottom: 1rem !important;
+        }
+        
+        .stMarkdown div[style*="background: linear-gradient"] p {
+            font-size: 1.2rem !important;
+        }
+        
+        .stMarkdown div[style*="box-shadow"] {
+            padding: 2rem 1.5rem !important;
+            border-radius: 15px !important;
+            transition: transform 0.3s ease, box-shadow 0.3s ease !important;
+        }
+        
+        .stMarkdown div[style*="box-shadow"]:hover {
+            transform: translateY(-5px) !important;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1) !important;
+        }
+        
+        .stMarkdown div[style*="box-shadow"] h4 {
+            font-size: 1.4rem !important;
+            margin: 1rem 0 !important;
+        }
+        
+        .stMarkdown div[style*="box-shadow"] p {
+            font-size: 1rem !important;
+            line-height: 1.7 !important;
+        }
+        
+        /* Enhanced expanders for desktop */
+        .streamlit-expanderHeader {
+            padding: 1.2rem !important;
+            font-size: 1.1rem !important;
+            border-radius: 10px !important;
+        }
+        
+        .streamlit-expanderContent {
+            padding: 1.5rem !important;
+            font-size: 1rem !important;
+            line-height: 1.7 !important;
+        }
+        
+        /* Better lists for desktop */
+        ul, ol {
+            padding-left: 2rem !important;
+            margin: 1rem 0 !important;
+        }
+        
+        li {
+            margin-bottom: 0.6rem !important;
+            line-height: 1.7 !important;
+            font-size: 1rem !important;
+        }
+        
+        /* Footer enhancement */
+        footer, .stMarkdown div[style*="text-align: center"][style*="color: #888888"] {
+            padding: 2rem 0 !important;
+            font-size: 1rem !important;
+            margin-top: 4rem !important;
+        }
+    }
+    
+    /* LARGE DESKTOP BREAKPOINT: >=1440px */
+    @media (min-width: 1440px) {
+        .main .block-container {
+            max-width: 1400px !important;
+            padding-left: 3rem !important;
+            padding-right: 3rem !important;
+        }
+        
+        h1, .stMarkdown h1 {
+            font-size: 3.8rem !important;
+        }
+        
+        h2, .stMarkdown h2 {
+            font-size: 2.5rem !important;
+        }
+        
+        h3, .stMarkdown h3 {
+            font-size: 2rem !important;
+        }
+        
+        .main-container {
+            padding: 4rem !important;
+            border-radius: 25px !important;
+        }
+        
+        .stTabs [data-baseweb="tab"] {
+            padding: 1.2rem 2.5rem !important;
+            font-size: 1.2rem !important;
+        }
+        
+        .stButton button {
+            padding: 1rem 4rem !important;
+            font-size: 1.2rem !important;
+            min-height: 60px !important;
+        }
+        
+        .stTextArea textarea {
+            min-height: 220px !important;
+            font-size: 1.2rem !important;
+            padding: 2rem !important;
+        }
+        
+        /* Hero sections for large screens */
+        .stMarkdown div[style*="background: linear-gradient"] {
+            padding: 4rem 3rem !important;
+        }
+        
+        .stMarkdown div[style*="background: linear-gradient"] h2 {
+            font-size: 3rem !important;
+        }
+        
+        .stMarkdown div[style*="background: linear-gradient"] p {
+            font-size: 1.4rem !important;
+        }
+        
+        .stMarkdown div[style*="box-shadow"] {
+            padding: 2.5rem 2rem !important;
+        }
+        
+        .stMarkdown div[style*="box-shadow"] h4 {
+            font-size: 1.5rem !important;
+        }
+        
+        .stAlert {
+            font-size: 1.1rem !important;
+            padding: 2rem !important;
         }
     }
     
