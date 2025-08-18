@@ -1178,7 +1178,7 @@ def show_about_page():
     with col1:
         st.markdown("""
         <div class="feature-card" style="height: 280px;">
-            <h4 style="color: #e91e63; margin-top: 0;">🎯 Misi Kami</h4>
+            <h4 style="color: #e91e63; margin-top: 0;">🎯 Tujuan </h4>
             <p style="line-height: 1.6; flex-grow: 1; text-align: justify;">
             Bertujuan untuk meningkatkan transparansi dalam industri kecantikan dengan memberikan informasi yang jelas dan dapat diakses tentang bahan-bahan dalam produk perawatan kulit. Tujuan dibuatnya platform ini adalah memberdayakan konsumen untuk membuat pilihan yang tepat berdasarkan data dan penelitian ilmiah terkini.
             </p>
