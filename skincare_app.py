@@ -828,8 +828,19 @@ def display_results(results):
 def main():
     # Header dengan styling modern dan gambar
     st.markdown("""
-    <div style="position: relative; padding: 2rem 0; margin-bottom: 2rem;">
-        <div style="position: absolute; top: 0; right: 0; width: 200px; height: 150px; background: url('https://images.unsplash.com/photo-1570194065650-d99fb4bedf0d?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80') no-repeat center center; background-size: cover; border-radius: 15px; opacity: 0.3; z-index: 0;"></div>
+    <div style="position: relative; padding: 2rem 0; margin-bottom: 2rem; overflow: hidden;">
+        <!-- Background skincare products -->
+        <div style="position: absolute; top: -20px; right: -20px; width: 300px; height: 200px; z-index: 0; opacity: 0.15;">
+            <div style="display: flex; gap: 15px; justify-content: flex-end; align-items: center; height: 100%;">
+                <!-- Moisturizer -->
+                <div style="width: 70px; height: 90px; background: url('https://images.unsplash.com/photo-1556228720-195a672e8a03?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80') no-repeat center center; background-size: cover; border-radius: 12px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); transform: rotate(-10deg);"></div>
+                <!-- Face wash -->
+                <div style="width: 60px; height: 100px; background: url('https://images.unsplash.com/photo-1570194065650-d99fb4bedf0d?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80') no-repeat center center; background-size: cover; border-radius: 12px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); transform: rotate(5deg);"></div>
+                <!-- Serum -->
+                <div style="width: 50px; height: 80px; background: url('https://images.unsplash.com/photo-1620916566398-39f1143ab7be?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80') no-repeat center center; background-size: cover; border-radius: 12px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); transform: rotate(-15deg);"></div>
+            </div>
+        </div>
+        
         <div style="position: relative; z-index: 1;">
             <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
                 <div style="width: 60px; height: 60px; background: url('https://images.unsplash.com/photo-1596755389378-c31d21fd1273?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80') no-repeat center center; background-size: cover; border-radius: 50%; border: 3px solid #e91e63;"></div>
