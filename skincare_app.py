@@ -1177,18 +1177,18 @@ def show_about_page():
     
     with col1:
         st.markdown("""
-        <div class="feature-card" style="height: 280px;">
-            <h4 style="color: #e91e63; margin-top: 0;">🎯 Tujuan </h4>
-            <p style="line-height: 1.6; flex-grow: 1; text-align: justify;">
-            Bertujuan untuk meningkatkan transparansi dalam industri kecantikan dengan memberikan informasi yang jelas dan dapat diakses tentang bahan-bahan dalam produk perawatan kulit. Tujuan dibuatnya platform ini adalah memberdayakan konsumen untuk membuat pilihan yang tepat berdasarkan data dan penelitian ilmiah terkini.
+        <div class="feature-card" style="height: auto; min-height: 280px;">
+            <h4 style="color: #e91e63; margin-top: 0;">🎯 Tujuan</h4>
+            <p style="line-height: 1.6; text-align: justify;">
+            Platform ini bertujuan untuk meningkatkan transparansi dalam industri kecantikan dengan memberikan informasi yang jelas dan dapat diakses tentang bahan-bahan dalam produk perawatan kulit. Kami memberdayakan konsumen untuk membuat pilihan yang tepat berdasarkan data dan penelitian ilmiah terkini.
             </p>
         </div>
         """, unsafe_allow_html=True)
         
         st.markdown("""
-        <div class="feature-card" style="height: 280px; margin-top: 1rem;">
+        <div class="feature-card" style="height: auto; min-height: 280px; margin-top: 1rem;">
             <h4 style="color: #e91e63; margin-top: 0;">🔬 Metodologi</h4>
-            <div style="flex-grow: 1;">
+            <div>
                 <p style="margin-bottom: 1rem; line-height: 1.6; text-align: justify;">Platform ini dikembangkan berdasarkan:</p>
                 <div style="line-height: 1.8;">
                     <div>• Regulasi Uni Eropa (EU Regulation No. 1223/2009)</div>
@@ -1203,9 +1203,9 @@ def show_about_page():
     
     with col2:
         st.markdown("""
-        <div class="feature-card" style="height: 280px;">
+        <div class="feature-card" style="height: auto; min-height: 280px;">
             <h4 style="color: #e91e63; margin-top: 0;">📚 Sumber Data</h4>
-            <div style="flex-grow: 1;">
+            <div>
                 <p style="margin-bottom: 1rem; line-height: 1.6; text-align: justify;">Informasi dalam platform ini bersumber dari:</p>
                 <div style="line-height: 1.8;">
                     <div>• Environmental Working Group (EWG)</div>
@@ -1219,9 +1219,9 @@ def show_about_page():
         """, unsafe_allow_html=True)
         
         st.markdown("""
-        <div class="feature-card" style="height: 280px; margin-top: 1rem;">
+        <div class="feature-card" style="height: auto; min-height: 280px; margin-top: 1rem;">
             <h4 style="color: #e91e63; margin-top: 0;">💡 Tips Memilih Skincare Aman</h4>
-            <div style="flex-grow: 1;">
+            <div>
                 <div style="line-height: 1.8;">
                     <div><strong>📖 Baca Label:</strong> Selalu periksa daftar bahan sebelum membeli</div>
                     <div><strong>🎯 Mulai Sederhana:</strong> Produk dengan daftar bahan pendek cenderung lebih aman</div>
@@ -1231,6 +1231,7 @@ def show_about_page():
             </div>
         </div>
         """, unsafe_allow_html=True)
+
     
     # Statistics section
     st.markdown("---")
