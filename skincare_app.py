@@ -1067,22 +1067,6 @@ def show_analysis_page():
         help="💡 Tips: Salin dan tempel daftar bahan dari kemasan produk atau website resmi. Pisahkan dengan koma."
     )
     
-    # Example ingredients untuk demo
-    col1, col2 = st.columns(2)
-    
-    with col1:
-        if st.button("📋 Contoh Produk Aman", use_container_width=True):
-            st.session_state.demo_ingredients = "Aqua, Glycerin, Niacinamide, Sodium Hyaluronate, Panthenol, Tocopherol, Ceramide NP, Allantoin"
-    
-    with col2:
-        if st.button("⚠️ Contoh Produk Berisiko", use_container_width=True):
-            st.session_state.demo_ingredients = "Aqua, Glycerin, Alcohol, Fragrance, Sodium Lauryl Sulfate, Methylparaben, Propylparaben"
-    
-    # Load demo ingredients if available
-    if hasattr(st.session_state, 'demo_ingredients'):
-        ingredients = st.session_state.demo_ingredients
-        del st.session_state.demo_ingredients
-    
     # Tombol analisis
     col1, col2, col3 = st.columns([1, 2, 1])
     with col2:
