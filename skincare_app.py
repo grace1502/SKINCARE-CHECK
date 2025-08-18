@@ -1172,65 +1172,67 @@ def show_about_page():
     </div>
     """, unsafe_allow_html=True)
     
-    # Main content dalam 2 kolom
-    col1, col2 = st.columns(2)
-    
-    with col1:
-        st.markdown("""
-        <div class="feature-card" style="height: 280px;">
-            <h4 style="color: #e91e63; margin-top: 0;">🎯 Tujuan </h4>
-            <p style="line-height: 1.6; flex-grow: 1; text-align: justify;">
-            Bertujuan untuk meningkatkan transparansi dalam industri kecantikan dengan memberikan informasi yang jelas dan dapat diakses tentang bahan-bahan dalam produk perawatan kulit. Tujuan dibuatnya platform ini adalah memberdayakan konsumen untuk membuat pilihan yang tepat berdasarkan data dan penelitian ilmiah terkini.
-            </p>
-        </div>
-        """, unsafe_allow_html=True)
+    # Main content dalam 2 kolom yang seimbang
+        col1, col2 = st.columns(2)
         
-        st.markdown("""
-        <div class="feature-card" style="height: 280px; margin-top: 1rem;">
-            <h4 style="color: #e91e63; margin-top: 0;">🔬 Metodologi</h4>
-            <div style="flex-grow: 1;">
-                <p style="margin-bottom: 1rem; line-height: 1.6; text-align: justify;">Platform ini dikembangkan berdasarkan:</p>
-                <div style="line-height: 1.8;">
-                    <div>• Regulasi Uni Eropa (EU Regulation No. 1223/2009)</div>
-                    <div>• Pedoman BPOM Indonesia</div>
-                    <div>• Standar FDA tentang kosmetik</div>
-                    <div>• Penelitian ilmiah peer-reviewed</div>
-                    <div>• Database keamanan internasional</div>
+        with col1:
+            # Mission section dengan styling
+            st.markdown("""
+            <div style="background: white; padding: 1.5rem; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); margin-bottom: 1.5rem; height: 280px; display: flex; flex-direction: column;">
+                <h4 style="color: #e91e63; margin-top: 0;">🎯 Tujuan </h4>
+                <p style="line-height: 1.6; flex-grow: 1;">Bertujuan untuk meningkatkan transparansi dalam industri kecantikan dengan memberikan informasi yang jelas dan dapat diakses tentang bahan-bahan dalam produk perawatan kulit. Tujuan dibuatnya sistem ini adalah memberdayakan konsumen untuk membuat pilihan yang tepat berdasarkan data dan penelitian ilmiah.</p>
+            </div>
+            """, unsafe_allow_html=True)
+            
+            # Methodology section
+            st.markdown("""
+            <div style="background: white; padding: 1.5rem; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); height: 280px; display: flex; flex-direction: column;">
+                <h4 style="color: #e91e63; margin-top: 0;">🔬 Metodologi</h4>
+                <div style="flex-grow: 1;">
+                    <p style="margin-bottom: 1rem; line-height: 1.6;">Website ini dikembangkan berdasarkan:</p>
+                    <ul style="line-height: 1.6; margin: 0; padding-left: 1.2rem;">
+                        <li>Regulasi Uni Eropa (EU Regulation No. 1223/2009)</li>
+                        <li>Lembaga pengawas BPOM</li>
+                        <li>Pedoman FDA tentang kosmetik</li>
+                        <li>Penelitian ilmiah peer-reviewed</li>
+                    </ul>
                 </div>
             </div>
-        </div>
-        """, unsafe_allow_html=True)
-    
-    with col2:
-        st.markdown("""
-        <div class="feature-card" style="height: 280px;">
-            <h4 style="color: #e91e63; margin-top: 0;">📚 Sumber Data</h4>
-            <div style="flex-grow: 1;">
-                <p style="margin-bottom: 1rem; line-height: 1.6; text-align: justify;">Informasi dalam platform ini bersumber dari:</p>
-                <div style="line-height: 1.8;">
-                    <div>• Environmental Working Group (EWG)</div>
-                    <div>• Cosmetic Ingredient Review (CIR)</div>
-                    <div>• Journal of the American Academy of Dermatology</div>
-                    <div>• BPOM RI</div>
-                    <div>• European Medicines Agency</div>
-                </div>
-            </div>
-        </div>
-        """, unsafe_allow_html=True)
+            """, unsafe_allow_html=True)
         
-        st.markdown("""
-        <div class="feature-card" style="height: 280px; margin-top: 1rem;">
-            <h4 style="color: #e91e63; margin-top: 0;">💡 Tips Memilih Skincare Aman</h4>
-            <div style="flex-grow: 1;">
-                <div style="line-height: 1.8;">
-                    <div><strong>📖 Baca Label:</strong> Selalu periksa daftar bahan sebelum membeli</div>
-                    <div><strong>🎯 Mulai Sederhana:</strong> Produk dengan daftar bahan pendek cenderung lebih aman</div>
-                    <div><strong>🧪 Uji Sensitivitas:</strong> Selalu lakukan patch test sebelum penggunaan penuh</div>
-                    <div><strong>👨‍⚕️ Konsultasi Ahli:</strong> Tanyakan pada dermatolog untuk kulit sensitif</div>
+        with col2:
+            # Data sources section
+            st.markdown("""
+            <div style="background: white; padding: 1.5rem; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); margin-bottom: 1.5rem; height: 280px; display: flex; flex-direction: column;">
+                <h4 style="color: #e91e63; margin-top: 0;">📚 Sumber Data</h4>
+                <div style="flex-grow: 1;">
+                    <p style="margin-bottom: 1rem; line-height: 1.6;">Informasi dalam website ini bersumber dari:</p>
+                    <ul style="line-height: 1.6; margin: 0; padding-left: 1.2rem;">
+                        <li>Environmental Working Group's Skin Deep Database</li>
+                        <li>Cosmetic Ingredient Review (CIR)</li>
+                        <li>Journal of the American Academy of Dermatology</li>
+                        <li>BPOM RI</li>
+                    </ul>
                 </div>
             </div>
-        </div>
-        """, unsafe_allow_html=True)
+            """, unsafe_allow_html=True)
+            
+            # Tips section
+            st.markdown("""
+            <div style="background: white; padding: 1.5rem; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); height: 280px; display: flex; flex-direction: column;">
+                <h4 style="color: #e91e63; margin-top: 0;">💡 Tips Memilih Skincare Aman</h4>
+                <div style="flex-grow: 1;">
+                    <ul style="line-height: 1.6; margin: 0; padding-left: 1.2rem;">
+                        <li><strong>Baca Label:</strong> Selalu periksa daftar bahan sebelum membeli</li>
+                        <li><strong>Mulai Sederhana:</strong> Produk dengan daftar bahan pendek cenderung lebih aman</li>
+                        <li><strong>Uji Sensitivitas:</strong> Selalu lakukan patch test sebelum penggunaan penuh</li>
+                        <li><strong>Konsultasi Ahli:</strong> Tanyakan pada dermatolog untuk kulit sensitif</li>
+                    </ul>
+                </div>
+            </div>
+            """, unsafe_allow_html=True)
+        
+
     
     # Statistics section
     st.markdown("---")
