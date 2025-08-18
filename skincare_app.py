@@ -1042,14 +1042,6 @@ def show_home_page():
         </div>
         """, unsafe_allow_html=True)
     
-    # Call to action
-    st.markdown("<br>", unsafe_allow_html=True)
-    
-    col1, col2, col3 = st.columns([1, 2, 1])
-    with col2:
-        if st.button("🚀 Mulai Analisis Sekarang", type="primary", use_container_width=True):
-            st.session_state.active_tab = "Analisis Bahan"
-            st.rerun()
 
 # Fungsi untuk halaman analisis
 def show_analysis_page():
