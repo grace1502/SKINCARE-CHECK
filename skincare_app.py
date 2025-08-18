@@ -205,56 +205,187 @@ st.markdown("""
         text-align: center;
     }
     
-    /* Mobile responsiveness - Improved */
+    /* Mobile responsiveness - Optimized */
     @media (max-width: 768px) {
         .main .block-container {
-            padding: 1rem;
+            padding: 0.5rem !important;
+            max-width: 100% !important;
         }
         
+        /* Header adjustments */
         h1 {
-            font-size: 2rem !important;
+            font-size: 1.8rem !important;
+            padding: 0 1rem;
+            line-height: 1.3;
         }
         
-        .stTabs [data-baseweb="tab"] {
-            padding: 0px 12px !important;
-            font-size: 0.9rem !important;
+        h2 {
+            font-size: 1.4rem !important;
+            text-align: center;
         }
         
-        .feature-card {
-            padding: 1rem;
+        h3 {
+            font-size: 1.2rem !important;
+            text-align: center;
+        }
+        
+        h4 {
+            font-size: 1.1rem !important;
+        }
+        
+        /* Tab improvements */
+        .stTabs [data-baseweb="tab-list"] {
+            gap: 0.3rem;
+            flex-wrap: wrap;
+            justify-content: center;
             margin-bottom: 1rem;
         }
         
-        [data-testid="column"] {
-            padding: 0.25rem;
+        .stTabs [data-baseweb="tab"] {
+            padding: 0.5rem 1rem !important;
+            font-size: 0.85rem !important;
+            min-width: auto;
+            flex: 1;
+            max-width: 120px;
         }
         
-        /* Stack cards vertically on mobile */
-        .about-card {
-            margin-bottom: 1rem !important;
+        /* Columns - stack vertically */
+        [data-testid="column"] {
+            width: 100% !important;
+            padding: 0.25rem !important;
+            margin-bottom: 0.5rem;
+        }
+        
+        /* Feature cards mobile */
+        .feature-card {
+            padding: 1rem;
+            margin-bottom: 0.8rem;
             height: auto !important;
+            min-height: auto !important;
+        }
+        
+        .feature-icon {
+            font-size: 2rem !important;
+            margin-bottom: 0.5rem !important;
+        }
+        
+        /* Metrics responsive */
+        [data-testid="metric-container"] {
+            padding: 0.8rem;
+            margin-bottom: 0.5rem;
+            text-align: center;
+        }
+        
+        /* Text areas */
+        .stTextArea > div > div > textarea {
+            font-size: 0.9rem !important;
+            min-height: 100px !important;
+        }
+        
+        /* Buttons */
+        .stButton > button {
+            padding: 0.8rem 1.5rem !important;
+            font-size: 0.9rem !important;
+            width: 100%;
+        }
+        
+        /* Alert boxes */
+        .stAlert {
+            padding: 0.8rem !important;
+            margin: 0.5rem 0 !important;
+            font-size: 0.9rem !important;
+        }
+        
+        /* Expander */
+        .streamlit-expanderHeader {
+            padding: 0.8rem !important;
+            font-size: 0.9rem !important;
+        }
+        
+        .streamlit-expanderContent {
+            padding: 0.8rem !important;
         }
     }
     
     @media (max-width: 480px) {
-        h1 {
-            font-size: 1.8rem !important;
+        .main .block-container {
+            padding: 0.3rem !important;
         }
         
+        /* Even smaller headers */
+        h1 {
+            font-size: 1.5rem !important;
+            padding: 0 0.5rem;
+        }
+        
+        h2 {
+            font-size: 1.2rem !important;
+        }
+        
+        h3 {
+            font-size: 1.1rem !important;
+        }
+        
+        /* Stack tabs vertically on very small screens */
         .stTabs [data-baseweb="tab-list"] {
             flex-direction: column;
-            align-items: center;
+            align-items: stretch;
+            gap: 0.5rem;
         }
         
         .stTabs [data-baseweb="tab"] {
             width: 100%;
-            max-width: 200px;
+            max-width: 100%;
+            text-align: center;
+            padding: 0.7rem !important;
+        }
+        
+        /* Smaller cards */
+        .feature-card {
+            padding: 0.8rem;
             margin-bottom: 0.5rem;
         }
         
-        /* Single column on small mobile */
-        .about-cards-container {
-            flex-direction: column !important;
+        .feature-icon {
+            font-size: 1.8rem !important;
+        }
+        
+        /* Compact metrics */
+        [data-testid="metric-container"] {
+            padding: 0.6rem;
+        }
+        
+        /* Smaller buttons */
+        .stButton > button {
+            padding: 0.7rem 1rem !important;
+            font-size: 0.85rem !important;
+        }
+        
+        /* Smaller text areas */
+        .stTextArea > div > div > textarea {
+            font-size: 0.85rem !important;
+            min-height: 80px !important;
+        }
+    }
+    
+    /* Fix for text overflow on mobile */
+    @media (max-width: 768px) {
+        *, *::before, *::after {
+            word-wrap: break-word !important;
+            overflow-wrap: break-word !important;
+            hyphens: auto !important;
+        }
+        
+        p, div, span, li {
+            max-width: 100% !important;
+            overflow: hidden !important;
+            text-overflow: ellipsis !important;
+        }
+        
+        /* Prevent horizontal scroll */
+        body, html, .stApp, .main {
+            overflow-x: hidden !important;
+            max-width: 100vw !important;
         }
     }
 </style>
@@ -494,9 +625,9 @@ def main():
         # Hero section
         st.markdown("""
         <div style="background: linear-gradient(135deg, rgba(233,30,99,0.1) 0%, rgba(255,255,255,0.9) 100%); 
-                    padding: 2rem; border-radius: 15px; text-align: center; margin-bottom: 2rem;">
-            <h2>Keamanan Skincare dalam Genggaman</h2>
-            <p style="font-size: 1.1rem;">Platform terpercaya untuk menganalisis keamanan produk perawatan kulit Anda</p>
+                    padding: 1.5rem; border-radius: 15px; text-align: center; margin-bottom: 2rem;">
+            <h2 style="margin-bottom: 0.5rem; font-size: 1.3rem;">Keamanan Skincare dalam Genggaman</h2>
+            <p style="font-size: 1rem; margin: 0;">Platform terpercaya untuk menganalisis keamanan produk perawatan kulit Anda</p>
         </div>
         """, unsafe_allow_html=True)
         
@@ -515,8 +646,8 @@ def main():
                 st.markdown(f"""
                 <div class="feature-card">
                     <div class="feature-icon">{icon}</div>
-                    <h4>{title}</h4>
-                    <p style="font-size: 0.9rem;">{desc}</p>
+                    <h4 style="font-size: 1rem; margin: 0.5rem 0;">{title}</h4>
+                    <p style="font-size: 0.85rem; margin: 0; line-height: 1.4;">{desc}</p>
                 </div>
                 """, unsafe_allow_html=True)
         
@@ -594,11 +725,11 @@ def main():
         with col1:
             # Misi Kami
             st.markdown("""
-            <div style="background: white; padding: 1.5rem; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); margin-bottom: 1.5rem; height: 280px; display: flex; flex-direction: column;">
-                <h4 style="color: #e91e63; margin-top: 0; display: flex; align-items: center; gap: 0.5rem;">
+            <div style="background: white; padding: 1.5rem; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); margin-bottom: 1.5rem; min-height: 200px; display: flex; flex-direction: column;">
+                <h4 style="color: #e91e63; margin-top: 0; display: flex; align-items: center; gap: 0.5rem; font-size: 1.1rem;">
                     <span>🎯</span> Misi Kami
                 </h4>
-                <p style="line-height: 1.6; flex-grow: 1; color: #555; margin: 0;">
+                <p style="line-height: 1.6; flex-grow: 1; color: #555; margin: 0; font-size: 0.95rem;">
                     Memberikan transparansi dalam industri kecantikan dengan informasi yang jelas dan dapat diakses tentang keamanan bahan skincare.
                 </p>
             </div>
@@ -606,13 +737,13 @@ def main():
             
             # Metodologi
             st.markdown("""
-            <div style="background: white; padding: 1.5rem; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); height: 280px; display: flex; flex-direction: column;">
-                <h4 style="color: #e91e63; margin-top: 0; display: flex; align-items: center; gap: 0.5rem;">
+            <div style="background: white; padding: 1.5rem; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); min-height: 200px; display: flex; flex-direction: column;">
+                <h4 style="color: #e91e63; margin-top: 0; display: flex; align-items: center; gap: 0.5rem; font-size: 1.1rem;">
                     <span>🔬</span> Metodologi
                 </h4>
                 <div style="flex-grow: 1;">
-                    <p style="margin-bottom: 1rem; color: #555;">Website ini dikembangkan berdasarkan:</p>
-                    <ul style="line-height: 1.6; color: #555; margin: 0; padding-left: 1.2rem;">
+                    <p style="margin-bottom: 0.8rem; color: #555; font-size: 0.95rem;">Website ini dikembangkan berdasarkan:</p>
+                    <ul style="line-height: 1.5; color: #555; margin: 0; padding-left: 1.2rem; font-size: 0.9rem;">
                         <li>Regulasi EU & FDA</li>
                         <li>Database EWG Skin Deep</li>
                         <li>Penelitian peer-reviewed</li>
@@ -625,13 +756,13 @@ def main():
         with col2:
             # Sumber Data
             st.markdown("""
-            <div style="background: white; padding: 1.5rem; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); margin-bottom: 1.5rem; height: 280px; display: flex; flex-direction: column;">
-                <h4 style="color: #e91e63; margin-top: 0; display: flex; align-items: center; gap: 0.5rem;">
+            <div style="background: white; padding: 1.5rem; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); margin-bottom: 1.5rem; min-height: 200px; display: flex; flex-direction: column;">
+                <h4 style="color: #e91e63; margin-top: 0; display: flex; align-items: center; gap: 0.5rem; font-size: 1.1rem;">
                     <span>📚</span> Sumber Data
                 </h4>
                 <div style="flex-grow: 1;">
-                    <p style="margin-bottom: 1rem; color: #555;">Informasi dalam website ini bersumber dari:</p>
-                    <ul style="line-height: 1.6; color: #555; margin: 0; padding-left: 1.2rem;">
+                    <p style="margin-bottom: 0.8rem; color: #555; font-size: 0.95rem;">Informasi bersumber dari:</p>
+                    <ul style="line-height: 1.5; color: #555; margin: 0; padding-left: 1.2rem; font-size: 0.9rem;">
                         <li>Environmental Working Group</li>
                         <li>Cosmetic Ingredient Review</li>
                         <li>Journal of Dermatology</li>
@@ -643,12 +774,12 @@ def main():
             
             # Tips Keamanan
             st.markdown("""
-            <div style="background: white; padding: 1.5rem; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); height: 280px; display: flex; flex-direction: column;">
-                <h4 style="color: #e91e63; margin-top: 0; display: flex; align-items: center; gap: 0.5rem;">
+            <div style="background: white; padding: 1.5rem; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); min-height: 200px; display: flex; flex-direction: column;">
+                <h4 style="color: #e91e63; margin-top: 0; display: flex; align-items: center; gap: 0.5rem; font-size: 1.1rem;">
                     <span>💡</span> Tips Keamanan
                 </h4>
                 <div style="flex-grow: 1;">
-                    <ul style="line-height: 1.6; color: #555; margin: 0; padding-left: 1.2rem;">
+                    <ul style="line-height: 1.5; color: #555; margin: 0; padding-left: 1.2rem; font-size: 0.9rem;">
                         <li>Selalu baca label dengan teliti</li>
                         <li>Lakukan patch test</li>
                         <li>Konsultasi dengan dermatolog</li>
