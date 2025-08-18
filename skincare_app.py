@@ -205,7 +205,7 @@ st.markdown("""
         text-align: center;
     }
     
-    /* Mobile responsiveness */
+    /* Mobile responsiveness - Improved */
     @media (max-width: 768px) {
         .main .block-container {
             padding: 1rem;
@@ -228,6 +228,12 @@ st.markdown("""
         [data-testid="column"] {
             padding: 0.25rem;
         }
+        
+        /* Stack cards vertically on mobile */
+        .about-card {
+            margin-bottom: 1rem !important;
+            height: auto !important;
+        }
     }
     
     @media (max-width: 480px) {
@@ -244,6 +250,11 @@ st.markdown("""
             width: 100%;
             max-width: 200px;
             margin-bottom: 0.5rem;
+        }
+        
+        /* Single column on small mobile */
+        .about-cards-container {
+            flex-direction: column !important;
         }
     }
 </style>
@@ -577,51 +588,73 @@ def main():
     with tab3:
         st.markdown("---")
         
+        # Layout 2x2 yang sejajar dan rapi
         col1, col2 = st.columns(2)
         
         with col1:
+            # Misi Kami
             st.markdown("""
-            <div class="feature-card">
-                <h4>🎯 Misi Kami</h4>
-                <p>Memberikan transparansi dalam industri kecantikan dengan informasi yang jelas 
-                dan dapat diakses tentang keamanan bahan skincare.</p>
+            <div style="background: white; padding: 1.5rem; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); margin-bottom: 1.5rem; height: 280px; display: flex; flex-direction: column;">
+                <h4 style="color: #e91e63; margin-top: 0; display: flex; align-items: center; gap: 0.5rem;">
+                    <span>🎯</span> Misi Kami
+                </h4>
+                <p style="line-height: 1.6; flex-grow: 1; color: #555; margin: 0;">
+                    Memberikan transparansi dalam industri kecantikan dengan informasi yang jelas dan dapat diakses tentang keamanan bahan skincare.
+                </p>
             </div>
             """, unsafe_allow_html=True)
             
+            # Metodologi
             st.markdown("""
-            <div class="feature-card">
-                <h4>🔬 Metodologi</h4>
-                <ul style="text-align: left;">
-                    <li>Regulasi EU & FDA</li>
-                    <li>Database EWG Skin Deep</li>
-                    <li>Penelitian peer-reviewed</li>
-                    <li>Pedoman BPOM RI</li>
-                </ul>
+            <div style="background: white; padding: 1.5rem; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); height: 280px; display: flex; flex-direction: column;">
+                <h4 style="color: #e91e63; margin-top: 0; display: flex; align-items: center; gap: 0.5rem;">
+                    <span>🔬</span> Metodologi
+                </h4>
+                <div style="flex-grow: 1;">
+                    <p style="margin-bottom: 1rem; color: #555;">Website ini dikembangkan berdasarkan:</p>
+                    <ul style="line-height: 1.6; color: #555; margin: 0; padding-left: 1.2rem;">
+                        <li>Regulasi EU & FDA</li>
+                        <li>Database EWG Skin Deep</li>
+                        <li>Penelitian peer-reviewed</li>
+                        <li>Pedoman BPOM RI</li>
+                    </ul>
+                </div>
             </div>
             """, unsafe_allow_html=True)
         
         with col2:
+            # Sumber Data
             st.markdown("""
-            <div class="feature-card">
-                <h4>📚 Sumber Data</h4>
-                <ul style="text-align: left;">
-                    <li>Environmental Working Group</li>
-                    <li>Cosmetic Ingredient Review</li>
-                    <li>Journal of Dermatology</li>
-                    <li>BPOM Indonesia</li>
-                </ul>
+            <div style="background: white; padding: 1.5rem; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); margin-bottom: 1.5rem; height: 280px; display: flex; flex-direction: column;">
+                <h4 style="color: #e91e63; margin-top: 0; display: flex; align-items: center; gap: 0.5rem;">
+                    <span>📚</span> Sumber Data
+                </h4>
+                <div style="flex-grow: 1;">
+                    <p style="margin-bottom: 1rem; color: #555;">Informasi dalam website ini bersumber dari:</p>
+                    <ul style="line-height: 1.6; color: #555; margin: 0; padding-left: 1.2rem;">
+                        <li>Environmental Working Group</li>
+                        <li>Cosmetic Ingredient Review</li>
+                        <li>Journal of Dermatology</li>
+                        <li>BPOM Indonesia</li>
+                    </ul>
+                </div>
             </div>
             """, unsafe_allow_html=True)
             
+            # Tips Keamanan
             st.markdown("""
-            <div class="feature-card">
-                <h4>💡 Tips Keamanan</h4>
-                <ul style="text-align: left;">
-                    <li>Selalu baca label dengan teliti</li>
-                    <li>Lakukan patch test</li>
-                    <li>Konsultasi dengan dermatolog</li>
-                    <li>Pilih produk tersertifikasi</li>
-                </ul>
+            <div style="background: white; padding: 1.5rem; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); height: 280px; display: flex; flex-direction: column;">
+                <h4 style="color: #e91e63; margin-top: 0; display: flex; align-items: center; gap: 0.5rem;">
+                    <span>💡</span> Tips Keamanan
+                </h4>
+                <div style="flex-grow: 1;">
+                    <ul style="line-height: 1.6; color: #555; margin: 0; padding-left: 1.2rem;">
+                        <li>Selalu baca label dengan teliti</li>
+                        <li>Lakukan patch test</li>
+                        <li>Konsultasi dengan dermatolog</li>
+                        <li>Pilih produk tersertifikasi</li>
+                    </ul>
+                </div>
             </div>
             """, unsafe_allow_html=True)
         
