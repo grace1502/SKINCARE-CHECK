@@ -9,23 +9,29 @@ import re
 # Konfigurasi halaman
 st.set_page_config(
     page_title="Pemeriksa Keamanan Skincare",
-     page_icon="🧪",
+    page_icon="🧪",
     layout="wide",
     initial_sidebar_state="collapsed"
 )
 
-# Custom CSS dengan desain aesthetic
+# CSS yang dioptimasi dan diperbaiki
 st.markdown("""
 <style>
     /* Font dan warna dasar */
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;700&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
     
-    html, body, [class*="css"] {
-        font-family: 'Inter', sans-serif;
-        color: #333333;
+    /* Reset dan base styling */
+    * {
+        box-sizing: border-box;
     }
     
-    /* Warna tema soft pink */
+    html, body, [class*="css"] {
+        font-family: 'Inter', sans-serif !important;
+        color: #333333 !important;
+        overflow-x: hidden;
+    }
+    
+    /* Tema warna */
     :root {
         --primary-color: #e91e63;
         --primary-dark: #c2185b;
@@ -33,1045 +39,604 @@ st.markdown("""
         --secondary-color: #f8f9fa;
         --text-dark: #2c2c2c;
         --text-light: #555555;
+        --white: #ffffff;
+        --shadow: 0 5px 15px rgba(0,0,0,0.08);
     }
     
-    /* Background dengan overlay */
+    /* Main app container */
     .stApp {
-        background: linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)), 
-                    url('https://images.unsplash.com/photo-1556228578-8c89e6adf883?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
-        background-size: cover;
-        background-attachment: fixed;
-        background-position: center;
+        background: linear-gradient(135deg, #fafafa 0%, #f5f5f5 100%);
+        min-height: 100vh;
     }
     
-    /* Main container */
-    .main-container {
-        background-color: rgba(255, 255, 255, 0.95);
-        border-radius: 15px;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-        padding: 2rem;
-        margin-bottom: 2rem;
+    /* Container utama */
+    .main .block-container {
+        padding-top: 2rem;
+        padding-bottom: 2rem;
+        max-width: 1200px;
     }
     
-    /* Judul utama */
+    /* Typography */
     h1 {
-        color: #c2185b !important;
-        font-family: 'Inter', sans-serif !important;
-        font-weight: 800 !important;
-        margin-bottom: 0.5rem !important;
-        text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
-        font-size: 3rem !important;
-        letter-spacing: -0.02em !important;
+        color: var(--primary-dark) !important;
+        font-weight: 700 !important;
+        margin-bottom: 1rem !important;
+        text-align: center;
+        font-size: 2.5rem !important;
     }
     
-    /* Subjudul */
     h2 {
-        color: #c2185b !important;
-        font-family: 'Playfair Display', serif !important;
-        font-weight: 500 !important;
-        border-bottom: 2px solid var(--primary-light);
-        padding-bottom: 0.5rem;
-        margin-top: 1.5rem !important;
+        color: var(--primary-dark) !important;
+        font-weight: 600 !important;
+        margin: 1.5rem 0 1rem 0 !important;
     }
     
     h3 {
-        font-family: 'Playfair Display', serif !important;
-        color: #2c2c2c !important;
-        font-weight: 500 !important;
+        color: var(--text-dark) !important;
+        font-weight: 600 !important;
+        margin: 1rem 0 0.5rem 0 !important;
     }
     
     h4 {
-        color: #2c2c2c !important;
+        color: var(--text-dark) !important;
         font-weight: 600 !important;
+        margin: 0.8rem 0 0.4rem 0 !important;
     }
     
-    /* Text color improvements */
-    p, div, span {
-        color: #2c2c2c !important;
+    p, div, span, li {
+        color: var(--text-dark) !important;
+        line-height: 1.6;
     }
     
-    .stMarkdown p {
-        color: #2c2c2c !important;
-    }
-    
-    /* Tombol */
-    .stButton button {
-        background-color: #e91e63 !important;
+    /* Buttons */
+    .stButton > button {
+        background-color: var(--primary-color) !important;
         color: white !important;
-        border-radius: 8px !important;
         border: none !important;
-        padding: 0.7rem 2rem !important;
-        font-weight: 600 !important;
-        transition: all 0.3s ease;
-        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-    }
-    
-    .stButton button:hover {
-        background-color: #c2185b !important;
-        transform: translateY(-2px);
-        box-shadow: 0 6px 12px rgba(0,0,0,0.15);
-    }
-    
-    /* Text area */
-    .stTextArea textarea {
         border-radius: 8px !important;
-        border: 1px solid var(--primary-light) !important;
-        padding: 1rem !important;
-        box-shadow: 0 2px 5px rgba(0,0,0,0.03);
+        padding: 0.6rem 2rem !important;
+        font-weight: 600 !important;
+        transition: all 0.3s ease !important;
+        box-shadow: var(--shadow);
+        width: 100%;
     }
     
-    /* Tab */
+    .stButton > button:hover {
+        background-color: var(--primary-dark) !important;
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba(233, 30, 99, 0.3);
+    }
+    
+    /* Text areas */
+    .stTextArea > div > div > textarea {
+        border-radius: 8px !important;
+        border: 2px solid #e0e0e0 !important;
+        padding: 1rem !important;
+        font-size: 1rem !important;
+        resize: vertical !important;
+    }
+    
+    .stTextArea > div > div > textarea:focus {
+        border-color: var(--primary-color) !important;
+        box-shadow: 0 0 0 2px rgba(233, 30, 99, 0.2) !important;
+    }
+    
+    /* Tabs */
     .stTabs [data-baseweb="tab-list"] {
         gap: 0.5rem;
-        margin-bottom: 1.5rem;
+        justify-content: center;
+        margin-bottom: 2rem;
     }
     
     .stTabs [data-baseweb="tab"] {
-        padding: 0.8rem 1.5rem !important;
-        background-color: #f5f5f5 !important;
-        color: #2c2c2c !important;
-        border-radius: 8px !important;
-        margin-right: 0 !important;
+        height: 50px;
+        padding: 0px 20px !important;
+        background-color: white !important;
+        color: var(--text-light) !important;
+        border-radius: 25px !important;
+        border: 2px solid #e0e0e0 !important;
         font-weight: 500 !important;
-        transition: all 0.3s ease;
-        border: 1px solid #e0e0e0 !important;
+        transition: all 0.3s ease !important;
     }
     
     .stTabs [aria-selected="true"] {
-        background-color: #e91e63 !important;
-        font-weight: 600 !important;
+        background-color: var(--primary-color) !important;
         color: white !important;
-        border: 1px solid #e91e63 !important;
+        border-color: var(--primary-color) !important;
+        box-shadow: var(--shadow);
     }
     
-    /* Hasil analisis */
+    /* Metrics */
+    [data-testid="metric-container"] {
+        background: white;
+        border-radius: 12px;
+        padding: 1rem;
+        box-shadow: var(--shadow);
+        border: 1px solid #f0f0f0;
+    }
+    
+    /* Alerts */
     .stAlert {
         border-radius: 12px !important;
-        padding: 1.5rem !important;
+        padding: 1rem !important;
+        margin: 1rem 0 !important;
+        border: none !important;
     }
     
-    /* Footer */
-    footer {
+    /* Expander */
+    .streamlit-expanderHeader {
+        background-color: white !important;
+        border-radius: 8px !important;
+        border: 1px solid #e0e0e0 !important;
+        margin-bottom: 0.5rem !important;
+    }
+    
+    .streamlit-expanderContent {
+        background-color: #fafafa !important;
+        border-radius: 0 0 8px 8px !important;
+        padding: 1rem !important;
+    }
+    
+    /* Cards */
+    .feature-card {
+        background: white;
+        padding: 1.5rem;
+        border-radius: 12px;
+        box-shadow: var(--shadow);
         text-align: center;
-        padding: 2rem 0;
-        margin-top: 3rem;
-        color: var(--text-light);
-        font-size: 0.9rem;
-        border-top: 1px solid #f0f0f0;
-    }
-</style>
-""", unsafe_allow_html=True)
-
-# Tambahkan CSS ini setelah existing custom CSS di aplikasi utama
-st.markdown("""
-<style>
-    /* Global Text Overflow Fix - SANGAT PENTING */
-    * {
-        word-wrap: break-word !important;
-        overflow-wrap: break-word !important;
-        box-sizing: border-box !important;
+        height: 100%;
+        transition: transform 0.3s ease;
+        border: 1px solid #f0f0f0;
     }
     
-    .stMarkdown, .stMarkdown *, 
-    .stText, .stText *,
-    p, div, span, li, h1, h2, h3, h4, h5, h6 {
-        max-width: 100% !important;
-        word-break: break-word !important;
-        overflow-wrap: break-word !important;
-        hyphens: auto !important;
-        white-space: normal !important;
+    .feature-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 30px rgba(0,0,0,0.15);
     }
     
-    /* Container fixes */
-    .main .block-container {
-        max-width: 100% !important;
-        padding-left: 1rem !important;
-        padding-right: 1rem !important;
+    .feature-icon {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+        display: block;
     }
     
-    /* Mobile Responsive CSS */
+    /* Loading spinner custom */
+    .stSpinner {
+        text-align: center;
+    }
+    
+    /* Mobile responsiveness */
     @media (max-width: 768px) {
-        
-        /* Container utama */
         .main .block-container {
-            padding-left: 0.5rem !important;
-            padding-right: 0.5rem !important;
-            max-width: 100% !important;
+            padding: 1rem;
         }
         
-        /* Header adjustments */
         h1 {
             font-size: 2rem !important;
-            text-align: center !important;
-            margin-bottom: 1rem !important;
-            word-wrap: break-word !important;
         }
         
-        h2 {
-            font-size: 1.4rem !important;
-            text-align: center !important;
-            word-wrap: break-word !important;
-        }
-        
-        h3 {
-            font-size: 1.2rem !important;
-            text-align: center !important;
-            word-wrap: break-word !important;
-        }
-        
-        /* Container padding adjustments */
-        .main-container {
-            padding: 1rem !important;
-            margin: 0.5rem !important;
-            max-width: 100% !important;
-            box-sizing: border-box !important;
-        }
-        
-        /* Button improvements */
-        .stButton button {
-            width: 100% !important;
-            padding: 1rem !important;
-            font-size: 1rem !important;
-            box-sizing: border-box !important;
-        }
-        
-        /* Text area improvements */
-        .stTextArea textarea {
-            font-size: 1rem !important;
-            min-height: 120px !important;
-            width: 100% !important;
-            box-sizing: border-box !important;
-        }
-        
-        /* Tab improvements */
         .stTabs [data-baseweb="tab"] {
-            padding: 0.6rem 0.8rem !important;
+            padding: 0px 12px !important;
             font-size: 0.9rem !important;
-            word-wrap: break-word !important;
         }
         
-        /* Metric cards stack vertically */
-        .stMetric {
-            text-align: center !important;
-            width: 100% !important;
-            box-sizing: border-box !important;
+        .feature-card {
+            padding: 1rem;
+            margin-bottom: 1rem;
         }
         
-        /* Alert boxes */
-        .stAlert {
-            padding: 1rem !important;
-            font-size: 0.9rem !important;
-            max-width: 100% !important;
-            box-sizing: border-box !important;
-        }
-        
-        /* Column fixes */
-        .stColumns {
-            gap: 0.5rem !important;
-        }
-        
-        .stColumns > div {
-            margin-bottom: 1rem !important;
-            width: 100% !important;
-            max-width: 100% !important;
-            padding-left: 0.25rem !important;
-            padding-right: 0.25rem !important;
-            box-sizing: border-box !important;
-        }
-        
-        /* Feature cards in homepage */
-        .stColumns > div h4 {
-            font-size: 1.1rem !important;
-            word-wrap: break-word !important;
-        }
-        
-        /* Expander improvements */
-        .streamlit-expanderHeader {
-            font-size: 0.9rem !important;
-            word-wrap: break-word !important;
-        }
-        
-        /* Background image adjustments */
-        .stApp {
-            background-attachment: scroll !important;
-        }
-        
-        /* Footer adjustments */
-        footer {
-            padding: 1rem 0 !important;
-            font-size: 0.8rem !important;
-            max-width: 100% !important;
-            box-sizing: border-box !important;
-        }
-        
-        /* Results display improvements */
-        .metric-container {
-            display: grid !important;
-            grid-template-columns: 1fr 1fr !important;
-            gap: 0.5rem !important;
-            margin-bottom: 1rem !important;
-            width: 100% !important;
-        }
-        
-        /* Ingredient lists */
-        ul {
-            padding-left: 1rem !important;
-            margin-right: 1rem !important;
-            max-width: 100% !important;
-            box-sizing: border-box !important;
-        }
-        
-        li {
-            margin-bottom: 0.3rem !important;
-            font-size: 0.9rem !important;
-            word-wrap: break-word !important;
-            overflow-wrap: break-word !important;
-        }
-        
-        /* Fix untuk teks panjang dalam cards */
-        .stMarkdown div {
-            max-width: 100% !important;
-            word-wrap: break-word !important;
-            overflow-wrap: break-word !important;
+        [data-testid="column"] {
+            padding: 0.25rem;
         }
     }
     
-    /* Small mobile devices */
     @media (max-width: 480px) {
-        .main .block-container {
-            padding-left: 0.25rem !important;
-            padding-right: 0.25rem !important;
-        }
-        
         h1 {
             font-size: 1.8rem !important;
         }
         
-        .main-container {
-            padding: 0.8rem !important;
-            margin: 0.3rem !important;
+        .stTabs [data-baseweb="tab-list"] {
+            flex-direction: column;
+            align-items: center;
         }
         
         .stTabs [data-baseweb="tab"] {
-            padding: 0.5rem 0.6rem !important;
-            font-size: 0.8rem !important;
-        }
-        
-        .metric-container {
-            grid-template-columns: 1fr !important;
-        }
-        
-        .stButton button {
-            padding: 0.8rem !important;
-            font-size: 0.9rem !important;
-        }
-        
-        .stColumns > div {
-            padding-left: 0.1rem !important;
-            padding-right: 0.1rem !important;
+            width: 100%;
+            max-width: 200px;
+            margin-bottom: 0.5rem;
         }
     }
-    
-    /* Touch-friendly improvements */
-    .stButton button,
-    .stTabs [data-baseweb="tab"],
-    .streamlit-expanderHeader {
-        min-height: 44px !important;
-    }
-    
-    /* Improved scrolling on mobile */
-    .stTextArea textarea {
-        -webkit-overflow-scrolling: touch;
-    }
-    
-    /* Prevent horizontal scroll */
-    body, html, .stApp {
-        overflow-x: hidden !important;
-        max-width: 100% !important;
-    }
-    
 </style>
 """, unsafe_allow_html=True)
 
-# Database bahan berbahaya
+# Database bahan berbahaya (diperbaiki dan dioptimasi)
 DANGEROUS_INGREDIENTS = {
-   'paraben': {
-        'description': 'Dapat mengganggu hormon (EU Regulation No. 1223/2009)',
+    'paraben': {
+        'description': 'Dapat mengganggu hormon',
         'category': 'Endocrine Disruptor',
         'risk_level': 'High',
-        'common_names': ['methylparaben', 'propylparaben', 'butylparaben'],
-        'details': 'Paraben adalah pengawet yang umum digunakan dalam kosmetik dan produk perawatan pribadi. Studi menunjukkan paraben dapat meniru estrogen dan berpotensi mengganggu sistem hormon tubuh. Regulasi Uni Eropa telah membatasi penggunaan beberapa jenis paraben dalam produk kosmetik.'
+        'common_names': ['methylparaben', 'propylparaben', 'butylparaben', 'ethylparaben'],
+        'details': 'Paraben dapat meniru estrogen dan berpotensi mengganggu sistem hormon tubuh.'
     },
     'sulfate': {
         'description': 'Bersifat keras dan dapat mengiritasi kulit',
         'category': 'Irritant',
         'risk_level': 'Medium',
-        'common_names': ['sodium lauryl sulfate', 'sls', 'sodium laureth sulfate'],
-        'details': 'Sulfate adalah surfaktan yang digunakan untuk membuat busa dalam produk pembersih. Bahan ini dapat menghilangkan minyak alami kulit, menyebabkan kekeringan dan iritasi, terutama pada kulit sensitif. Alternatif yang lebih lembut termasuk decyl glucoside atau coco-glucoside.'
-    },
-    'phthalate': {
-        'description': 'May disrupt hormones and affect reproductive health (EU Regulation No. 1223/2009)',
-        'category': 'Endocrine Disruptor',
-        'risk_level': 'High',
-        'common_names': ['dibutyl phthalate (dbp)', 'diethylhexyl phthalate (dehp)'],
-        'details': 'Phthalates sering digunakan sebagai pelarut dan pengikat wewangian. Bahan ini telah dikaitkan dengan masalah reproduksi dan perkembangan. Banyak negara telah melarang penggunaan phthalates tertentu dalam produk kosmetik dan mainan anak-anak.'
-    },
-    'formaldehyde': {
-        'description': 'Known carcinogen and skin sensitizer',
-        'category': 'Carcinogen, Allergen',
-        'risk_level': 'High',
-        'common_names': ['formalin', 'methylene glycol', 'quaternium-15'],
-        'details': 'Formaldehyde dan pelepas formaldehyde digunakan sebagai pengawet. Zat ini diklasifikasikan sebagai karsinogen manusia dan dapat menyebabkan iritasi kulit, mata, dan saluran pernapasan. Hindari produk yang mengandung DMDM hydantoin, imidazolidinyl urea, atau quaternium-15.'
-    },
-    'mercury': {
-        'description': 'Neurotoxin, harmful to kidney and nervous system',
-        'category': 'Heavy Metal, Neurotoxin',
-        'risk_level': 'Critical',
-        'common_names': ['calomel', 'mercuric chloride'],
-        'details': 'Mercury adalah logam berat yang sangat beracun dan dapat merusak sistem saraf, ginjal, dan organ lainnya. Penggunaan mercury dalam kosmetik telah dilarang di banyak negara karena risiko kesehatan yang serius.'
-    },
-    'hydroquinone': {
-        'description': 'Skin lightener, can cause ochronosis (skin discoloration)',
-        'category': 'Skin Irritant, Pigmentation Disrupter',
-        'risk_level': 'High',
-        'common_names': ['dihydroxybenzene', 'quinol'],
-        'details': 'Hydroquinone digunakan sebagai pemutih kulit tetapi dapat menyebabkan ochronosis (perubahan warna kulit menjadi biru-hitam) dan iritasi kulit. Penggunaannya dibatasi atau dilarang di beberapa negara.'
-    },
-    'triclosan': {
-        'description': 'May disrupt hormones and contribute to antibiotic resistance',
-        'category': 'Endocrine Disruptor, Antibiotic Resistance',
-        'risk_level': 'High',
-        'common_names': ['triclosan', 'tcs'],
-        'details': 'Triclosan adalah antimikroba yang dapat mengganggu hormon dan berkontribusi pada resistensi antibiotik. FDA telah melarang penggunaannya dalam sabun antibakteri konsumen.'
+        'common_names': ['sodium lauryl sulfate', 'sls', 'sodium laureth sulfate', 'sles'],
+        'details': 'Sulfate dapat menghilangkan minyak alami kulit dan menyebabkan iritasi.'
     },
     'alcohol': {
-        'description': 'Can be drying and irritating for some skin types (depending on type and concentration)',
-        'category': 'Irritant, Drying Agent',
+        'description': 'Dapat mengeringkan kulit',
+        'category': 'Drying Agent',
         'risk_level': 'Medium',
-        'common_names': ['ethanol', 'isopropyl alcohol', 'sd alcohol'],
-        'details': 'Alkohol tertentu dapat mengeringkan dan mengiritasi kulit, terutama pada kulit sensitif. Namun, tidak semua alkohol berbahaya - fatty alcohols seperti cetyl alcohol justru melembapkan.'
+        'common_names': ['ethanol', 'isopropyl alcohol', 'sd alcohol', 'denat alcohol'],
+        'details': 'Alkohol tertentu dapat mengeringkan kulit, terutama pada kulit sensitif.'
     },
     'fragrance': {
-        'description': 'Common allergen and can cause skin irritation (often a mix of undisclosed chemicals)',
-        'category': 'Allergen, Irritant',
+        'description': 'Dapat menyebabkan alergi',
+        'category': 'Allergen',
         'risk_level': 'Medium',
-        'common_names': ['parfum', 'perfume', 'aroma'],
-        'details': 'Istilah "fragrance" atau "parfum" dapat mencakup ratusan bahan kimia berbeda yang tidak diungkapkan. Banyak di antaranya dapat menyebabkan iritasi kulit, alergi, atau gangguan hormon. Pilih produk yang bebas wewangian atau menggunakan minyak esensial alami sebagai alternatif.'
+        'common_names': ['parfum', 'perfume', 'aroma', 'fragrance'],
+        'details': 'Fragrance sintetis dapat menyebabkan iritasi dan reaksi alergi.'
     },
-    'lead': {
-        'description': 'Neurotoxin, harmful to nervous system (especially in children)',
-        'category': 'Heavy Metal, Neurotoxin',
-        'risk_level': 'Critical',
-        'common_names': ['lead acetate'],
-        'details': 'Lead adalah logam berat yang sangat beracun, terutama berbahaya bagi anak-anak. Dapat merusak sistem saraf dan menyebabkan masalah perkembangan. Penggunaannya dalam kosmetik dilarang di banyak negara.'
-    },
-    'toluene': {
-        'description': 'Can affect respiratory system and nervous system',
-        'category': 'Toxin',
+    'formaldehyde': {
+        'description': 'Bahan karsinogenik',
+        'category': 'Carcinogen',
         'risk_level': 'High',
-        'common_names': ['methylbenzene', 'toluol'],
-        'details': 'Toluene adalah pelarut yang dapat mempengaruhi sistem pernapasan dan saraf. Sering ditemukan dalam cat kuku dan produk kosmetik lainnya. Paparan jangka panjang dapat menyebabkan masalah kesehatan serius.'
-    },
-    'bha': {
-        'description': 'Possible endocrine disruptor and carcinogen',
-        'category': 'Endocrine Disruptor, Possible Carcinogen',
-        'risk_level': 'High',
-        'common_names': ['butylated hydroxyanisole'],
-        'details': 'BHA (Butylated Hydroxyanisole) adalah antioksidan sintetis yang diduga dapat mengganggu hormon dan berpotensi karsinogenik. Penggunaannya dibatasi di beberapa negara.'
-    },
-    'bht': {
-        'description': 'Possible endocrine disruptor and skin allergen',
-        'category': 'Endocrine Disruptor, Allergen',
-        'risk_level': 'Medium',
-        'common_names': ['butylated hydroxytoluene'],
-        'details': 'BHT (Butylated Hydroxytoluene) adalah antioksidan sintetis yang dapat menyebabkan alergi kulit dan diduga mengganggu sistem hormon. Sering digunakan sebagai pengawet dalam kosmetik.'
-    },
-    'petrolatum': {
-        'description': 'Can be contaminated with PAHs (polycyclic aromatic hydrocarbons) if not refined properly',
-        'category': 'Contaminant Risk',
-        'risk_level': 'Medium',
-        'common_names': ['petroleum jelly', 'mineral oil jelly'],
-        'details': 'Petrolatum yang tidak dimurnikan dengan baik dapat terkontaminasi dengan PAHs (polycyclic aromatic hydrocarbons) yang berpotensi karsinogenik. Pastikan menggunakan produk dengan petrolatum berkualitas farmasi.'
-    },
-    'phenoxyethanol': {
-        'description': 'Preservative, can be an allergen and skin irritant (restricted in some countries)',
-        'category': 'Preservative, Allergen, Irritant',
-        'risk_level': 'Medium',
-        'common_names': ['ethylene glycol phenyl ether'],
-        'details': 'Phenoxyethanol adalah pengawet yang dapat menyebabkan alergi dan iritasi kulit. Penggunaannya dibatasi dalam produk bayi dan anak-anak di beberapa negara.'
-    },
-    'propylene glycol': {
-        'description': 'Can be a skin irritant and allergen',
-        'category': 'Irritant, Allergen',
-        'risk_level': 'Medium',
-        'common_names': ['1,2-propanediol'],
-        'details': 'Propylene glycol dapat menyebabkan iritasi dan alergi kulit pada beberapa orang, terutama mereka dengan kulit sensitif. Namun, umumnya dianggap aman dalam konsentrasi rendah.'
-    },
-    'siloxane': {
-        'description': 'Possible endocrine disruptors (especially cyclosiloxanes like cyclopentasiloxane and cyclohexasiloxane)',
-        'category': 'Endocrine Disruptor',
-        'risk_level': 'High',
-        'common_names': ['cyclopentasiloxane', 'cyclohexasiloxane', 'dimethicone', 'cyclomethicone'],
-        'details': 'Beberapa siloxane, terutama cyclosiloxanes, diduga dapat mengganggu sistem hormon dan berbahaya bagi lingkungan. EU telah membatasi penggunaan beberapa jenis siloxane dalam kosmetik.'
-    },
-    'oxybenzone': {
-        'description': 'Sunscreen ingredient, can be a hormone disruptor and marine pollutant',
-        'category': 'Endocrine Disruptor, Environmental Hazard',
-        'risk_level': 'High',
-        'common_names': ['benzophenone-3'],
-        'details': 'Oxybenzone adalah bahan tabir surya yang dapat mengganggu hormon dan berbahaya bagi ekosistem laut, terutama terumbu karang. Sudah dilarang di beberapa daerah wisata bahari.'
-    },
-    'benzoyl peroxide': {
-        'description': 'Can be a skin irritant and sensitizer',
-        'category': 'Irritant, Sensitizer',
-        'risk_level': 'Medium',
-        'common_names': ['benzyl peroxide'],
-        'details': 'Benzoyl peroxide efektif untuk mengobati jerawat tetapi dapat menyebabkan iritasi, kekeringan, dan sensitivitas kulit. Penggunaan harus dimulai dengan konsentrasi rendah.'
-    },
-    'resorcinol': {
-        'description': 'Possible endocrine disruptor and allergen',
-        'category': 'Endocrine Disruptor, Allergen',
-        'risk_level': 'High',
-        'common_names': ['1,3-benzenediol'],
-        'details': 'Resorcinol dapat mengganggu fungsi tiroid dan menyebabkan alergi kulit. Penggunaannya dalam kosmetik dibatasi di beberapa negara karena potensi risiko kesehatan.'
-    },
-    'synthetic dyes': {
-        'description': 'Some synthetic dyes (e.g., coal tar dyes) can be carcinogens or allergens',
-        'category': 'Possible Carcinogen, Allergen',
-        'risk_level': 'High',
-        'common_names': ['ci 19140', 'yellow 5', 'red 40'],
-        'details': 'Beberapa pewarna sintetis, terutama yang berasal dari coal tar, dapat bersifat karsinogenik atau menyebabkan alergi. Pewarna tertentu telah dilarang dalam kosmetik di berbagai negara.'
+        'common_names': ['formalin', 'methylene glycol', 'quaternium-15'],
+        'details': 'Formaldehyde diklasifikasikan sebagai karsinogen dan dapat menyebabkan iritasi.'
     }
 }
 
-# Database bahan yang dikenal (aman)
+# Database bahan aman (diperbaiki)
 KNOWN_SAFE_INGREDIENTS = {
     'aqua', 'water', 'glycerin', 'glycerine', 'hyaluronic acid', 'niacinamide', 
     'ceramide', 'panthenol', 'tocopherol', 'vitamin e', 'aloe vera', 'retinol',
-    'salicylic acid', 'lactic acid', 'glycolic acid', 'mandelic acid', 'azelaic acid',
-    'zinc oxide', 'titanium dioxide', 'dimethicone', 'cyclomethicone', 'squalane',
-    'jojoba oil', 'argan oil', 'rosehip oil', 'shea butter', 'cocoa butter',
-    'petrolatum', 'mineral oil', 'lanolin', 'beeswax', 'carnauba wax',
-    'stearic acid', 'palmitic acid', 'oleic acid', 'linoleic acid', 'cetyl alcohol',
-    'stearyl alcohol', 'cetearyl alcohol', 'sodium chloride', 'potassium sorbate',
-    'phenoxyethanol', 'ethylhexylglycerin', 'caprylyl glycol', 'pentylene glycol',
-    'propylene glycol', 'butylene glycol', 'hexylene glycol', 'dipropylene glycol',
-    'peg', 'ppg', 'carbomer', 'acrylates', 'xanthan gum', 'sodium hydroxide',
-    'citric acid', 'sodium citrate', 'disodium edta', 'tetrasodium edta',
-    'allantoin', 'bisabolol', 'chamomile', 'green tea', 'vitamin c', 'ascorbic acid',
-    'magnesium ascorbyl phosphate', 'sodium ascorbyl phosphate', 'kojic acid',
-    'arbutin', 'licorice extract', 'centella asiatica', 'calendula', 'cucumber',
-    'almond oil', 'coconut oil', 'olive oil', 'sunflower oil', 'grapeseed oil'
+    'salicylic acid', 'lactic acid', 'glycolic acid', 'zinc oxide', 'titanium dioxide',
+    'dimethicone', 'squalane', 'jojoba oil', 'shea butter', 'cocoa butter',
+    'cetyl alcohol', 'stearyl alcohol', 'sodium chloride', 'citric acid',
+    'allantoin', 'chamomile', 'green tea', 'vitamin c', 'ascorbic acid'
 }
 
+@st.cache_data
 def parse_ingredients(ingredients_text):
-    """Fungsi untuk memparse dan membersihkan daftar bahan"""
-    # Bersihkan teks dan split berdasarkan koma
-    ingredients_text = ingredients_text.replace('\n', ' ').replace('\r', ' ')
-    ingredients_list = [ing.strip().lower() for ing in re.split(r'[,;]+', ingredients_text) if ing.strip()]
-    
-    # Filter bahan yang terlalu pendek atau kosong
-    ingredients_list = [ing for ing in ingredients_list if len(ing) > 2]
-    
-    return ingredients_list
+    """Parse dan bersihkan daftar bahan"""
+    try:
+        # Bersihkan teks
+        ingredients_text = ingredients_text.replace('\n', ' ').replace('\r', ' ')
+        ingredients_list = [ing.strip().lower() for ing in re.split(r'[,;]+', ingredients_text) if ing.strip()]
+        
+        # Filter bahan yang valid
+        ingredients_list = [ing for ing in ingredients_list if len(ing) > 1]
+        
+        return ingredients_list
+    except Exception as e:
+        st.error(f"Error parsing ingredients: {str(e)}")
+        return []
 
+@st.cache_data
 def categorize_ingredients(ingredients_list):
-    """Fungsi untuk mengkategorikan bahan menjadi berbahaya, aman, dan tidak dikenal"""
+    """Kategorikan bahan menjadi berbahaya, aman, dan tidak dikenal"""
     dangerous = []
     safe = []
     unknown = []
     
-    for ingredient in ingredients_list:
-        ingredient_lower = ingredient.lower()
-        
-        # Cek apakah bahan berbahaya
-        is_dangerous = False
-        for dangerous_key, data in DANGEROUS_INGREDIENTS.items():
-            all_names = [dangerous_key] + data['common_names']
-            if any(name in ingredient_lower for name in all_names):
-                dangerous.append({
-                    'name': dangerous_key,
-                    'original_name': ingredient,
-                    'risk': data['risk_level'],
-                    'category': data['category'],
-                    'description': data['description'],
-                    'details': data['details']
-                })
-                is_dangerous = True
-                break
-        
-        if not is_dangerous:
-            # Cek apakah bahan aman yang dikenal
-            is_known_safe = False
-            for safe_ingredient in KNOWN_SAFE_INGREDIENTS:
-                if safe_ingredient in ingredient_lower or ingredient_lower in safe_ingredient:
-                    safe.append(ingredient)
-                    is_known_safe = True
+    try:
+        for ingredient in ingredients_list:
+            ingredient_lower = ingredient.lower().strip()
+            
+            # Cek bahan berbahaya
+            is_dangerous = False
+            for dangerous_key, data in DANGEROUS_INGREDIENTS.items():
+                all_names = [dangerous_key] + data['common_names']
+                if any(name in ingredient_lower for name in all_names):
+                    dangerous.append({
+                        'name': dangerous_key,
+                        'original_name': ingredient,
+                        'risk': data['risk_level'],
+                        'category': data['category'],
+                        'description': data['description'],
+                        'details': data['details']
+                    })
+                    is_dangerous = True
                     break
             
-            # Jika tidak termasuk berbahaya atau aman yang dikenal, masukkan ke unknown
-            if not is_known_safe:
-                unknown.append(ingredient)
+            if not is_dangerous:
+                # Cek bahan aman
+                is_known_safe = any(safe_ingredient in ingredient_lower for safe_ingredient in KNOWN_SAFE_INGREDIENTS)
+                
+                if is_known_safe:
+                    safe.append(ingredient)
+                else:
+                    unknown.append(ingredient)
+        
+        return dangerous, safe, unknown
     
-    return dangerous, safe, unknown
+    except Exception as e:
+        st.error(f"Error categorizing ingredients: {str(e)}")
+        return [], [], []
 
 def analyze_ingredients(ingredients_text):
-    """Fungsi untuk menganalisis bahan-bahan skincare"""
-    ingredients_list = parse_ingredients(ingredients_text)
-    dangerous, safe, unknown = categorize_ingredients(ingredients_list)
+    """Analisis utama bahan-bahan"""
+    if not ingredients_text or not ingredients_text.strip():
+        return None
     
-    return {
-        'is_safe': len(dangerous) == 0,
-        'dangerous_ingredients': dangerous,
-        'safe_ingredients': safe,
-        'unknown_ingredients': unknown,
-        'total_ingredients': len(ingredients_list)
-    }
+    try:
+        ingredients_list = parse_ingredients(ingredients_text)
+        if not ingredients_list:
+            return None
+            
+        dangerous, safe, unknown = categorize_ingredients(ingredients_list)
+        
+        return {
+            'is_safe': len(dangerous) == 0,
+            'dangerous_ingredients': dangerous,
+            'safe_ingredients': safe,
+            'unknown_ingredients': unknown,
+            'total_ingredients': len(ingredients_list)
+        }
+    except Exception as e:
+        st.error(f"Error analyzing ingredients: {str(e)}")
+        return None
 
 def display_results(results):
-    """Fungsi untuk menampilkan hasil analisis"""
-    # Summary statistics
+    """Tampilkan hasil analisis dengan styling yang diperbaiki"""
+    if not results:
+        st.error("Tidak dapat menganalisis bahan. Silakan coba lagi.")
+        return
+    
+    # Metrics dalam card
+    st.markdown("### 📊 Ringkasan Analisis")
     col1, col2, col3, col4 = st.columns(4)
     
     with col1:
         st.metric("Total Bahan", results['total_ingredients'])
     with col2:
-        st.metric("Bahan Berbahaya", len(results['dangerous_ingredients']))
+        st.metric("Bahan Berbahaya", len(results['dangerous_ingredients']), 
+                 delta=f"-{len(results['dangerous_ingredients'])}" if len(results['dangerous_ingredients']) > 0 else None)
     with col3:
         st.metric("Bahan Aman", len(results['safe_ingredients']))
     with col4:
-        st.metric("Tidak Dikenali", len(results['unknown_ingredients']))
+        st.metric("Tidak Dikenal", len(results['unknown_ingredients']))
     
     st.markdown("---")
     
-    # Main safety assessment
+    # Assessment utama
     if len(results['dangerous_ingredients']) > 0:
-        # Ada bahan berbahaya
-        st.error(f"⚠️ **Ditemukan {len(results['dangerous_ingredients'])} Bahan Potensial Berbahaya**")
+        st.error(f"⚠️ **PERINGATAN: Ditemukan {len(results['dangerous_ingredients'])} Bahan Berpotensi Berbahaya**")
         
-        st.warning("""
-        **🚨 Peringatan Penting:**
+        st.markdown("""
+        <div style="background: #fff3e0; padding: 1rem; border-radius: 8px; border-left: 4px solid #ff9800; margin: 1rem 0;">
+            <strong>🚨 Rekomendasi:</strong><br>
+            Pertimbangkan untuk tidak menggunakan produk ini atau konsultasi dengan dermatolog terlebih dahulu.
+        </div>
+        """, unsafe_allow_html=True)
         
-        Produk ini mengandung bahan-bahan yang berpotensi menimbulkan efek samping atau reaksi negatif pada kulit. 
-        Kami menyarankan untuk mempertimbangkan kembali penggunaan produk ini, terutama jika Anda memiliki kulit sensitif.
-        """)
+        st.markdown("#### 🔍 Detail Bahan Berbahaya:")
         
         for ing in results['dangerous_ingredients']:
-            with st.expander(f"🚨 {ing['name'].title()} (Ditemukan sebagai: {ing['original_name']}) - Risiko: {ing['risk']}"):
-                st.write(f"**Kategori:** {ing['category']}")
-                st.write(f"**Deskripsi:** {ing['description']}")
+            with st.expander(f"🚨 {ing['name'].title()} - Risiko: {ing['risk']} ({'ditemukan sebagai: ' + ing['original_name']})"):
+                col1, col2 = st.columns(2)
+                with col1:
+                    st.write(f"**Kategori:** {ing['category']}")
+                    st.write(f"**Tingkat Risiko:** {ing['risk']}")
+                with col2:
+                    st.write(f"**Deskripsi:** {ing['description']}")
                 st.write(f"**Detail:** {ing['details']}")
         
+        # Rekomendasi alternatif
         st.info("""
-        **💡 Rekomendasi Alternatif:**
-        
-        Pertimbangkan untuk mencari produk dengan label:
-        - **Paraben-free** - Bebas paraben
-        - **Sulfate-free** - Bebas sulfate  
-        - **Fragrance-free** - Bebas wewangian sintetis
-        - **Hypoallergenic** - Formulasi untuk kulit sensitif
-        - **Non-comedogenic** - Tidak menyumbat pori
-        - **Dermatologist-tested** - Telah diuji dermatolog
-        
-        **Langkah Selanjutnya:**
-        - Konsultasikan dengan dermatolog sebelum menggunakan produk
-        - Cari merek yang transparan tentang formulasi mereka
-        - Baca review dari pengguna dengan tipe kulit serupa
-        - Pertimbangkan produk dengan sertifikasi organik atau natural
+        **💡 Alternatif yang Disarankan:**
+        - Cari produk dengan label "Paraben-Free", "Sulfate-Free", "Fragrance-Free"
+        - Pilih produk dengan sertifikasi organik atau natural
+        - Konsultasikan dengan dermatolog untuk rekomendasi produk yang sesuai
         """)
     
-    elif len(results['safe_ingredients']) > 0 and len(results['unknown_ingredients']) == 0:
-        # Hanya ada bahan aman, tidak ada yang tidak dikenali
-        st.success("""
-        ✅ **Produk Ini Aman!**
+    else:
+        st.success("✅ **AMAN: Tidak Ditemukan Bahan Berbahaya**")
         
-        Tidak terdeteksi bahan berbahaya dalam daftar yang diberikan. Produk ini tampaknya menggunakan formulasi yang lebih aman untuk kulit. 
-        
-        **Namun tetap perhatikan:**
-        - Reaksi kulit Anda terhadap produk baru
-        - Selalu lakukan patch test sebelum penggunaan penuh
-        - Hentikan penggunaan jika terjadi iritasi atau reaksi alergi
-        - Konsultasikan dengan dermatolog jika memiliki kulit sensitif atau kondisi kulit tertentu
-        """)
+        st.markdown("""
+        <div style="background: #e8f5e8; padding: 1rem; border-radius: 8px; border-left: 4px solid #4caf50; margin: 1rem 0;">
+            <strong>🎉 Bagus!</strong><br>
+            Produk ini tampaknya aman untuk digunakan. Namun, tetap lakukan patch test sebelum penggunaan penuh.
+        </div>
+        """, unsafe_allow_html=True)
         
         st.info("""
-        **🌟 Tips Penggunaan Produk Aman:**
-        
-        - **Patch Test:** Oleskan sedikit produk di belakang telinga atau pergelangan tangan, tunggu 24-48 jam
-        - **Gradual Introduction:** Mulai gunakan produk secara bertahap, 2-3 kali seminggu
-        - **Monitor Reaksi:** Perhatikan tanda-tanda kemerahan, gatal, atau iritasi
-        - **Storage:** Simpan produk di tempat sejuk dan kering untuk menjaga kualitas
+        **💡 Tips Penggunaan Aman:**
+        - Lakukan patch test di belakang telinga selama 24-48 jam
+        - Mulai gunakan secara bertahap
+        - Hentikan penggunaan jika terjadi iritasi
+        - Simpan di tempat sejuk dan kering
         """)
     
-    elif len(results['safe_ingredients']) > 0 and len(results['unknown_ingredients']) > 0:
-        # Ada bahan aman dan bahan tidak dikenali
-        st.success("""
-        ✅ **Produk Ini Aman!**
-        
-        Tidak terdeteksi bahan berbahaya dalam daftar yang diberikan. Produk ini tampaknya menggunakan formulasi yang lebih aman untuk kulit. 
-        
-        **Namun tetap perhatikan:**
-        - Reaksi kulit Anda terhadap produk baru
-        - Selalu lakukan patch test sebelum penggunaan penuh
-        - Hentikan penggunaan jika terjadi iritasi atau reaksi alergi
-        - Konsultasikan dengan dermatolog jika memiliki kulit sensitif atau kondisi kulit tertentu
-        """)
-        
-        st.info("""
-        **🌟 Tips Penggunaan Produk Aman:**
-        
-        - **Patch Test:** Oleskan sedikit produk di belakang telinga atau pergelangan tangan, tunggu 24-48 jam
-        - **Gradual Introduction:** Mulai gunakan produk secara bertahap, 2-3 kali seminggu
-        - **Monitor Reaksi:** Perhatikan tanda-tanda kemerahan, gatal, atau iritasi
-        - **Storage:** Simpan produk di tempat sejuk dan kering untuk menjaga kualitas
-        """)
-    
-    # Display unknown ingredients if any
+    # Tampilkan bahan yang tidak dikenal jika ada
     if results['unknown_ingredients']:
         st.markdown("---")
-        st.warning(f"🔍 **Ditemukan {len(results['unknown_ingredients'])} Bahan Tidak Dikenali**")
-        
-        with st.expander("Lihat Bahan yang Tidak Dikenali"):
-            st.write("**Bahan-bahan berikut tidak terdeteksi pada sistem:**")
+        with st.expander(f"🔍 Bahan Tidak Dikenal ({len(results['unknown_ingredients'])} bahan)"):
+            st.write("Bahan-bahan berikut tidak terdeteksi dalam database:")
             
-            # Group ingredients for better display
-            unknown_list = results['unknown_ingredients']
-            for i in range(0, len(unknown_list), 3):
-                cols = st.columns(3)
-                for j, col in enumerate(cols):
-                    if i + j < len(unknown_list):
-                        col.write(f"• {unknown_list[i + j].title()}")
-    
-    # Display safe ingredients summary
-    if results['safe_ingredients']:
-        st.markdown("---")
-        st.success(f"✅ **Ditemukan {len(results['safe_ingredients'])} Bahan Aman**")
-        
-        with st.expander("Lihat Bahan yang Aman"):
-            safe_list = results['safe_ingredients']
-            for i in range(0, len(safe_list), 4):
-                cols = st.columns(4)
-                for j, col in enumerate(cols):
-                    if i + j < len(safe_list):
-                        col.write(f"• {safe_list[i + j].title()}")
+            # Tampilkan dalam kolom untuk hemat space
+            unknown_chunks = [results['unknown_ingredients'][i:i+3] for i in range(0, len(results['unknown_ingredients']), 3)]
+            for chunk in unknown_chunks:
+                cols = st.columns(len(chunk))
+                for i, ing in enumerate(chunk):
+                    cols[i].write(f"• {ing.title()}")
 
-# Main App
 def main():
-    # Header dengan styling modern dan gambar skincare yang menarik
-    st.markdown("""
-    <div style="position: relative; padding: 2rem 0 3rem 0; margin-bottom: 2rem; background: linear-gradient(135deg, rgba(233, 30, 99, 0.05) 0%, rgba(255, 255, 255, 0.95) 50%, rgba(248, 187, 217, 0.1) 100%); border-radius: 20px; overflow: hidden;">
-        
-        <!-- Background Pattern -->
-        <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; opacity: 0.03; background-image: url('data:image/svg+xml,<svg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><g fill="%23e91e63" fill-opacity="0.4"><circle cx="30" cy="30" r="2"/></g></g></svg>'); background-repeat: repeat;"></div>
-        
-        <!-- Floating Skincare Images -->
-        <div style="position: absolute; top: 20px; right: 20px; width: 120px; height: 120px; background: url('https://images.unsplash.com/photo-1556228578-8c89e6adf883?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80') no-repeat center center; background-size: cover; border-radius: 20px; opacity: 0.7; box-shadow: 0 10px 30px rgba(233, 30, 99, 0.2); transform: rotate(-5deg);"></div>
-        
-        <div style="position: absolute; top: 60px; left: 30px; width: 80px; height: 80px; background: url('https://images.unsplash.com/photo-1570194065650-d99fb4bedf0d?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80') no-repeat center center; background-size: cover; border-radius: 50%; opacity: 0.6; box-shadow: 0 8px 25px rgba(194, 24, 91, 0.15); animation: float 3s ease-in-out infinite;"></div>
-        
-        <div style="position: absolute; bottom: 30px; right: 80px; width: 60px; height: 60px; background: url('https://images.unsplash.com/photo-1596755389378-c31d21fd1273?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80') no-repeat center center; background-size: cover; border-radius: 15px; opacity: 0.5; box-shadow: 0 6px 20px rgba(233, 30, 99, 0.1); transform: rotate(8deg);"></div>
-        
-        <!-- Main Content -->
-        <div style="position: relative; z-index: 2; text-align: center; padding: 0 2rem;">
-            
-            <!-- Logo/Icon Section -->
-            <div style="display: flex; justify-content: center; align-items: center; margin-bottom: 1.5rem;">
-                <div style="display: flex; gap: 1rem; align-items: center;">
-                    
-                    <!-- Main Icon -->
-                    <div style="width: 80px; height: 80px; background: url('https://images.unsplash.com/photo-1596755389378-c31d21fd1273?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80') no-repeat center center; background-size: cover; border-radius: 20px; border: 4px solid #e91e63; box-shadow: 0 10px 30px rgba(233, 30, 99, 0.3);"></div>
-                    
-                    <!-- Secondary Icons -->
-                    <div style="display: flex; flex-direction: column; gap: 0.5rem;">
-                        <div style="width: 45px; height: 45px; background: url('https://images.unsplash.com/photo-1556228578-8c89e6adf883?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80') no-repeat center center; background-size: cover; border-radius: 12px; border: 2px solid #f8bbd9; opacity: 0.8;"></div>
-                        <div style="width: 45px; height: 45px; background: url('https://images.unsplash.com/photo-1570194065650-d99fb4bedf0d?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80') no-repeat center center; background-size: cover; border-radius: 12px; border: 2px solid #f8bbd9; opacity: 0.8;"></div>
-                    </div>
-                    
-                </div>
-            </div>
-            
-            <!-- Title with Enhanced Styling -->
-            <div style="margin-bottom: 1rem;">
-                <h1 style="color: #c2185b; font-family: 'Inter', sans-serif; font-weight: 800; font-size: 3.5rem; letter-spacing: -0.02em; margin: 0; text-shadow: 2px 2px 4px rgba(0,0,0,0.1); background: linear-gradient(135deg, #e91e63 0%, #c2185b 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">
-                    🧪 Pemeriksa Keamanan Skincare
-                </h1>
-            </div>
-            
-            <!-- Subtitle with Icons -->
-            <div style="display: flex; justify-content: center; align-items: center; gap: 1rem; flex-wrap: wrap; margin-bottom: 1.5rem;">
-                <div style="display: flex; align-items: center; gap: 0.5rem; background: rgba(255,255,255,0.8); padding: 0.5rem 1rem; border-radius: 25px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
-                    <span style="font-size: 1.2rem;">🔬</span>
-                    <span style="color: #555; font-weight: 500;">Analisis Ilmiah</span>
-                </div>
-                <div style="display: flex; align-items: center; gap: 0.5rem; background: rgba(255,255,255,0.8); padding: 0.5rem 1rem; border-radius: 25px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
-                    <span style="font-size: 1.2rem;">🛡️</span>
-                    <span style="color: #555; font-weight: 500;">Keamanan Terjamin</span>
-                </div>
-                <div style="display: flex; align-items: center; gap: 0.5rem; background: rgba(255,255,255,0.8); padding: 0.5rem 1rem; border-radius: 25px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
-                    <span style="font-size: 1.2rem;">⚡</span>
-                    <span style="color: #555; font-weight: 500;">Hasil Instan</span>
-                </div>
-            </div>
-            
-        </div>
-        
-        <!-- Bottom Decorative Elements -->
-        <div style="position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%); display: flex; gap: 0.5rem; opacity: 0.3;">
-            <div style="width: 8px; height: 8px; background: #e91e63; border-radius: 50%; animation: pulse 2s infinite;"></div>
-            <div style="width: 8px; height: 8px; background: #f8bbd9; border-radius: 50%; animation: pulse 2s infinite 0.5s;"></div>
-            <div style="width: 8px; height: 8px; background: #e91e63; border-radius: 50%; animation: pulse 2s infinite 1s;"></div>
-        </div>
-        
-    </div>
+    """Aplikasi utama"""
     
-    <!-- CSS Animations -->
-    <style>
-        @keyframes float {
-            0%, 100% { transform: translateY(0px) rotate(-2deg); }
-            50% { transform: translateY(-10px) rotate(2deg); }
-        }
-        
-        @keyframes pulse {
-            0%, 100% { opacity: 0.3; transform: scale(1); }
-            50% { opacity: 1; transform: scale(1.2); }
-        }
-        
-        /* Mobile Responsive Header */
-        @media (max-width: 768px) {
-            .header-container h1 {
-                font-size: 2.2rem !important;
-            }
-            
-            .header-icons {
-                flex-direction: column !important;
-                gap: 0.5rem !important;
-            }
-            
-            .header-icons > div {
-                font-size: 0.9rem !important;
-                padding: 0.4rem 0.8rem !important;
-            }
-            
-            .floating-images {
-                display: none !important;
-            }
-        }
-        
-        @media (max-width: 480px) {
-            .header-container {
-                padding: 1rem !important;
-            }
-            
-            .header-container h1 {
-                font-size: 1.8rem !important;
-            }
-            
-            .main-icon {
-                width: 60px !important;
-                height: 60px !important;
-            }
-            
-            .secondary-icons {
-                display: none !important;
-            }
-        }
-    </style>
+    # Header
+    st.markdown("""
+    <div style="text-align: center; padding: 2rem 0; margin-bottom: 2rem;">
+        <h1>🧪 Pemeriksa Keamanan Skincare</h1>
+        <p style="font-size: 1.2rem; color: #666;">Analisis bahan skincare berdasarkan penelitian ilmiah</p>
+    </div>
     """, unsafe_allow_html=True)
     
-    st.title("Pemeriksa Keamanan Skincare")
-    st.markdown("### Temukan Analisis Mendalam Mengenai Produk Perawatan Kulit Anda")
-    
-    # Navigation
-    tab1, tab2, tab3 = st.tabs(["🏠 Beranda", "🔍 Analisis Bahan", "ℹ️ Tentang Website"])
+    # Navigation tabs
+    tab1, tab2, tab3 = st.tabs(["🏠 Beranda", "🔍 Analisis Bahan", "ℹ️ Tentang"])
     
     with tab1:
         st.markdown("---")
         
-        # Hero Section
+        # Hero section
         st.markdown("""
-        <div style="text-align: center; padding: 2rem; background: linear-gradient(135deg, rgba(255,182,193,0.2) 0%, rgba(255,255,255,0.8) 100%); border-radius: 15px; margin-bottom: 2rem;">
-            <h2>Analisis Instan Berdasarkan Penelitian Ilmiah</h2>
-            <p style="font-size: 1.1rem;">Platform terpercaya untuk membantu Anda membuat keputusan yang lebih baik tentang produk perawatan kulit</p>
+        <div style="background: linear-gradient(135deg, rgba(233,30,99,0.1) 0%, rgba(255,255,255,0.9) 100%); 
+                    padding: 2rem; border-radius: 15px; text-align: center; margin-bottom: 2rem;">
+            <h2>Keamanan Skincare dalam Genggaman</h2>
+            <p style="font-size: 1.1rem;">Platform terpercaya untuk menganalisis keamanan produk perawatan kulit Anda</p>
         </div>
         """, unsafe_allow_html=True)
         
         # Features
         col1, col2, col3, col4 = st.columns(4)
         
-        with col1:
-            st.markdown("""
-            <div style="text-align: center; padding: 1rem; background: white; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.05);">
-                <div style="font-size: 2.5rem; color: #e91e63;">🔬</div>
-                <h4 style="color: #2c2c2c; margin: 0.5rem 0;">Analisis Mendalam</h4>
-                <p style="color: #555555;">Sistem memeriksa berbagai jenis bahan berbahaya berdasarkan sumber terpercaya</p>
-            </div>
-            """, unsafe_allow_html=True)
+        features = [
+            ("🔬", "Analisis Ilmiah", "Database berdasarkan penelitian terpercaya"),
+            ("⚡", "Hasil Instan", "Analisis cepat dalam hitungan detik"),
+            ("📚", "Edukasi", "Pelajari tentang bahan berbahaya"),
+            ("🛡️", "Keamanan", "Lindungi kulit dari bahan berbahaya")
+        ]
         
-        with col2:
-            st.markdown("""
-            <div style="text-align: center; padding: 1rem; background: white; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.05);">
-                <div style="font-size: 2.5rem; color: #e91e63;">⚡</div>
-                <h4 style="color: #2c2c2c; margin: 0.5rem 0;">Hasil Instan</h4>
-                <p style="color: #555555;">Dapatkan hasil analisis komprehensif dalam hitungan detik</p>
-            </div>
-            """, unsafe_allow_html=True)
-        
-        with col3:
-            st.markdown("""
-            <div style="text-align: center; padding: 1rem; background: white; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.05);">
-                <div style="font-size: 2.5rem; color: #e91e63;">📚</div>
-                <h4 style="color: #2c2c2c; margin: 0.5rem 0;">Edukasi Komprehensif</h4>
-                <p style="color: #555555;">Pelajari tentang bahan berbahaya dan alternatif yang lebih aman</p>
-            </div>
-            """, unsafe_allow_html=True)
-        
-        with col4:
-            st.markdown("""
-            <div style="text-align: center; padding: 1rem; background: white; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.05);">
-                <div style="font-size: 2.5rem; color: #e91e63;">🛡️</div>
-                <h4 style="color: #2c2c2c; margin: 0.5rem 0;">Keamanan Terjamin</h4>
-                <p style="color: #555555;">Berdasarkan regulasi dan penelitian ilmiah terbaru</p>
-            </div>
-            """, unsafe_allow_html=True)
+        for i, (icon, title, desc) in enumerate(features):
+            with [col1, col2, col3, col4][i]:
+                st.markdown(f"""
+                <div class="feature-card">
+                    <div class="feature-icon">{icon}</div>
+                    <h4>{title}</h4>
+                    <p style="font-size: 0.9rem;">{desc}</p>
+                </div>
+                """, unsafe_allow_html=True)
         
         st.markdown("---")
         
         # How it works
-        st.subheader("Bagaimana Cara Kerjanya?")
+        st.markdown("### 🚀 Cara Menggunakan")
         
         col1, col2, col3 = st.columns(3)
         
         with col1:
             st.markdown("""
-            **1️⃣ Masukkan Daftar Bahan**
+            **1️⃣ Input Bahan**
             
-            <span style="color: #555555;">Salin dan tempel daftar bahan (INGREDIENTS) dari produk skincare Anda</span>
-            """, unsafe_allow_html=True)
+            Salin daftar INGREDIENTS dari kemasan produk atau website resmi
+            """)
         
         with col2:
             st.markdown("""
-            **2️⃣ Proses Analisis**
+            **2️⃣ Analisis Otomatis**
             
-            <span style="color: #555555;">Sistem akan memindai bahan-bahan yang terindikasi berbahaya </span>
-            """, unsafe_allow_html=True)
+            Sistem memproses dan mengidentifikasi bahan berbahaya
+            """)
         
         with col3:
             st.markdown("""
             **3️⃣ Dapatkan Hasil**
             
-            <span style="color: #555555;">Lihat laporan lengkap tentang keamanan produk dan rekomendasi alternatif</span>
-            """, unsafe_allow_html=True)
+            Lihat laporan keamanan lengkap dengan rekomendasi
+            """)
     
     with tab2:
         st.markdown("---")
-        st.subheader("Analisis Bahan Skincare")
-        st.write("Masukkan daftar bahan produk skincare Anda di bawah ini untuk memeriksa potensi bahan berbahaya")
+        st.markdown("### 🔍 Analisis Bahan Skincare")
         
         # Input form
+        st.markdown("**Masukkan Daftar Bahan (INGREDIENTS):**")
         ingredients = st.text_area(
-            "**Daftar Bahan (INGREDIENTS):**",
-            placeholder="Contoh: Aqua, Glycerin, Alcohol, Fragrance, Sodium Laureth Sulfate, Methylparaben",
-            height=150,
-            help="Salin dan tempel daftar bahan dari kemasan produk atau website resmi"
+            "",
+            placeholder="Contoh: Aqua, Glycerin, Sodium Lauryl Sulfate, Fragrance, Methylparaben, Niacinamide, Hyaluronic Acid",
+            height=120,
+            help="Salin dan tempel daftar bahan dari kemasan produk"
         )
         
+        # Button
         col1, col2, col3 = st.columns([1,2,1])
         with col2:
-            if st.button("🔍 **Analisis Bahan**", type="primary", use_container_width=True):
+            if st.button("🔍 Analisis Sekarang", type="primary"):
                 if not ingredients.strip():
                     st.warning("⚠️ Silakan masukkan daftar bahan terlebih dahulu")
                 else:
-                    with st.spinner("🔬 Menganalisis bahan-bahan..."):
-                        time.sleep(1.5)  # Simulasi proses analisis
+                    with st.spinner("🔬 Menganalisis bahan..."):
+                        # Simulasi proses
+                        progress_bar = st.progress(0)
+                        for i in range(100):
+                            time.sleep(0.01)
+                            progress_bar.progress(i + 1)
+                        
+                        # Analisis
                         results = analyze_ingredients(ingredients)
-                        st.markdown("---")
-                        display_results(results)
+                        progress_bar.empty()
+                        
+                        if results:
+                            st.markdown("---")
+                            display_results(results)
+                        else:
+                            st.error("Gagal menganalisis bahan. Silakan periksa format input.")
     
     with tab3:
         st.markdown("---")
-     
-        # Hero section untuk About
-        st.markdown("""
-        <div style="text-align: center; padding: 2rem; background: linear-gradient(135deg, rgba(255,182,193,0.2) 0%, rgba(255,255,255,0.8) 100%); border-radius: 15px; margin-bottom: 2rem;">
-            <h3>Transparansi Untuk Kesehatan Kulit Anda</h3>
-            <p style="font-size: 1.1rem;">Memberdayakan konsumen dengan informasi berbasis sains tentang keamanan produk skincare</p>
-        </div>
-        """, unsafe_allow_html=True)
         
-        # Main content dalam 2 kolom yang seimbang
         col1, col2 = st.columns(2)
         
         with col1:
-            # Mission section dengan styling
             st.markdown("""
-            <div style="background: white; padding: 1.5rem; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); margin-bottom: 1.5rem; height: 280px; display: flex; flex-direction: column;">
-                <h4 style="color: #e91e63; margin-top: 0;">🎯 Tujuan </h4>
-                <p style="line-height: 1.6; flex-grow: 1;">Bertujuan untuk meningkatkan transparansi dalam industri kecantikan dengan memberikan informasi yang jelas dan dapat diakses tentang bahan-bahan dalam produk perawatan kulit. Tujuan dibuatnya sistem ini adalah memberdayakan konsumen untuk membuat pilihan yang tepat berdasarkan data dan penelitian ilmiah.</p>
+            <div class="feature-card">
+                <h4>🎯 Misi Kami</h4>
+                <p>Memberikan transparansi dalam industri kecantikan dengan informasi yang jelas 
+                dan dapat diakses tentang keamanan bahan skincare.</p>
             </div>
             """, unsafe_allow_html=True)
             
-            # Methodology section
             st.markdown("""
-            <div style="background: white; padding: 1.5rem; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); height: 280px; display: flex; flex-direction: column;">
-                <h4 style="color: #e91e63; margin-top: 0;">🔬 Metodologi</h4>
-                <div style="flex-grow: 1;">
-                    <p style="margin-bottom: 1rem; line-height: 1.6;">Website ini dikembangkan berdasarkan:</p>
-                    <ul style="line-height: 1.6; margin: 0; padding-left: 1.2rem;">
-                        <li>Regulasi Uni Eropa (EU Regulation No. 1223/2009)</li>
-                        <li>Lembaga pengawas BPOM</li>
-                        <li>Pedoman FDA tentang kosmetik</li>
-                        <li>Penelitian ilmiah peer-reviewed</li>
-                    </ul>
-                </div>
+            <div class="feature-card">
+                <h4>🔬 Metodologi</h4>
+                <ul style="text-align: left;">
+                    <li>Regulasi EU & FDA</li>
+                    <li>Database EWG Skin Deep</li>
+                    <li>Penelitian peer-reviewed</li>
+                    <li>Pedoman BPOM RI</li>
+                </ul>
             </div>
             """, unsafe_allow_html=True)
         
         with col2:
-            # Data sources section
             st.markdown("""
-            <div style="background: white; padding: 1.5rem; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); margin-bottom: 1.5rem; height: 280px; display: flex; flex-direction: column;">
-                <h4 style="color: #e91e63; margin-top: 0;">📚 Sumber Data</h4>
-                <div style="flex-grow: 1;">
-                    <p style="margin-bottom: 1rem; line-height: 1.6;">Informasi dalam website ini bersumber dari:</p>
-                    <ul style="line-height: 1.6; margin: 0; padding-left: 1.2rem;">
-                        <li>Environmental Working Group's Skin Deep Database</li>
-                        <li>Cosmetic Ingredient Review (CIR)</li>
-                        <li>Journal of the American Academy of Dermatology</li>
-                        <li>BPOM RI</li>
-                    </ul>
-                </div>
+            <div class="feature-card">
+                <h4>📚 Sumber Data</h4>
+                <ul style="text-align: left;">
+                    <li>Environmental Working Group</li>
+                    <li>Cosmetic Ingredient Review</li>
+                    <li>Journal of Dermatology</li>
+                    <li>BPOM Indonesia</li>
+                </ul>
             </div>
             """, unsafe_allow_html=True)
             
-            # Tips section
             st.markdown("""
-            <div style="background: white; padding: 1.5rem; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); height: 280px; display: flex; flex-direction: column;">
-                <h4 style="color: #e91e63; margin-top: 0;">💡 Tips Memilih Skincare Aman</h4>
-                <div style="flex-grow: 1;">
-                    <ul style="line-height: 1.6; margin: 0; padding-left: 1.2rem;">
-                        <li><strong>Baca Label:</strong> Selalu periksa daftar bahan sebelum membeli</li>
-                        <li><strong>Mulai Sederhana:</strong> Produk dengan daftar bahan pendek cenderung lebih aman</li>
-                        <li><strong>Uji Sensitivitas:</strong> Selalu lakukan patch test sebelum penggunaan penuh</li>
-                        <li><strong>Konsultasi Ahli:</strong> Tanyakan pada dermatolog untuk kulit sensitif</li>
-                    </ul>
-                </div>
+            <div class="feature-card">
+                <h4>💡 Tips Keamanan</h4>
+                <ul style="text-align: left;">
+                    <li>Selalu baca label dengan teliti</li>
+                    <li>Lakukan patch test</li>
+                    <li>Konsultasi dengan dermatolog</li>
+                    <li>Pilih produk tersertifikasi</li>
+                </ul>
             </div>
             """, unsafe_allow_html=True)
         
-        # Disclaimer dengan styling yang lebih menarik
+        # Disclaimer
         st.markdown("---")
-        st.markdown("""
-        <div style="background: linear-gradient(135deg, #fff3e0 0%, #ffecb3 100%); padding: 1.5rem; border-radius: 12px; border-left: 4px solid #ff9800; margin-top: 2rem;">
-            <h4 style="color: #ef6c00; margin-top: 0;">⚠️ Disclaimer</h4>
-            <p style="margin-bottom: 0; line-height: 1.6; color: #bf360c;">Website ini hanya untuk tujuan informasi dan tidak menggantikan nasihat profesional dari dermatolog atau ahli kesehatan kulit. Selalu konsultasikan dengan profesional kesehatan untuk masalah kulit yang serius.</p>
-        </div>
-        """, unsafe_allow_html=True)
+        st.warning("""
+        **⚠️ Disclaimer:** Website ini hanya untuk tujuan informasi dan tidak menggantikan 
+        nasihat medis profesional. Selalu konsultasikan dengan dermatolog untuk masalah kulit yang serius.
+        """)
     
     # Footer
     st.markdown("---")
     st.markdown("""
-    <div style="text-align: center; color: #888888; font-size: 0.9rem; padding: 1rem 0;">
-        <p>© 2025 Pemeriksa Keamanan Skincare | Dibuat dengan ❤️ untuk kulit wajah yang lebih sehat</p>
+    <div style="text-align: center; padding: 1rem; color: #666; font-size: 0.9rem;">
+        <p>© 2025 Pemeriksa Keamanan Skincare | Dibuat dengan ❤️ untuk kulit yang lebih sehat</p>
     </div>
     """, unsafe_allow_html=True)
 
