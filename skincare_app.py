@@ -970,50 +970,50 @@ def main():
             </div>
             """, unsafe_allow_html=True)
             
-            # Methodology section
+            # Methodology section dengan perbaikan alignment
             st.markdown("""
             <div style="background: white; padding: 1.5rem; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); height: 280px; display: flex; flex-direction: column;">
                 <h4 style="color: #e91e63; margin-top: 0;">🔬 Metodologi</h4>
                 <div style="flex-grow: 1;">
                     <p style="margin-bottom: 1rem; line-height: 1.6;">Website ini dikembangkan berdasarkan:</p>
-                    <ul style="line-height: 1.6; margin: 0; padding-left: 1.2rem;">
-                        <li>Regulasi Uni Eropa (EU Regulation No. 1223/2009)</li>
-                        <li>Lembaga pengawas BPOM</li>
-                        <li>Pedoman FDA tentang kosmetik</li>
-                        <li>Penelitian ilmiah peer-reviewed</li>
-                    </ul>
+                    <div style="line-height: 1.8; margin: 0;">
+                        <div style="margin-bottom: 0.5rem;">• Regulasi Uni Eropa (EU Regulation No. 1223/2009)</div>
+                        <div style="margin-bottom: 0.5rem;">• Lembaga pengawas BPOM</div>
+                        <div style="margin-bottom: 0.5rem;">• Pedoman FDA tentang kosmetik</div>
+                        <div style="margin-bottom: 0.5rem;">• Penelitian ilmiah peer-reviewed</div>
+                    </div>
                 </div>
             </div>
             """, unsafe_allow_html=True)
         
         with col2:
-            # Data sources section
+            # Data sources section dengan perbaikan alignment
             st.markdown("""
             <div style="background: white; padding: 1.5rem; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); margin-bottom: 1.5rem; height: 280px; display: flex; flex-direction: column;">
                 <h4 style="color: #e91e63; margin-top: 0;">📚 Sumber Data</h4>
                 <div style="flex-grow: 1;">
                     <p style="margin-bottom: 1rem; line-height: 1.6;">Informasi dalam website ini bersumber dari:</p>
-                    <ul style="line-height: 1.6; margin: 0; padding-left: 1.2rem;">
-                        <li>Environmental Working Group's Skin Deep Database</li>
-                        <li>Cosmetic Ingredient Review (CIR)</li>
-                        <li>Journal of the American Academy of Dermatology</li>
-                        <li>BPOM RI</li>
-                    </ul>
+                    <div style="line-height: 1.8; margin: 0;">
+                        <div style="margin-bottom: 0.5rem;">• Environmental Working Group's Skin Deep Database</div>
+                        <div style="margin-bottom: 0.5rem;">• Cosmetic Ingredient Review (CIR)</div>
+                        <div style="margin-bottom: 0.5rem;">• Journal of the American Academy of Dermatology</div>
+                        <div style="margin-bottom: 0.5rem;">• BPOM RI</div>
+                    </div>
                 </div>
             </div>
             """, unsafe_allow_html=True)
             
-            # Tips section
+            # Tips section dengan perbaikan alignment
             st.markdown("""
             <div style="background: white; padding: 1.5rem; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); height: 280px; display: flex; flex-direction: column;">
                 <h4 style="color: #e91e63; margin-top: 0;">💡 Tips Memilih Skincare Aman</h4>
                 <div style="flex-grow: 1;">
-                    <ul style="line-height: 1.6; margin: 0; padding-left: 1.2rem;">
-                        <li><strong>Baca Label:</strong> Selalu periksa daftar bahan sebelum membeli</li>
-                        <li><strong>Mulai Sederhana:</strong> Produk dengan daftar bahan pendek cenderung lebih aman</li>
-                        <li><strong>Uji Sensitivitas:</strong> Selalu lakukan patch test sebelum penggunaan penuh</li>
-                        <li><strong>Konsultasi Ahli:</strong> Tanyakan pada dermatolog untuk kulit sensitif</li>
-                    </ul>
+                    <div style="line-height: 1.8; margin: 0;">
+                        <div style="margin-bottom: 0.5rem;"><strong>Baca Label:</strong> Selalu periksa daftar bahan sebelum membeli</div>
+                        <div style="margin-bottom: 0.5rem;"><strong>Mulai Sederhana:</strong> Produk dengan daftar bahan pendek cenderung lebih aman</div>
+                        <div style="margin-bottom: 0.5rem;"><strong>Uji Sensitivitas:</strong> Selalu lakukan patch test sebelum penggunaan penuh</div>
+                        <div style="margin-bottom: 0.5rem;"><strong>Konsultasi Ahli:</strong> Tanyakan pada dermatolog untuk kulit sensitif</div>
+                    </div>
                 </div>
             </div>
             """, unsafe_allow_html=True)
