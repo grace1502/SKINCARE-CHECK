@@ -162,24 +162,20 @@ st.markdown("""
 </style>
 """, unsafe_allow_html=True)
 
-# Tambahkan CSS ini setelah existing custom CSS di aplikasi utama
+# CSS PERBAIKAN MOBILE RESPONSIF - SANGAT PENTING
 st.markdown("""
 <style>
-    /* Global Text Overflow Fix - SANGAT PENTING */
+    /* GLOBAL TEXT OVERFLOW FIX */
     * {
         word-wrap: break-word !important;
         overflow-wrap: break-word !important;
         box-sizing: border-box !important;
     }
     
-    .stMarkdown, .stMarkdown *, 
-    .stText, .stText *,
-    p, div, span, li, h1, h2, h3, h4, h5, h6 {
-        max-width: 100% !important;
-        word-break: break-word !important;
-        overflow-wrap: break-word !important;
-        hyphens: auto !important;
-        white-space: normal !important;
+    /* Prevent horizontal scrolling */
+    body, html, .stApp, .main {
+        overflow-x: hidden !important;
+        max-width: 100vw !important;
     }
     
     /* Container fixes */
@@ -187,6 +183,31 @@ st.markdown("""
         max-width: 100% !important;
         padding-left: 1rem !important;
         padding-right: 1rem !important;
+        overflow-x: hidden !important;
+    }
+    
+    /* Text wrapping for all elements */
+    .stMarkdown, .stMarkdown *, 
+    .stText, .stText *,
+    p, div, span, li, h1, h2, h3, h4, h5, h6,
+    .stAlert, .stAlert *,
+    .stExpander, .stExpander *,
+    ul, ol {
+        max-width: 100% !important;
+        word-break: break-word !important;
+        overflow-wrap: break-word !important;
+        hyphens: auto !important;
+        white-space: normal !important;
+        overflow-x: hidden !important;
+    }
+    
+    /* List items specific fix */
+    li {
+        word-break: break-word !important;
+        overflow-wrap: break-word !important;
+        white-space: normal !important;
+        max-width: 100% !important;
+        padding-right: 0.5rem !important;
     }
     
     /* Mobile Responsive CSS */
@@ -197,6 +218,7 @@ st.markdown("""
             padding-left: 0.5rem !important;
             padding-right: 0.5rem !important;
             max-width: 100% !important;
+            overflow-x: hidden !important;
         }
         
         /* Header adjustments */
@@ -205,18 +227,27 @@ st.markdown("""
             text-align: center !important;
             margin-bottom: 1rem !important;
             word-wrap: break-word !important;
+            line-height: 1.2 !important;
         }
         
         h2 {
             font-size: 1.4rem !important;
             text-align: center !important;
             word-wrap: break-word !important;
+            line-height: 1.3 !important;
         }
         
         h3 {
             font-size: 1.2rem !important;
             text-align: center !important;
             word-wrap: break-word !important;
+            line-height: 1.3 !important;
+        }
+        
+        h4 {
+            font-size: 1.1rem !important;
+            word-wrap: break-word !important;
+            line-height: 1.3 !important;
         }
         
         /* Container padding adjustments */
@@ -225,6 +256,7 @@ st.markdown("""
             margin: 0.5rem !important;
             max-width: 100% !important;
             box-sizing: border-box !important;
+            overflow-x: hidden !important;
         }
         
         /* Button improvements */
@@ -233,6 +265,7 @@ st.markdown("""
             padding: 1rem !important;
             font-size: 1rem !important;
             box-sizing: border-box !important;
+            word-wrap: break-word !important;
         }
         
         /* Text area improvements */
@@ -248,6 +281,13 @@ st.markdown("""
             padding: 0.6rem 0.8rem !important;
             font-size: 0.9rem !important;
             word-wrap: break-word !important;
+            max-width: none !important;
+            white-space: normal !important;
+        }
+        
+        .stTabs [data-baseweb="tab-list"] {
+            flex-wrap: wrap !important;
+            overflow-x: hidden !important;
         }
         
         /* Metric cards stack vertically */
@@ -263,11 +303,13 @@ st.markdown("""
             font-size: 0.9rem !important;
             max-width: 100% !important;
             box-sizing: border-box !important;
+            overflow-x: hidden !important;
         }
         
         /* Column fixes */
         .stColumns {
             gap: 0.5rem !important;
+            flex-direction: column !important;
         }
         
         .stColumns > div {
@@ -277,17 +319,18 @@ st.markdown("""
             padding-left: 0.25rem !important;
             padding-right: 0.25rem !important;
             box-sizing: border-box !important;
-        }
-        
-        /* Feature cards in homepage */
-        .stColumns > div h4 {
-            font-size: 1.1rem !important;
-            word-wrap: break-word !important;
+            overflow-x: hidden !important;
         }
         
         /* Expander improvements */
         .streamlit-expanderHeader {
             font-size: 0.9rem !important;
+            word-wrap: break-word !important;
+            white-space: normal !important;
+        }
+        
+        .streamlit-expanderContent {
+            overflow-x: hidden !important;
             word-wrap: break-word !important;
         }
         
@@ -314,11 +357,12 @@ st.markdown("""
         }
         
         /* Ingredient lists */
-        ul {
+        ul, ol {
             padding-left: 1rem !important;
-            margin-right: 1rem !important;
-            max-width: 100% !important;
+            margin-right: 0.5rem !important;
+            max-width: calc(100% - 1rem) !important;
             box-sizing: border-box !important;
+            overflow-x: hidden !important;
         }
         
         li {
@@ -326,11 +370,31 @@ st.markdown("""
             font-size: 0.9rem !important;
             word-wrap: break-word !important;
             overflow-wrap: break-word !important;
+            white-space: normal !important;
+            line-height: 1.4 !important;
+            max-width: 100% !important;
+            padding-right: 0.5rem !important;
         }
         
         /* Fix untuk teks panjang dalam cards */
         .stMarkdown div {
             max-width: 100% !important;
+            word-wrap: break-word !important;
+            overflow-wrap: break-word !important;
+            overflow-x: hidden !important;
+        }
+        
+        /* Paragraf dalam markdown */
+        .stMarkdown p {
+            word-wrap: break-word !important;
+            overflow-wrap: break-word !important;
+            white-space: normal !important;
+            line-height: 1.5 !important;
+            max-width: 100% !important;
+        }
+        
+        /* Strong tags */
+        strong, b {
             word-wrap: break-word !important;
             overflow-wrap: break-word !important;
         }
@@ -339,8 +403,8 @@ st.markdown("""
     /* Small mobile devices */
     @media (max-width: 480px) {
         .main .block-container {
-            padding-left: 0.25rem !important;
-            padding-right: 0.25rem !important;
+            padding-left: 0.3rem !important;
+            padding-right: 0.3rem !important;
         }
         
         h1 {
@@ -370,6 +434,17 @@ st.markdown("""
             padding-left: 0.1rem !important;
             padding-right: 0.1rem !important;
         }
+        
+        /* Smaller list items */
+        li {
+            font-size: 0.85rem !important;
+            line-height: 1.3 !important;
+        }
+        
+        /* Smaller alert text */
+        .stAlert {
+            font-size: 0.85rem !important;
+        }
     }
     
     /* Touch-friendly improvements */
@@ -377,19 +452,13 @@ st.markdown("""
     .stTabs [data-baseweb="tab"],
     .streamlit-expanderHeader {
         min-height: 44px !important;
+        touch-action: manipulation !important;
     }
     
     /* Improved scrolling on mobile */
     .stTextArea textarea {
         -webkit-overflow-scrolling: touch;
     }
-    
-    /* Prevent horizontal scroll */
-    body, html, .stApp {
-        overflow-x: hidden !important;
-        max-width: 100% !important;
-    }
-    
 </style>
 """, unsafe_allow_html=True)
 
