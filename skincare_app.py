@@ -1172,37 +1172,25 @@ def show_about_page():
     </div>
     """, unsafe_allow_html=True)
     
-    # Main content - responsive columns
-    st.markdown("""
-    <style>
-        @media (max-width: 768px) {
-            .responsive-columns {
-                flex-direction: column !important;
-            }
-            .responsive-card {
-                margin-bottom: 1rem !important;
-            }
-        }
-    </style>
-    """, unsafe_allow_html=True)
+    # Main content dalam 2 kolom
+    col1, col2 = st.columns(2)
     
-    st.markdown('<div class="responsive-columns" style="display: flex; flex-wrap: wrap; gap: 1rem;">', unsafe_allow_html=True)
-    
-    # Column 1
-    st.markdown("""
-    <div style="flex: 1; min-width: 300px;">
-        <div class="feature-card responsive-card" style="height: auto; padding: 1.5rem; margin-bottom: 1rem;">
-            <h4 style="color: #e91e63; margin-top: 0;">🎯 Tujuan</h4>
-            <p style="line-height: 1.6; text-align: justify;">
-            Platform ini bertujuan untuk meningkatkan transparansi dalam industri kecantikan dengan memberikan informasi yang jelas dan dapat diakses tentang bahan-bahan dalam produk perawatan kulit.
+    with col1:
+        st.markdown("""
+        <div class="feature-card" style="height: 280px;">
+            <h4 style="color: #e91e63; margin-top: 0;">🎯 Tujuan </h4>
+            <p style="line-height: 1.6; flex-grow: 1; text-align: justify;">
+            Bertujuan untuk meningkatkan transparansi dalam industri kecantikan dengan memberikan informasi yang jelas dan dapat diakses tentang bahan-bahan dalam produk perawatan kulit. Tujuan dibuatnya platform ini adalah memberdayakan konsumen untuk membuat pilihan yang tepat berdasarkan data dan penelitian ilmiah terkini.
             </p>
         </div>
+        """, unsafe_allow_html=True)
         
-        <div class="feature-card responsive-card" style="height: auto; padding: 1.5rem;">
+        st.markdown("""
+        <div class="feature-card" style="height: 280px; margin-top: 1rem;">
             <h4 style="color: #e91e63; margin-top: 0;">🔬 Metodologi</h4>
-            <div>
+            <div style="flex-grow: 1;">
                 <p style="margin-bottom: 1rem; line-height: 1.6; text-align: justify;">Platform ini dikembangkan berdasarkan:</p>
-                <div style="line-height: 1.8; padding-left: 1rem;">
+                <div style="line-height: 1.8;">
                     <div>• Regulasi Uni Eropa (EU Regulation No. 1223/2009)</div>
                     <div>• Pedoman BPOM Indonesia</div>
                     <div>• Standar FDA tentang kosmetik</div>
@@ -1211,74 +1199,84 @@ def show_about_page():
                 </div>
             </div>
         </div>
-    </div>
-    """, unsafe_allow_html=True)
+        """, unsafe_allow_html=True)
     
-    # Column 2
-    st.markdown("""
-    <div style="flex: 1; min-width: 300px;">
-        <div class="feature-card responsive-card" style="height: auto; padding: 1.5rem; margin-bottom: 1rem;">
+    with col2:
+        st.markdown("""
+        <div class="feature-card" style="height: 280px;">
             <h4 style="color: #e91e63; margin-top: 0;">📚 Sumber Data</h4>
-            <div>
+            <div style="flex-grow: 1;">
                 <p style="margin-bottom: 1rem; line-height: 1.6; text-align: justify;">Informasi dalam platform ini bersumber dari:</p>
-                <div style="line-height: 1.8; padding-left: 1rem;">
+                <div style="line-height: 1.8;">
                     <div>• Environmental Working Group (EWG)</div>
                     <div>• Cosmetic Ingredient Review (CIR)</div>
                     <div>• Journal of the American Academy of Dermatology</div>
                     <div>• BPOM RI</div>
+                    <div>• European Medicines Agency</div>
                 </div>
             </div>
         </div>
+        """, unsafe_allow_html=True)
         
-        <div class="feature-card responsive-card" style="height: auto; padding: 1.5rem;">
+        st.markdown("""
+        <div class="feature-card" style="height: 280px; margin-top: 1rem;">
             <h4 style="color: #e91e63; margin-top: 0;">💡 Tips Memilih Skincare Aman</h4>
-            <div>
+            <div style="flex-grow: 1;">
                 <div style="line-height: 1.8;">
-                    <div><span style="display: inline-block; width: 30px;">📖</span> <strong>Baca Label:</strong> Periksa daftar bahan sebelum membeli</div>
-                    <div><span style="display: inline-block; width: 30px;">🎯</span> <strong>Mulai Sederhana:</strong> Produk dengan bahan pendek lebih aman</div>
-                    <div><span style="display: inline-block; width: 30px;">🧪</span> <strong>Uji Sensitivitas:</strong> Lakukan patch test dulu</div>
-                    <div><span style="display: inline-block; width: 30px;">👨‍⚕️</span> <strong>Konsultasi Ahli:</strong> Tanyakan dermatolog untuk kulit sensitif</div>
+                    <div><strong>📖 Baca Label:</strong> Selalu periksa daftar bahan sebelum membeli</div>
+                    <div><strong>🎯 Mulai Sederhana:</strong> Produk dengan daftar bahan pendek cenderung lebih aman</div>
+                    <div><strong>🧪 Uji Sensitivitas:</strong> Selalu lakukan patch test sebelum penggunaan penuh</div>
+                    <div><strong>👨‍⚕️ Konsultasi Ahli:</strong> Tanyakan pada dermatolog untuk kulit sensitif</div>
                 </div>
             </div>
         </div>
-    </div>
-    """, unsafe_allow_html=True)
+        """, unsafe_allow_html=True)
     
-    st.markdown('</div>', unsafe_allow_html=True)  # Close responsive columns
+    # Statistics section
+    st.markdown("---")
+    st.markdown("#### 📊 Statistik Platform")
     
-    # Statistics section - responsive grid
+    col1, col2, col3, col4 = st.columns(4)
+    
+    with col1:
+        st.metric(
+            label="Bahan Berbahaya",
+            value=len(DANGEROUS_INGREDIENTS),
+            help="Jumlah bahan berbahaya dalam database"
+        )
+    
+    with col2:
+        st.metric(
+            label="Bahan Aman",
+            value=len(KNOWN_SAFE_INGREDIENTS),
+            help="Jumlah bahan aman dalam database"
+        )
+    
+    with col3:
+        st.metric(
+            label="Kategori Risiko",
+            value="4",
+            help="Critical, High, Medium, Low"
+        )
+    
+    with col4:
+        st.metric(
+            label="Sumber Referensi",
+            value="10+",
+            help="Jurnal dan regulasi internasional"
+        )
+    
+    # Disclaimer dengan styling yang lebih menarik
+    st.markdown("---")
     st.markdown("""
-    <style>
-        .responsive-stats {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1rem;
-            margin: 2rem 0;
-        }
-        @media (max-width: 480px) {
-            .responsive-stats {
-                grid-template-columns: 1fr 1fr;
-            }
-        }
-    </style>
-    
-    <div class="responsive-stats">
-        <div class="stMetric">Bahan Berbahaya<br><span style="font-size: 1.5rem;">{}</span></div>
-        <div class="stMetric">Bahan Aman<br><span style="font-size: 1.5rem;">{}</span></div>
-        <div class="stMetric">Kategori Risiko<br><span style="font-size: 1.5rem;">4</span></div>
-        <div class="stMetric">Sumber Referensi<br><span style="font-size: 1.5rem;">10+</span></div>
-    </div>
-    """.format(len(DANGEROUS_INGREDIENTS), len(KNOWN_SAFE_INGREDIENTS)), unsafe_allow_html=True)
-    
-    # Disclaimer
-    st.markdown("""
-    <div style="background: rgba(255, 243, 224, 0.95); padding: 1.5rem; border-radius: 12px; border-left: 4px solid #ff9800; margin-top: 2rem;">
+    <div style="background: linear-gradient(135deg, #fff3e0 0%, #ffecb3 100%); padding: 1.5rem; border-radius: 12px; border-left: 4px solid #ff9800; margin-top: 2rem;">
         <h4 style="color: #ef6c00; margin-top: 0;">⚠️ Disclaimer Penting</h4>
-        <p style="margin-bottom: 0; line-height: 1.6; color: #2c2c2c; text-align: justify;">
-        Platform ini hanya untuk tujuan informasi dan edukasi. Tidak menggantikan nasihat profesional dari dermatolog. Selalu konsultasikan dengan ahli untuk masalah kulit serius. Hasil analisis berdasarkan database yang terus diperbarui.
+        <p style="margin-bottom: 0; line-height: 1.6; color: #bf360c; text-align: justify;">
+        Platform ini hanya untuk tujuan informasi dan edukasi. Tidak menggantikan nasihat profesional dari dermatolog atau ahli kesehatan kulit. Selalu konsultasikan dengan profesional kesehatan untuk masalah kulit yang serius atau jika Anda memiliki kondisi kulit tertentu. Hasil analisis berdasarkan database yang terus diperbarui sesuai penelitian terbaru.
         </p>
     </div>
     """, unsafe_allow_html=True)
+
 # Main App Function
 def main():
     """Fungsi utama aplikasi"""
