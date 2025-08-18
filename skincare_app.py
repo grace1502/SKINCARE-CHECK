@@ -757,16 +757,125 @@ def display_results(results):
 
 # Main App
 def main():
-    # Header dengan styling modern dan gambar
+    # Header dengan styling modern dan gambar skincare yang menarik
     st.markdown("""
-    <div style="position: relative; padding: 2rem 0; margin-bottom: 2rem;">
-        <div style="position: absolute; top: 0; right: 0; width: 200px; height: 150px; background: url('https://images.unsplash.com/photo-1570194065650-d99fb4bedf0d?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80') no-repeat center center; background-size: cover; border-radius: 15px; opacity: 0.3; z-index: 0;"></div>
-        <div style="position: relative; z-index: 1;">
-            <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
-                <div style="width: 60px; height: 60px; background: url('https://images.unsplash.com/photo-1596755389378-c31d21fd1273?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80') no-repeat center center; background-size: cover; border-radius: 50%; border: 3px solid #e91e63;"></div>
+    <div style="position: relative; padding: 2rem 0 3rem 0; margin-bottom: 2rem; background: linear-gradient(135deg, rgba(233, 30, 99, 0.05) 0%, rgba(255, 255, 255, 0.95) 50%, rgba(248, 187, 217, 0.1) 100%); border-radius: 20px; overflow: hidden;">
+        
+        <!-- Background Pattern -->
+        <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; opacity: 0.03; background-image: url('data:image/svg+xml,<svg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><g fill="%23e91e63" fill-opacity="0.4"><circle cx="30" cy="30" r="2"/></g></g></svg>'); background-repeat: repeat;"></div>
+        
+        <!-- Floating Skincare Images -->
+        <div style="position: absolute; top: 20px; right: 20px; width: 120px; height: 120px; background: url('https://images.unsplash.com/photo-1556228578-8c89e6adf883?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80') no-repeat center center; background-size: cover; border-radius: 20px; opacity: 0.7; box-shadow: 0 10px 30px rgba(233, 30, 99, 0.2); transform: rotate(-5deg);"></div>
+        
+        <div style="position: absolute; top: 60px; left: 30px; width: 80px; height: 80px; background: url('https://images.unsplash.com/photo-1570194065650-d99fb4bedf0d?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80') no-repeat center center; background-size: cover; border-radius: 50%; opacity: 0.6; box-shadow: 0 8px 25px rgba(194, 24, 91, 0.15); animation: float 3s ease-in-out infinite;"></div>
+        
+        <div style="position: absolute; bottom: 30px; right: 80px; width: 60px; height: 60px; background: url('https://images.unsplash.com/photo-1596755389378-c31d21fd1273?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80') no-repeat center center; background-size: cover; border-radius: 15px; opacity: 0.5; box-shadow: 0 6px 20px rgba(233, 30, 99, 0.1); transform: rotate(8deg);"></div>
+        
+        <!-- Main Content -->
+        <div style="position: relative; z-index: 2; text-align: center; padding: 0 2rem;">
+            
+            <!-- Logo/Icon Section -->
+            <div style="display: flex; justify-content: center; align-items: center; margin-bottom: 1.5rem;">
+                <div style="display: flex; gap: 1rem; align-items: center;">
+                    
+                    <!-- Main Icon -->
+                    <div style="width: 80px; height: 80px; background: url('https://images.unsplash.com/photo-1596755389378-c31d21fd1273?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80') no-repeat center center; background-size: cover; border-radius: 20px; border: 4px solid #e91e63; box-shadow: 0 10px 30px rgba(233, 30, 99, 0.3);"></div>
+                    
+                    <!-- Secondary Icons -->
+                    <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+                        <div style="width: 45px; height: 45px; background: url('https://images.unsplash.com/photo-1556228578-8c89e6adf883?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80') no-repeat center center; background-size: cover; border-radius: 12px; border: 2px solid #f8bbd9; opacity: 0.8;"></div>
+                        <div style="width: 45px; height: 45px; background: url('https://images.unsplash.com/photo-1570194065650-d99fb4bedf0d?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80') no-repeat center center; background-size: cover; border-radius: 12px; border: 2px solid #f8bbd9; opacity: 0.8;"></div>
+                    </div>
+                    
+                </div>
             </div>
+            
+            <!-- Title with Enhanced Styling -->
+            <div style="margin-bottom: 1rem;">
+                <h1 style="color: #c2185b; font-family: 'Inter', sans-serif; font-weight: 800; font-size: 3.5rem; letter-spacing: -0.02em; margin: 0; text-shadow: 2px 2px 4px rgba(0,0,0,0.1); background: linear-gradient(135deg, #e91e63 0%, #c2185b 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">
+                    🧪 Pemeriksa Keamanan Skincare
+                </h1>
+            </div>
+            
+            <!-- Subtitle with Icons -->
+            <div style="display: flex; justify-content: center; align-items: center; gap: 1rem; flex-wrap: wrap; margin-bottom: 1.5rem;">
+                <div style="display: flex; align-items: center; gap: 0.5rem; background: rgba(255,255,255,0.8); padding: 0.5rem 1rem; border-radius: 25px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.2rem;">🔬</span>
+                    <span style="color: #555; font-weight: 500;">Analisis Ilmiah</span>
+                </div>
+                <div style="display: flex; align-items: center; gap: 0.5rem; background: rgba(255,255,255,0.8); padding: 0.5rem 1rem; border-radius: 25px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.2rem;">🛡️</span>
+                    <span style="color: #555; font-weight: 500;">Keamanan Terjamin</span>
+                </div>
+                <div style="display: flex; align-items: center; gap: 0.5rem; background: rgba(255,255,255,0.8); padding: 0.5rem 1rem; border-radius: 25px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.2rem;">⚡</span>
+                    <span style="color: #555; font-weight: 500;">Hasil Instan</span>
+                </div>
+            </div>
+            
         </div>
+        
+        <!-- Bottom Decorative Elements -->
+        <div style="position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%); display: flex; gap: 0.5rem; opacity: 0.3;">
+            <div style="width: 8px; height: 8px; background: #e91e63; border-radius: 50%; animation: pulse 2s infinite;"></div>
+            <div style="width: 8px; height: 8px; background: #f8bbd9; border-radius: 50%; animation: pulse 2s infinite 0.5s;"></div>
+            <div style="width: 8px; height: 8px; background: #e91e63; border-radius: 50%; animation: pulse 2s infinite 1s;"></div>
+        </div>
+        
     </div>
+    
+    <!-- CSS Animations -->
+    <style>
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(-2deg); }
+            50% { transform: translateY(-10px) rotate(2deg); }
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 0.3; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.2); }
+        }
+        
+        /* Mobile Responsive Header */
+        @media (max-width: 768px) {
+            .header-container h1 {
+                font-size: 2.2rem !important;
+            }
+            
+            .header-icons {
+                flex-direction: column !important;
+                gap: 0.5rem !important;
+            }
+            
+            .header-icons > div {
+                font-size: 0.9rem !important;
+                padding: 0.4rem 0.8rem !important;
+            }
+            
+            .floating-images {
+                display: none !important;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .header-container {
+                padding: 1rem !important;
+            }
+            
+            .header-container h1 {
+                font-size: 1.8rem !important;
+            }
+            
+            .main-icon {
+                width: 60px !important;
+                height: 60px !important;
+            }
+            
+            .secondary-icons {
+                display: none !important;
+            }
+        }
+    </style>
     """, unsafe_allow_html=True)
     
     st.title("Pemeriksa Keamanan Skincare")
