@@ -968,7 +968,7 @@ def show_home_page():
     """, unsafe_allow_html=True)
     
     # Features dengan card design yang lebih baik
-    st.markdown("#### 🌟 Mengapa Memilih Platform Kami?")
+    st.markdown("#### Mengapa memilih platform ini?")
     
     col1, col2, col3, col4 = st.columns(4)
     
@@ -1011,7 +1011,7 @@ def show_home_page():
     st.markdown("<br>", unsafe_allow_html=True)
     
     # How it works section
-    st.markdown("#### 📋 Cara Menggunakan Platform")
+    st.markdown("####  Cara Menggunakan Platform")
     
     col1, col2, col3 = st.columns(3)
     
@@ -1046,11 +1046,11 @@ def show_home_page():
 # Fungsi untuk halaman analisis
 def show_analysis_page():
     """Menampilkan halaman analisis bahan"""
-    st.markdown("### 🔍 Analisis Bahan Skincare")
+    st.markdown("### Analisis Bahan Skincare")
     st.markdown("Masukkan daftar bahan produk skincare Anda di bawah ini untuk memeriksa potensi bahan berbahaya")
     
     # Input form dengan design yang diperbaiki
-    st.markdown("#### 📝 Input Bahan")
+    st.markdown("#### Input Bahan")
     
     ingredients = st.text_area(
         "**Daftar Bahan (INGREDIENTS):**",
