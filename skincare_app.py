@@ -35,25 +35,87 @@ st.markdown("""
         --text-light: #555555;
     }
     
-    /* Background dengan overlay */
+    /* Background dengan overlay dan gambar aesthetic */
     .stApp {
-        background: linear-gradient(rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.95)), 
-                    url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><radialGradient id="a" cx="50" cy="50" r="50"><stop offset="0" stop-color="%23fce4ec"/><stop offset="1" stop-color="%23f8bbd9"/></radialGradient></defs><rect width="100" height="100" fill="url(%23a)"/></svg>');
-        background-size: cover;
+        background: 
+            linear-gradient(rgba(255, 255, 255, 0.92), rgba(255, 255, 255, 0.85)),
+            linear-gradient(45deg, rgba(233, 30, 99, 0.03) 0%, rgba(255, 182, 193, 0.05) 50%, rgba(255, 255, 255, 0.02) 100%),
+            url('https://images.unsplash.com/photo-1556228578-8c89e6adf883?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80'),
+            url('https://images.unsplash.com/photo-1570194065650-d99fb4bedf0d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+        background-size: cover, cover, cover, cover;
+        background-position: center, center, center top, center bottom;
+        background-repeat: no-repeat;
         background-attachment: fixed;
-        background-position: center;
         min-height: 100vh;
+        position: relative;
     }
     
-    /* Main container */
+    /* Alternative background untuk mobile */
+    @media (max-width: 768px) {
+        .stApp {
+            background-attachment: scroll;
+            background-image: 
+                linear-gradient(rgba(255, 255, 255, 0.94), rgba(255, 255, 255, 0.88)),
+                linear-gradient(45deg, rgba(233, 30, 99, 0.02) 0%, rgba(255, 182, 193, 0.03) 100%),
+                url('https://images.unsplash.com/photo-1556228578-8c89e6adf883?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=70');
+        }
+    }
+    
+    /* Decorative elements */
+    .stApp::before {
+        content: '';
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: 
+            radial-gradient(circle at 20% 80%, rgba(233, 30, 99, 0.03) 0%, transparent 50%),
+            radial-gradient(circle at 80% 20%, rgba(194, 24, 91, 0.02) 0%, transparent 50%),
+            radial-gradient(circle at 40% 40%, rgba(248, 187, 217, 0.04) 0%, transparent 50%);
+        pointer-events: none;
+        z-index: -1;
+    }
+    
+    /* Main container dengan glassmorphism effect */
     .main-container {
-        background-color: rgba(255, 255, 255, 0.98);
-        border-radius: 15px;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+        background: rgba(255, 255, 255, 0.95);
+        border-radius: 20px;
+        box-shadow: 
+            0 15px 35px rgba(0, 0, 0, 0.1),
+            0 5px 15px rgba(0, 0, 0, 0.07),
+            inset 0 1px 0 rgba(255, 255, 255, 0.8);
         padding: 2rem;
         margin-bottom: 2rem;
-        backdrop-filter: blur(10px);
-        border: 1px solid rgba(255, 255, 255, 0.2);
+        backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        position: relative;
+        overflow: hidden;
+    }
+    
+    /* Decorative overlay untuk container */
+    .main-container::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 200px;
+        height: 200px;
+        background: 
+            url('https://images.unsplash.com/photo-1556228578-8c89e6adf883?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80'),
+            linear-gradient(135deg, rgba(233, 30, 99, 0.05), rgba(194, 24, 91, 0.03));
+        background-size: cover;
+        background-position: center;
+        border-radius: 0 20px 0 100px;
+        opacity: 0.1;
+        z-index: 0;
+        pointer-events: none;
+    }
+    
+    /* Content positioning */
+    .main-container > * {
+        position: relative;
+        z-index: 1;
     }
     
     /* Judul utama */
@@ -175,51 +237,112 @@ st.markdown("""
         box-shadow: 0 4px 12px rgba(233, 30, 99, 0.3) !important;
     }
     
-    /* Alert styling */
+    /* Alert styling dengan glassmorphism */
     .stAlert {
-        border-radius: 12px !important;
+        border-radius: 16px !important;
         padding: 1.5rem !important;
         margin: 1rem 0 !important;
         border: none !important;
         font-family: 'Inter', sans-serif !important;
+        backdrop-filter: blur(10px) !important;
+        position: relative !important;
+        overflow: hidden !important;
+    }
+    
+    .stAlert::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: url('https://images.unsplash.com/photo-1556228578-8c89e6adf883?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=30');
+        background-size: cover;
+        background-position: center;
+        opacity: 0.02;
+        pointer-events: none;
+        z-index: 0;
     }
     
     .stAlert > div {
         font-weight: 500 !important;
+        position: relative !important;
+        z-index: 1 !important;
     }
     
     /* Success alert */
     [data-testid="stAlert"] div:first-child {
-        background-color: #e8f5e8 !important;
+        background: rgba(232, 245, 232, 0.95) !important;
         border-left: 4px solid #4caf50 !important;
+        box-shadow: 0 4px 20px rgba(76, 175, 80, 0.1) !important;
     }
     
     /* Warning alert */
     .stWarning {
-        background-color: #fff3e0 !important;
+        background: rgba(255, 243, 224, 0.95) !important;
         border-left: 4px solid #ff9800 !important;
+        box-shadow: 0 4px 20px rgba(255, 152, 0, 0.1) !important;
     }
     
     /* Error alert */
     .stError {
-        background-color: #ffebee !important;
+        background: rgba(255, 235, 238, 0.95) !important;
         border-left: 4px solid #f44336 !important;
+        box-shadow: 0 4px 20px rgba(244, 67, 54, 0.1) !important;
     }
     
     /* Info alert */
     .stInfo {
-        background-color: #e3f2fd !important;
+        background: rgba(227, 242, 253, 0.95) !important;
         border-left: 4px solid #2196f3 !important;
+        box-shadow: 0 4px 20px rgba(33, 150, 243, 0.1) !important;
     }
     
-    /* Metrics */
+    /* Metrics dengan glassmorphism */
     .stMetric {
-        background-color: white !important;
-        padding: 1rem !important;
-        border-radius: 12px !important;
-        box-shadow: 0 2px 8px rgba(0,0,0,0.05) !important;
-        border: 1px solid #f0f0f0 !important;
+        background: rgba(255, 255, 255, 0.9) !important;
+        padding: 1.2rem !important;
+        border-radius: 16px !important;
+        box-shadow: 
+            0 8px 32px rgba(0, 0, 0, 0.08),
+            0 2px 8px rgba(0, 0, 0, 0.04) !important;
+        border: 1px solid rgba(255, 255, 255, 0.4) !important;
         text-align: center !important;
+        backdrop-filter: blur(15px) !important;
+        transition: all 0.3s ease !important;
+        position: relative !important;
+        overflow: hidden !important;
+    }
+    
+    .stMetric::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(135deg, rgba(233, 30, 99, 0.02) 0%, rgba(255, 255, 255, 0.03) 100%);
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        pointer-events: none;
+        z-index: 0;
+    }
+    
+    .stMetric:hover {
+        transform: translateY(-2px) !important;
+        box-shadow: 
+            0 12px 40px rgba(0, 0, 0, 0.12),
+            0 4px 12px rgba(233, 30, 99, 0.05) !important;
+        border-color: rgba(233, 30, 99, 0.15) !important;
+    }
+    
+    .stMetric:hover::before {
+        opacity: 1;
+    }
+    
+    .stMetric > div {
+        position: relative !important;
+        z-index: 1 !important;
     }
     
     /* Expander */
@@ -244,24 +367,49 @@ st.markdown("""
         padding: 0 0.5rem !important;
     }
     
-    /* Feature cards */
+    /* Feature cards dengan glassmorphism */
     .feature-card {
-        background: white;
+        background: rgba(255, 255, 255, 0.85);
         padding: 1.5rem;
-        border-radius: 12px;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        border-radius: 16px;
+        box-shadow: 
+            0 8px 32px rgba(0, 0, 0, 0.1),
+            0 2px 8px rgba(0, 0, 0, 0.05);
         text-align: center;
         height: 200px;
         display: flex;
         flex-direction: column;
         justify-content: center;
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-        border: 1px solid #f0f0f0;
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        border: 1px solid rgba(255, 255, 255, 0.4);
+        backdrop-filter: blur(15px);
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .feature-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(135deg, rgba(233, 30, 99, 0.02) 0%, rgba(255, 255, 255, 0.05) 100%);
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        pointer-events: none;
     }
     
     .feature-card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+        transform: translateY(-8px) scale(1.02);
+        box-shadow: 
+            0 20px 40px rgba(0, 0, 0, 0.15),
+            0 5px 15px rgba(233, 30, 99, 0.1);
+        border-color: rgba(233, 30, 99, 0.2);
+    }
+    
+    .feature-card:hover::before {
+        opacity: 1;
     }
     
     .feature-icon {
@@ -283,26 +431,79 @@ st.markdown("""
         line-height: 1.4;
     }
     
-    /* Hero section */
+    /* Hero section dengan background image overlay */
     .hero-section {
-        background: linear-gradient(135deg, rgba(233, 30, 99, 0.1) 0%, rgba(255, 255, 255, 0.9) 100%);
-        padding: 2.5rem;
-        border-radius: 15px;
+        background: 
+            linear-gradient(135deg, rgba(233, 30, 99, 0.08) 0%, rgba(255, 255, 255, 0.95) 50%, rgba(248, 187, 217, 0.05) 100%),
+            url('https://images.unsplash.com/photo-1596755389378-c31d21fd1273?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80');
+        background-size: cover, cover;
+        background-position: center, center;
+        padding: 3rem 2rem;
+        border-radius: 20px;
         text-align: center;
         margin-bottom: 2rem;
-        border: 1px solid rgba(233, 30, 99, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        box-shadow: 
+            0 15px 35px rgba(0, 0, 0, 0.1),
+            inset 0 1px 0 rgba(255, 255, 255, 0.6);
+        backdrop-filter: blur(10px);
+        position: relative;
+        overflow: hidden;
     }
     
-    /* Footer */
+    .hero-section::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: 
+            radial-gradient(circle at 30% 70%, rgba(233, 30, 99, 0.03) 0%, transparent 50%),
+            radial-gradient(circle at 70% 30%, rgba(248, 187, 217, 0.04) 0%, transparent 50%);
+        pointer-events: none;
+        z-index: 0;
+    }
+    
+    .hero-section > * {
+        position: relative;
+        z-index: 1;
+    }
+    
+    /* Footer dengan background subtle */
     .footer {
         text-align: center;
-        padding: 2rem 0;
+        padding: 2.5rem 0;
         margin-top: 3rem;
-        color: #888888;
+        color: #666666;
         font-size: 0.9rem;
-        border-top: 1px solid #f0f0f0;
-        background: rgba(255, 255, 255, 0.5);
-        border-radius: 12px;
+        border-top: 1px solid rgba(233, 30, 99, 0.1);
+        background: 
+            linear-gradient(135deg, rgba(255, 255, 255, 0.8) 0%, rgba(248, 187, 217, 0.05) 100%),
+            url('https://images.unsplash.com/photo-1556228578-8c89e6adf883?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=20');
+        background-size: cover, cover;
+        background-position: center, center;
+        border-radius: 16px;
+        backdrop-filter: blur(10px);
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .footer::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: radial-gradient(circle at 50% 50%, rgba(233, 30, 99, 0.02) 0%, transparent 70%);
+        pointer-events: none;
+        z-index: 0;
+    }
+    
+    .footer > * {
+        position: relative;
+        z-index: 1;
     }
 </style>
 """, unsafe_allow_html=True)
