@@ -1123,7 +1123,6 @@ def show_home_page():
 # Fungsi untuk halaman analisis
 def show_analysis_page():
     """Menampilkan halaman analisis bahan"""
-    st.markdown("### Analisis Bahan Skincare")
     st.markdown("Masukkan daftar bahan produk skincare Anda di bawah ini untuk memeriksa potensi bahan berbahaya")
     
     # Input form dengan design yang diperbaiki
