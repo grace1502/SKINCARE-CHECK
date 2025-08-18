@@ -595,75 +595,152 @@ st.markdown("""
 
 # Database bahan berbahaya (diperbaiki dan diperluas)
 DANGEROUS_INGREDIENTS = {
-    'paraben': {
+   'paraben': {
         'description': 'Dapat mengganggu hormon (EU Regulation No. 1223/2009)',
         'category': 'Endocrine Disruptor',
         'risk_level': 'High',
-        'common_names': ['methylparaben', 'propylparaben', 'butylparaben', 'ethylparaben', 'isobutylparaben'],
+        'common_names': ['methylparaben', 'propylparaben', 'butylparaben'],
         'details': 'Paraben adalah pengawet yang umum digunakan dalam kosmetik dan produk perawatan pribadi. Studi menunjukkan paraben dapat meniru estrogen dan berpotensi mengganggu sistem hormon tubuh. Regulasi Uni Eropa telah membatasi penggunaan beberapa jenis paraben dalam produk kosmetik.'
     },
     'sulfate': {
         'description': 'Bersifat keras dan dapat mengiritasi kulit',
         'category': 'Irritant',
         'risk_level': 'Medium',
-        'common_names': ['sodium lauryl sulfate', 'sls', 'sodium laureth sulfate', 'sles', 'ammonium lauryl sulfate'],
+        'common_names': ['sodium lauryl sulfate', 'sls', 'sodium laureth sulfate'],
         'details': 'Sulfate adalah surfaktan yang digunakan untuk membuat busa dalam produk pembersih. Bahan ini dapat menghilangkan minyak alami kulit, menyebabkan kekeringan dan iritasi, terutama pada kulit sensitif. Alternatif yang lebih lembut termasuk decyl glucoside atau coco-glucoside.'
     },
     'phthalate': {
-        'description': 'Dapat mengganggu hormon dan mempengaruhi kesehatan reproduksi',
+        'description': 'May disrupt hormones and affect reproductive health (EU Regulation No. 1223/2009)',
         'category': 'Endocrine Disruptor',
         'risk_level': 'High',
-        'common_names': ['dibutyl phthalate', 'dbp', 'diethylhexyl phthalate', 'dehp', 'benzyl butyl phthalate'],
-        'details': 'Phthalates sering digunakan sebagai pelarut dan pengikat wewangian. Bahan ini telah dikaitkan dengan masalah reproduksi dan perkembangan. Banyak negara telah melarang penggunaan phthalates tertentu dalam produk kosmetik.'
+        'common_names': ['dibutyl phthalate (dbp)', 'diethylhexyl phthalate (dehp)'],
+        'details': 'Phthalates sering digunakan sebagai pelarut dan pengikat wewangian. Bahan ini telah dikaitkan dengan masalah reproduksi dan perkembangan. Banyak negara telah melarang penggunaan phthalates tertentu dalam produk kosmetik dan mainan anak-anak.'
     },
     'formaldehyde': {
-        'description': 'Karsinogen yang dikenal dan sensitizer kulit',
+        'description': 'Known carcinogen and skin sensitizer',
         'category': 'Carcinogen, Allergen',
-        'risk_level': 'Critical',
-        'common_names': ['formalin', 'methylene glycol', 'quaternium-15', 'dmdm hydantoin', 'imidazolidinyl urea'],
-        'details': 'Formaldehyde dan pelepas formaldehyde digunakan sebagai pengawet. Zat ini diklasifikasikan sebagai karsinogen manusia dan dapat menyebabkan iritasi kulit, mata, dan saluran pernapasan.'
+        'risk_level': 'High',
+        'common_names': ['formalin', 'methylene glycol', 'quaternium-15'],
+        'details': 'Formaldehyde dan pelepas formaldehyde digunakan sebagai pengawet. Zat ini diklasifikasikan sebagai karsinogen manusia dan dapat menyebabkan iritasi kulit, mata, dan saluran pernapasan. Hindari produk yang mengandung DMDM hydantoin, imidazolidinyl urea, atau quaternium-15.'
     },
     'mercury': {
-        'description': 'Neurotoxin, berbahaya bagi ginjal dan sistem saraf',
+        'description': 'Neurotoxin, harmful to kidney and nervous system',
         'category': 'Heavy Metal, Neurotoxin',
         'risk_level': 'Critical',
-        'common_names': ['calomel', 'mercuric chloride', 'mercurous chloride'],
-        'details': 'Mercury adalah logam berat yang sangat beracun dan dapat merusak sistem saraf, ginjal, dan organ lainnya. Penggunaan mercury dalam kosmetik telah dilarang di banyak negara.'
+        'common_names': ['calomel', 'mercuric chloride'],
+        'details': 'Mercury adalah logam berat yang sangat beracun dan dapat merusak sistem saraf, ginjal, dan organ lainnya. Penggunaan mercury dalam kosmetik telah dilarang di banyak negara karena risiko kesehatan yang serius.'
     },
     'hydroquinone': {
-        'description': 'Pemutih kulit yang dapat menyebabkan ochronosis',
+        'description': 'Skin lightener, can cause ochronosis (skin discoloration)',
         'category': 'Skin Irritant, Pigmentation Disrupter',
         'risk_level': 'High',
-        'common_names': ['dihydroxybenzene', 'quinol', '1,4-benzenediol'],
+        'common_names': ['dihydroxybenzene', 'quinol'],
         'details': 'Hydroquinone digunakan sebagai pemutih kulit tetapi dapat menyebabkan ochronosis (perubahan warna kulit menjadi biru-hitam) dan iritasi kulit. Penggunaannya dibatasi atau dilarang di beberapa negara.'
     },
     'triclosan': {
-        'description': 'Dapat mengganggu hormon dan berkontribusi pada resistensi antibiotik',
+        'description': 'May disrupt hormones and contribute to antibiotic resistance',
         'category': 'Endocrine Disruptor, Antibiotic Resistance',
         'risk_level': 'High',
-        'common_names': ['triclosan', 'tcs', '5-chloro-2-(2,4-dichlorophenoxy)phenol'],
+        'common_names': ['triclosan', 'tcs'],
         'details': 'Triclosan adalah antimikroba yang dapat mengganggu hormon dan berkontribusi pada resistensi antibiotik. FDA telah melarang penggunaannya dalam sabun antibakteri konsumen.'
     },
     'alcohol': {
-        'description': 'Dapat mengeringkan dan mengiritasi beberapa jenis kulit',
+        'description': 'Can be drying and irritating for some skin types (depending on type and concentration)',
         'category': 'Irritant, Drying Agent',
         'risk_level': 'Medium',
-        'common_names': ['ethanol', 'isopropyl alcohol', 'sd alcohol', 'denatured alcohol'],
+        'common_names': ['ethanol', 'isopropyl alcohol', 'sd alcohol'],
         'details': 'Alkohol tertentu dapat mengeringkan dan mengiritasi kulit, terutama pada kulit sensitif. Namun, tidak semua alkohol berbahaya - fatty alcohols seperti cetyl alcohol justru melembapkan.'
     },
     'fragrance': {
-        'description': 'Alergen umum dan dapat menyebabkan iritasi kulit',
+        'description': 'Common allergen and can cause skin irritation (often a mix of undisclosed chemicals)',
         'category': 'Allergen, Irritant',
         'risk_level': 'Medium',
-        'common_names': ['parfum', 'perfume', 'aroma', 'fragrance'],
-        'details': 'Istilah "fragrance" atau "parfum" dapat mencakup ratusan bahan kimia berbeda yang tidak diungkapkan. Banyak di antaranya dapat menyebabkan iritasi kulit, alergi, atau gangguan hormon.'
+        'common_names': ['parfum', 'perfume', 'aroma'],
+        'details': 'Istilah "fragrance" atau "parfum" dapat mencakup ratusan bahan kimia berbeda yang tidak diungkapkan. Banyak di antaranya dapat menyebabkan iritasi kulit, alergi, atau gangguan hormon. Pilih produk yang bebas wewangian atau menggunakan minyak esensial alami sebagai alternatif.'
+    },
+    'lead': {
+        'description': 'Neurotoxin, harmful to nervous system (especially in children)',
+        'category': 'Heavy Metal, Neurotoxin',
+        'risk_level': 'Critical',
+        'common_names': ['lead acetate'],
+        'details': 'Lead adalah logam berat yang sangat beracun, terutama berbahaya bagi anak-anak. Dapat merusak sistem saraf dan menyebabkan masalah perkembangan. Penggunaannya dalam kosmetik dilarang di banyak negara.'
+    },
+    'toluene': {
+        'description': 'Can affect respiratory system and nervous system',
+        'category': 'Toxin',
+        'risk_level': 'High',
+        'common_names': ['methylbenzene', 'toluol'],
+        'details': 'Toluene adalah pelarut yang dapat mempengaruhi sistem pernapasan dan saraf. Sering ditemukan dalam cat kuku dan produk kosmetik lainnya. Paparan jangka panjang dapat menyebabkan masalah kesehatan serius.'
+    },
+    'bha': {
+        'description': 'Possible endocrine disruptor and carcinogen',
+        'category': 'Endocrine Disruptor, Possible Carcinogen',
+        'risk_level': 'High',
+        'common_names': ['butylated hydroxyanisole'],
+        'details': 'BHA (Butylated Hydroxyanisole) adalah antioksidan sintetis yang diduga dapat mengganggu hormon dan berpotensi karsinogenik. Penggunaannya dibatasi di beberapa negara.'
+    },
+    'bht': {
+        'description': 'Possible endocrine disruptor and skin allergen',
+        'category': 'Endocrine Disruptor, Allergen',
+        'risk_level': 'Medium',
+        'common_names': ['butylated hydroxytoluene'],
+        'details': 'BHT (Butylated Hydroxytoluene) adalah antioksidan sintetis yang dapat menyebabkan alergi kulit dan diduga mengganggu sistem hormon. Sering digunakan sebagai pengawet dalam kosmetik.'
+    },
+    'petrolatum': {
+        'description': 'Can be contaminated with PAHs (polycyclic aromatic hydrocarbons) if not refined properly',
+        'category': 'Contaminant Risk',
+        'risk_level': 'Medium',
+        'common_names': ['petroleum jelly', 'mineral oil jelly'],
+        'details': 'Petrolatum yang tidak dimurnikan dengan baik dapat terkontaminasi dengan PAHs (polycyclic aromatic hydrocarbons) yang berpotensi karsinogenik. Pastikan menggunakan produk dengan petrolatum berkualitas farmasi.'
+    },
+    'phenoxyethanol': {
+        'description': 'Preservative, can be an allergen and skin irritant (restricted in some countries)',
+        'category': 'Preservative, Allergen, Irritant',
+        'risk_level': 'Medium',
+        'common_names': ['ethylene glycol phenyl ether'],
+        'details': 'Phenoxyethanol adalah pengawet yang dapat menyebabkan alergi dan iritasi kulit. Penggunaannya dibatasi dalam produk bayi dan anak-anak di beberapa negara.'
+    },
+    'propylene glycol': {
+        'description': 'Can be a skin irritant and allergen',
+        'category': 'Irritant, Allergen',
+        'risk_level': 'Medium',
+        'common_names': ['1,2-propanediol'],
+        'details': 'Propylene glycol dapat menyebabkan iritasi dan alergi kulit pada beberapa orang, terutama mereka dengan kulit sensitif. Namun, umumnya dianggap aman dalam konsentrasi rendah.'
+    },
+    'siloxane': {
+        'description': 'Possible endocrine disruptors (especially cyclosiloxanes like cyclopentasiloxane and cyclohexasiloxane)',
+        'category': 'Endocrine Disruptor',
+        'risk_level': 'High',
+        'common_names': ['cyclopentasiloxane', 'cyclohexasiloxane', 'dimethicone', 'cyclomethicone'],
+        'details': 'Beberapa siloxane, terutama cyclosiloxanes, diduga dapat mengganggu sistem hormon dan berbahaya bagi lingkungan. EU telah membatasi penggunaan beberapa jenis siloxane dalam kosmetik.'
     },
     'oxybenzone': {
-        'description': 'Bahan tabir surya yang dapat mengganggu hormon',
+        'description': 'Sunscreen ingredient, can be a hormone disruptor and marine pollutant',
         'category': 'Endocrine Disruptor, Environmental Hazard',
         'risk_level': 'High',
-        'common_names': ['benzophenone-3', 'bp-3', '(2-hydroxy-4-methoxyphenyl)phenylmethanone'],
+        'common_names': ['benzophenone-3'],
         'details': 'Oxybenzone adalah bahan tabir surya yang dapat mengganggu hormon dan berbahaya bagi ekosistem laut, terutama terumbu karang. Sudah dilarang di beberapa daerah wisata bahari.'
+    },
+    'benzoyl peroxide': {
+        'description': 'Can be a skin irritant and sensitizer',
+        'category': 'Irritant, Sensitizer',
+        'risk_level': 'Medium',
+        'common_names': ['benzyl peroxide'],
+        'details': 'Benzoyl peroxide efektif untuk mengobati jerawat tetapi dapat menyebabkan iritasi, kekeringan, dan sensitivitas kulit. Penggunaan harus dimulai dengan konsentrasi rendah.'
+    },
+    'resorcinol': {
+        'description': 'Possible endocrine disruptor and allergen',
+        'category': 'Endocrine Disruptor, Allergen',
+        'risk_level': 'High',
+        'common_names': ['1,3-benzenediol'],
+        'details': 'Resorcinol dapat mengganggu fungsi tiroid dan menyebabkan alergi kulit. Penggunaannya dalam kosmetik dibatasi di beberapa negara karena potensi risiko kesehatan.'
+    },
+    'synthetic dyes': {
+        'description': 'Some synthetic dyes (e.g., coal tar dyes) can be carcinogens or allergens',
+        'category': 'Possible Carcinogen, Allergen',
+        'risk_level': 'High',
+        'common_names': ['ci 19140', 'yellow 5', 'red 40'],
+        'details': 'Beberapa pewarna sintetis, terutama yang berasal dari coal tar, dapat bersifat karsinogenik atau menyebabkan alergi. Pewarna tertentu telah dilarang dalam kosmetik di berbagai negara.'
     }
 }
 
